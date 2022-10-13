@@ -1,0 +1,36 @@
+* { box-sizing: border-box; }
+
+html { font-size: 100%; }
+
+html,
+body {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+a,
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+section,
+article,
+header {
+  display: block;
+}
+
+table {
+  text-align: left;
+  border-collapse: collapse;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
