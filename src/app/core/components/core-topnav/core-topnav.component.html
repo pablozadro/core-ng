@@ -1,15 +1,48 @@
-<nav>
-  <ul>
-    <li>
-      <a routerLink="/" class="link primary-color">Inicio</a>
-    </li>
-  </ul>
-  <ul>
-    <li>
-      <a routerLink="/auth/login" class="link primary-color">Login</a>
-    </li>
-    <li>
-      <a routerLink="/auth/profile" class="link primary-color">Profile</a>
-    </li>
-  </ul>
-</nav>
+<div class="topnav light-gray-theme" (keydown)="onKeydown($event)">
+  <a class="topnav__brand" routerLink="/">
+    <app-material-brand size="sm"></app-material-brand>
+  </a>
+  <div [ngClass]="getClass()">
+    <nav class="topnav__content-main">
+      <ul class="topnav__list">
+        <li>
+          <a class="topnav__link primary-color" (click)="close()" routerLink="/">Home</a>
+        </li>
+      </ul>
+    </nav>
+    <nav class="topnav__content-secondary">
+      <ul class="topnav__list">
+        <div *ngIf="false; then loggedBlock else notLoggedBlock"></div>
+        <ng-template #notLoggedBlock>
+          <li>
+            <a class="topnav__link primary-color" routerLink="/auth/login">
+              <i class="material-icons">login</i>
+              <span>Login</span>
+            </a>
+          </li>
+        </ng-template>
+        <ng-template #loggedBlock>
+          <li>
+            <a class="topnav__link primary-color" routerLink="/auth/profile">
+              <i class="material-icons">account_circle</i>
+              <span>foo@localhost.io</span>
+            </a>
+          </li>
+          <li>
+            <a class="topnav__link primary-color" routerLink="" (click)="logout()">
+              <i class="material-icons">logout</i>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ng-template>
+      </ul>
+    </nav>
+  </div>
+  <app-material-button
+    class="topnav__toggler"
+    theme="light-gray"
+    [square]="true"
+    [icon]="isToggled ? 'close':'menu'"
+    (click)="toggle()">
+  </app-material-button>
+</div>

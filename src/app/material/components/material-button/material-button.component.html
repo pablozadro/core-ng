@@ -1,0 +1,12 @@
+<button
+  type="button"
+  [class]="getClassName()">
+  <div *ngIf="icon; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+    <i class="material-icons">{{icon}}</i>
+    <span *ngIf="text">{{text}}</span>
+  </ng-template>
+  <ng-template #elseBlock>
+    {{text}}
+  </ng-template>
+</button>

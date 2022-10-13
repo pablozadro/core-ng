@@ -21,6 +21,16 @@ textarea {
   line-height: inherit;
 }
 
+.material-icons { vertical-align: middle; }
+
+a,
+input,
+button {
+  & > .material-icons {
+    pointer-events: none;
+  }
+}
+
 section,
 article,
 header {
@@ -35,4 +45,5 @@ table {
 ul {
   margin: 0;
   padding: 0;
+  & > li { margin: 0 0 $co-box-padding-y 0; }
 }

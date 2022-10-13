@@ -1,0 +1,63 @@
+@import 'abstracts/all';
+
+$co-loading-bar-width: 6px;
+$co-loading-bar-height: $co-loading-bar-width * 4;
+
+
+@keyframes loadingBarAnimation {
+  0% { height: $co-loading-bar-height; }
+  50% { height: 0; }
+  100% { height: $co-loading-bar-height; }
+}
+
+
+%LoadingBar {
+  display: inline-block;
+  position: absolute;
+  top: $co-loading-bar-width;
+  width: $co-loading-bar-width;
+  border-radius: $co-loading-bar-width;
+  animation-duration: 750ms;
+  animation-name: loadingBarAnimation;
+  animation-iteration-count: infinite;
+}
+
+
+.loading {
+  position: fixed;
+  z-index: map-get($co-layout-index, 'loading');
+  top: map-get($co-layout-dimensions, 'topnav-height');
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+
+  &__wrapper {
+    display: inline-block;
+    position: relative;
+    width: $co-loading-bar-width * 6;
+    height: $co-loading-bar-height + ($co-loading-bar-width * 2);
+    margin: 10% auto 0 auto;
+  }
+
+  &__bar-1 {
+    @extend %LoadingBar;
+    left: $co-loading-bar-width;
+  }
+
+  &__bar-2 {
+    @extend %LoadingBar;
+    left: $co-loading-bar-width * 3;
+    animation-delay: 100ms;
+  }
+
+  &__bar-3 {
+    @extend %LoadingBar;
+    left: $co-loading-bar-width * 5;
+    animation-delay: 200ms;
+  }
+
+  &__label {
+    padding-top: $co-box-padding-y;
+  }
+}
