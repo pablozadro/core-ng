@@ -23,6 +23,19 @@ interface TopnavLink {
 export class CoreTopnavComponent implements OnInit {
   isToggled = false;
   user$: Observable<AuthUser | null> = this.store.select(getUser);
+
+  authProfileLink: TopnavLink = { 
+    route: '/auth/profile', icon: 'account_circle', text: '-' 
+  };
+
+  logoutLink: TopnavLink = { 
+    route: '', onClick: this.logout, icon: 'power_settings_new', text: 'logout'
+  };
+
+  loginLink: TopnavLink = { 
+    route: '/auth/login', icon: 'account_circle', text: 'Login'
+  };
+
   links: TopnavLink[] = [];
 
   constructor(
@@ -32,13 +45,15 @@ export class CoreTopnavComponent implements OnInit {
   ngOnInit(): void {
     this.user$?.subscribe(user => {
       if (user) {
+        this.authProfileLink.text = user.email;
+
         this.links = [
-          { route: '/auth/profile', icon: 'account_circle', text: user.email },
-          { route: '', onClick: this.logout, icon: 'power_settings_new', text: 'logout' }
+          this.authProfileLink,
+          this.logoutLink
         ];
       } else {
         this.links = [
-          { route: '/auth/login', icon: 'account_circle', text: 'Login' }
+          this.loginLink
         ];
       }
     });

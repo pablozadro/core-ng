@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
+import { WindowMock } from '@app/mocks/window.mock';
 import { CoreApiService } from '@app/core/services/core-api.service';
 import { CoreApiServiceMock } from '@app/core/mocks/core-api.service.mock';
 import { AuthApiService } from './auth-api.service';
@@ -11,6 +12,7 @@ describe('AuthApiService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
+        { provide: Window, useValue: WindowMock },
         { provide: CoreApiService, useValue: CoreApiServiceMock },
       ]
     });
