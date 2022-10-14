@@ -1,6 +1,6 @@
 @use "sass:math";
 
-.mg-top {
+.mg-t {
   margin-top: $co-gutter;
   &-sm { margin-top: math.div($co-gutter, $co-gold); }
   &-md { margin-top: $co-gutter * $co-gold; }
@@ -9,7 +9,7 @@
   &-xxl { margin-top: $co-gutter * $co-gold * 4; }
 }
 
-.mg-right {
+.mg-r {
   margin-right: $co-gutter;
   &-sm { margin-right: math.div($co-gutter, $co-gold); }
   &-md { margin-right: $co-gutter * $co-gold; }
@@ -18,7 +18,7 @@
   &-xxl { margin-right: $co-gutter * $co-gold * 4; }
 }
 
-.mg-bottom {
+.mg-b {
   margin-bottom: $co-gutter;
   &-sm { margin-bottom: math.div($co-gutter, $co-gold); }
   &-md { margin-bottom: $co-gutter * $co-gold; }
@@ -27,7 +27,7 @@
   &-xxl { margin-bottom: $co-gutter * $co-gold * 4; }
 }
 
-.mg-left {
+.mg-l {
   margin-left: $co-gutter;
   &-sm { margin-left: math.div($co-gutter, $co-gold); }
   &-md { margin-left: $co-gutter * $co-gold; }
@@ -37,62 +37,62 @@
 }
 
 .mg-stack {
-  @extend .mg-top;
-  @extend .mg-bottom;
+  @extend .mg-t;
+  @extend .mg-b;
 
   &-sm {
-    @extend .mg-top-sm;
-    @extend .mg-bottom-sm;
+    @extend .mg-t-sm;
+    @extend .mg-b-sm;
   }
 
   &-md {
-    @extend .mg-top-md;
-    @extend .mg-bottom-md;
+    @extend .mg-t-md;
+    @extend .mg-b-md;
   }
 
   &-lg {
-    @extend .mg-top-lg;
-    @extend .mg-bottom-lg;
+    @extend .mg-t-lg;
+    @extend .mg-b-lg;
   }
 
   &-xl {
-    @extend .mg-top-xl;
-    @extend .mg-bottom-xl;
+    @extend .mg-t-xl;
+    @extend .mg-b-xl;
   }
 
   &-xxl {
-    @extend .mg-top-xxl;
-    @extend .mg-bottom-xxl;
+    @extend .mg-t-xxl;
+    @extend .mg-b-xxl;
   }
 }
 
 .mg-col {
-  @extend .mg-left;
-  @extend .mg-right;
+  @extend .mg-l;
+  @extend .mg-r;
 
   &-sm {
-    @extend .mg-left-sm;
-    @extend .mg-right-sm;
+    @extend .mg-l-sm;
+    @extend .mg-r-sm;
   }
 
   &-md {
-    @extend .mg-left-md;
-    @extend .mg-right-md;
+    @extend .mg-l-md;
+    @extend .mg-r-md;
   }
 
   &-lg {
-    @extend .mg-left-lg;
-    @extend .mg-right-lg;
+    @extend .mg-l-lg;
+    @extend .mg-r-lg;
   }
 
   &-xl {
-    @extend .mg-left-xl;
-    @extend .mg-right-xl;
+    @extend .mg-l-xl;
+    @extend .mg-r-xl;
   }
 
   &-xxl {
-    @extend .mg-left-xxl;
-    @extend .mg-right-xxl;
+    @extend .mg-l-xxl;
+    @extend .mg-r-xxl;
   }
 }
 
@@ -126,7 +126,7 @@
   }
 }
 
-.pd-top {
+.pd-t {
   padding-top: $co-gutter;
   &-sm { padding-top: math.div($co-gutter, $co-gold); }
   &-md { padding-top: $co-gutter * $co-gold; }
@@ -135,7 +135,7 @@
   &-xxl { padding-top: $co-gutter * $co-gold * 4; }
 }
 
-.pd-right {
+.pd-r {
   padding-right: $co-gutter;
   &-sm { padding-right: math.div($co-gutter, $co-gold); }
   &-md { padding-right: $co-gutter * $co-gold; }
@@ -144,7 +144,7 @@
   &-xxl { padding-right: $co-gutter * $co-gold * 4; }
 }
 
-.pd-bottom {
+.pd-b {
   padding-bottom: $co-gutter;
   &-sm { padding-bottom: math.div($co-gutter, $co-gold); }
   &-md { padding-bottom: $co-gutter * $co-gold; }
@@ -153,7 +153,7 @@
   &-xxl { padding-bottom: $co-gutter * $co-gold * 4; }
 }
 
-.pd-left {
+.pd-l {
   padding-left: $co-gutter;
   &-sm { padding-left: math.div($co-gutter, $co-gold); }
   &-md { padding-left: $co-gutter * $co-gold; }
@@ -163,62 +163,62 @@
 }
 
 .pd-stack {
-  @extend .pd-top;
-  @extend .pd-bottom;
+  @extend .pd-t;
+  @extend .pd-b;
 
   &-sm {
-    @extend .pd-top-sm;
-    @extend .pd-bottom-sm;
+    @extend .pd-t-sm;
+    @extend .pd-b-sm;
   }
 
   &-md {
-    @extend .pd-top-md;
-    @extend .pd-bottom-md;
+    @extend .pd-t-md;
+    @extend .pd-b-md;
   }
 
   &-lg {
-    @extend .pd-top-lg;
-    @extend .pd-bottom-lg;
+    @extend .pd-t-lg;
+    @extend .pd-b-lg;
   }
 
   &-xl {
-    @extend .pd-top-xl;
-    @extend .pd-bottom-xl;
+    @extend .pd-t-xl;
+    @extend .pd-b-xl;
   }
 
   &-xxl {
-    @extend .pd-top-xxl;
-    @extend .pd-bottom-xxl;
+    @extend .pd-t-xxl;
+    @extend .pd-b-xxl;
   }
 }
 
 .pd-col {
-  @extend .pd-left;
-  @extend .pd-right;
+  @extend .pd-l;
+  @extend .pd-r;
 
   &-sm {
-    @extend .pd-left-sm;
-    @extend .pd-right-sm;
+    @extend .pd-l-sm;
+    @extend .pd-r-sm;
   }
 
   &-md {
-    @extend .pd-left-md;
-    @extend .pd-right-md;
+    @extend .pd-l-md;
+    @extend .pd-r-md;
   }
 
   &-lg {
-    @extend .pd-left-lg;
-    @extend .pd-right-lg;
+    @extend .pd-l-lg;
+    @extend .pd-r-lg;
   }
 
   &-xl {
-    @extend .pd-left-xl;
-    @extend .pd-right-xl;
+    @extend .pd-l-xl;
+    @extend .pd-r-xl;
   }
 
   &-xxl {
-    @extend .pd-left-xxl;
-    @extend .pd-right-xxl;
+    @extend .pd-l-xxl;
+    @extend .pd-r-xxl;
   }
 }
 
