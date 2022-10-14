@@ -1,0 +1,17 @@
+@import 'abstracts/all';
+
+
+.article {
+  margin-top: $co-gutter * $co-gold * 2;
+
+  & > .header {
+    border-bottom: $co-box-border-size solid theme('white', 'border-color');
+    margin-bottom: $co-gutter;
+    padding-bottom: $co-box-padding-y;
+
+    & > .title {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

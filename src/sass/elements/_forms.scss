@@ -1,0 +1,128 @@
+@import 'abstracts/all';
+
+
+.form {
+  display: block;
+  width: 100%;
+
+  & > .form__group,
+  & > .form__list > li,
+  & > .form__submit {
+    margin: ($co-gutter * $co-gold) 0;
+  }
+
+  & > .form__group,
+  & > .form__list > li {
+    & > .input,
+    & > .select,
+    & > .textarea {
+      width: 100%;
+    }
+
+    & > .label {
+      display: block;
+      margin-bottom: $co-box-padding-y;
+    }
+  }
+
+  & > .form__submit {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+.inline-form {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  width: 100%;
+
+  & > .form__group,
+  & > .form__list > li,
+  & > .form__submit {
+    margin: 0 $co-box-padding-x $co-box-padding-x 0;
+  }
+
+  // & > .form__group {
+
+  //   & > .input,
+  //   & > .select,
+  //   & > .textarea {
+  //     width: 100%;
+  //   }
+
+  //   & > .label {
+  //     display: block;
+  //     margin-bottom: $co-box-padding-y;
+  //   }
+  // }
+
+  & > .form__submit {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+.form__list {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+%Inputs {
+  @include ThemeMix('white');
+  @include ThemeMixInteractive('white');
+  @include BackgroundHoverTransition($co-box-transition-duration, ease-out);
+  padding: $co-box-padding-y $co-box-padding-x;
+  border: $co-box-border-size solid theme('white', 'border-color');
+  border-radius: $co-box-border-radius;
+  background-image: none;
+
+  &:hover,
+  &:focus {
+    @include BackgroundHoverTransition($co-box-transition-duration, ease-in);
+  }
+
+  &::placeholder { 
+    color: $co-color-gray-4; 
+    font-size: $co-font-size-sm;
+  }
+
+  &.is--warning {
+    @include ThemeMixInteractive('warning');
+    border: $co-box-border-size solid theme('warning', 'border-color');
+    &::placeholder { color: theme('warning', 'color'); }
+  }
+
+  &.is--error {
+    @include ThemeMixInteractive('error');
+    border: $co-box-border-size solid theme('error', 'border-color');
+    &::placeholder { color: theme('error', 'color'); }
+  }
+
+  &.is--success {
+    @include ThemeMixInteractive('success');
+    border: $co-box-border-size solid theme('success', 'border-color');
+    &::placeholder { color: theme('success', 'color'); }
+  }
+}
+
+
+.label {
+  @include TypeStrong;
+  margin-right: $co-box-padding-x;
+}
+
+.input,
+.select,
+.textarea {
+  @extend %Inputs;
+}
+
+.textarea {
+  resize: none;
+}

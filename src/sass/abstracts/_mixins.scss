@@ -19,7 +19,7 @@
 // -- ANIMATIONS -- //
 // ---------------------------------------------------------------------------------------------- //
 
-@mixin backgroundHoverTransition($duration, $easeType) {
+@mixin BackgroundHoverTransition($duration, $easeType) {
   transition-property: background-color;
   transition-duration: $duration;
   transition-timing-function: $easeType;

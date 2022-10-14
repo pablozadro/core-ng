@@ -1,4 +1,5 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { CoreRoutingModule } from './core-routing.module';
 import { SharedModule } from '@app/shared/shared.module';
@@ -18,6 +19,7 @@ import { CoreLandingComponent } from '@app/core/components/core-landing/core-lan
   imports: [
     SharedModule,
     CoreRoutingModule,
+    HttpClientModule,
   ],
   exports: [
     CoreFooterComponent,

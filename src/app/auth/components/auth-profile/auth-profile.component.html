@@ -1,5 +1,16 @@
-<article>
-  <header>
-    <h1 class="title md">Profile</h1>
-  </header>
-</article>
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-offset-3">
+      <article class="article">
+        <header class="header">
+          <h1 class="title md">Profile</h1>
+        </header>
+        <div *ngIf="user$ | async as user">
+          <ul class="bordered-list">
+            <li>email: {{ user.email }}</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>

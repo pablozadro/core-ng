@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthLoggedGuard } from './guards/auth-logged.guard';
 import { AuthLoginComponent } from '@app/auth/components/auth-login/auth-login.component';
 import { AuthProfileComponent } from '@app/auth/components/auth-profile/auth-profile.component';
+
 
 const routes: Routes = [
   {
@@ -12,6 +14,7 @@ const routes: Routes = [
   {
     path: 'auth/profile',
     component: AuthProfileComponent,
+    canActivate: [ AuthLoggedGuard ]
   },
 ];
 

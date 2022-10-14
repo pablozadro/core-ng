@@ -6,16 +6,16 @@
     <nav class="topnav__content-main">
       <ul class="topnav__list">
         <li>
-          <a class="topnav__link primary-color" (click)="close()" routerLink="/">Home</a>
+          <a class="topnav__link black-color" (click)="close()" routerLink="/">Home</a>
         </li>
       </ul>
     </nav>
     <nav class="topnav__content-secondary">
       <ul class="topnav__list">
-        <div *ngIf="false; then loggedBlock else notLoggedBlock"></div>
+        <div *ngIf="user$ | async; then loggedBlock else notLoggedBlock"></div>
         <ng-template #notLoggedBlock>
           <li>
-            <a class="topnav__link primary-color" routerLink="/auth/login">
+            <a class="topnav__link black-color" routerLink="/auth/login">
               <i class="material-icons">login</i>
               <span>Login</span>
             </a>
@@ -23,13 +23,13 @@
         </ng-template>
         <ng-template #loggedBlock>
           <li>
-            <a class="topnav__link primary-color" routerLink="/auth/profile">
+            <a class="topnav__link black-color" routerLink="/auth/profile">
               <i class="material-icons">account_circle</i>
-              <span>foo@localhost.io</span>
+              <span>{{(user$ | async)?.email}}</span>
             </a>
           </li>
           <li>
-            <a class="topnav__link primary-color" routerLink="" (click)="logout()">
+            <a class="topnav__link black-color" routerLink="" (click)="logout()">
               <i class="material-icons">logout</i>
               <span>Logout</span>
             </a>

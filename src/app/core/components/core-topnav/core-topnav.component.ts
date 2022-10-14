@@ -1,4 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { logout } from '@app/auth/state/auth.actions';
+import { getUser } from '@app/auth/state/auth.selectors';
+import { AuthUser } from '@app/auth/interfaces';
+
+
+interface TopnavLink {
+  route?: string;
+  icon?: string;
+  onClick?: any;
+  text: string;
+}
+
 
 @Component({
   selector: 'app-core-topnav',
@@ -7,10 +22,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoreTopnavComponent implements OnInit {
   isToggled = false;
+  user$: Observable<AuthUser | null> = this.store.select(getUser);
+  links: TopnavLink[] = [];
 
-  constructor() { }
+  constructor(
+    private store: Store<any>
+  ) { }
 
   ngOnInit(): void {
+    this.user$?.subscribe(user => {
+      if (user) {
+        this.links = [
+          { route: '/auth/profile', icon: 'account_circle', text: user.email },
+          { route: '', onClick: this.logout, icon: 'power_settings_new', text: 'logout' }
+        ];
+      } else {
+        this.links = [
+          { route: '/auth/login', icon: 'account_circle', text: 'Login' }
+        ];
+      }
+    });
   }
 
   onKeydown(e: any) {
@@ -34,5 +65,7 @@ export class CoreTopnavComponent implements OnInit {
     return this.isToggled ? 'topnav__content is--active' : 'topnav__content';
   }
 
-  logout() {}
+  logout() {
+    this.store.dispatch(logout());
+  }
 }

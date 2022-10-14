@@ -1,5 +1,82 @@
-<article>
-  <header>
-    <h1 class="title md">Login</h1>
-  </header>
-</article>
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-offset-3">
+      <article class="article">
+        <header class="header">
+          <h1 class="title md">Login</h1>
+        </header>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+
+          <!-- Email -->
+          <div class="form__group">
+            <label for="email" class="label">Email</label>
+            <input 
+              class="input"
+              id="email" 
+              type="email"
+              aria-describedby="email-help"
+              placeholder="name@domain"
+              [formControl]="email" />
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+              <small id="email-help" class="sm error-color">
+                <div *ngIf="email.errors?.['required']" class="mg-stack-sm">
+                  El email de usuario es requerido.
+                </div>
+                <div *ngIf="email.errors?.['email']" class="mg-stack-sm">
+                  Formato inválido.
+                </div>
+                <div *ngIf="email.errors?.['maxlength']" class="mg-stack-sm">
+                  El email no debe tener mas de {{ emailMaxLength }} carácteres.
+                </div>
+              </small>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form__group">
+            <label for="password" class="label">Password</label>
+            <input 
+              class="input"
+              id="password" 
+              type="password"
+              placeholder="your password"
+              aria-describedby="password-help" 
+              [formControl]="password" />
+            <div *ngIf="password.invalid && (password.dirty || password.touched)">
+              <small id="password-help" class="sm error-color">
+                <div *ngIf="password.errors?.['required']" class="mg-stack-sm">
+                  Password is required.
+                </div>
+                <div *ngIf="password.errors?.['minlength']" class="mg-stack-sm">
+                  Password must be more than {{ passwordMinLength }} characters long.
+                </div>
+                <div *ngIf="password.errors?.['maxlength']" class="mg-stack-sm">
+                  Password must be less than {{ passwordMaxLength }} characters long.
+                </div>
+              </small>
+            </div>
+          </div>
+          
+          <!-- Loading & Error & Submit -->
+          <div class="mg-stack">
+            <app-material-loading 
+              *ngIf="(loginStatus$ |  async) === IN_PROGRESS">
+            </app-material-loading>
+            <app-material-message 
+              *ngIf="loginError$ | async"
+              [text]="(loginError$ | async) || 'Error login user'" 
+              status="error" 
+              [block]="true">
+            </app-material-message>
+          </div>
+
+          <!-- Submit -->
+          <div class="form__submit">
+            <app-material-button text="login" type="submit" (click)="onSubmit()"></app-material-button>
+          </div>
+        </form>
+      </article>
+    </div>
+  </div>
+</div>

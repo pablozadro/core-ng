@@ -1,12 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from '@app/shared/shared.module';
 import { AuthModule } from '@app/auth/auth.module';
 
+import { AuthInterceptorService } from '@app/auth/services/auth-interceptor.service';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { authReducer } from '@app/auth/state/auth.reducer';
+import { AuthEffects } from '@app/auth/state/auth.effects';
+
 
 @NgModule({
   declarations: [
@@ -18,8 +27,24 @@ import { AppComponent } from './app.component';
     AuthModule,
     CoreModule,
     SharedModule,
+    StoreModule.forRoot({ 
+      auth: authReducer,
+    }),
+    EffectsModule.forRoot([
+      AuthEffects,
+    ]),
   ],
-  providers: [],
+    providers: [
+    { 
+      provide: Window, 
+      useValue: window 
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
