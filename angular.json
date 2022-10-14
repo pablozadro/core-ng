@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "lab-ng": {
+    "core-ng": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/lab-ng",
+            "outputPath": "dist/core-ng",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -93,13 +93,13 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "lab-ng:build:production"
+              "browserTarget": "core-ng:build:production"
             },
             "development": {
-              "browserTarget": "lab-ng:build:development"
+              "browserTarget": "core-ng:build:development"
             },
             "local": {
-              "browserTarget": "lab-ng:build:local"
+              "browserTarget": "core-ng:build:local"
             }
           },
           "defaultConfiguration": "development"
@@ -107,7 +107,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lab-ng:build"
+            "browserTarget": "core-ng:build"
           }
         },
         "test": {

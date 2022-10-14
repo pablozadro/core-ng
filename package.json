@@ -1,5 +1,5 @@
 {
-  "name": "lab-ng",
+  "name": "core-ng",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
