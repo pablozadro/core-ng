@@ -2,7 +2,7 @@
 
 # OWN
 src/assets/core-material
-src/assets/core-material/.gitkeep
+!src/assets/core-material/.gitkeep
 
 # Compiled output
 /dist
