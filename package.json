@@ -8,9 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "postinstall": "npm run core-material:install",
-    "core-material:install":"npm run core-material:install:brand && npm run core-material:install:favicon",
-    "core-material:install:brand": "cp -R ./node_modules/core-material/assets/brand ./src/assets",
-    "core-material:install:favicon": "cp -R ./node_modules/core-material/assets/favicon/* ./src"
+    "core-material:install":"npm run core-material:install:brand",
+    "core-material:install:brand": "cp -R ./node_modules/core-material/assets/brand ./src/assets/core-material"
   },
   "private": true,
   "dependencies": {
