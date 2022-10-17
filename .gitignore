@@ -4,7 +4,9 @@
 src/assets/core-material/*
 !src/assets/core-material/.gitkeep
 src/favicon*
-
+src/android-chrome-192x192.png
+android-chrome-512x512.png
+src/apple-touch-icon.png
 
 # Compiled output
 /dist
