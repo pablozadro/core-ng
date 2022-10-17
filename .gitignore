@@ -1,8 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # OWN
-src/assets/core-material
-!src/assets/core-material/.gitkeep
+
 
 # Compiled output
 /dist
