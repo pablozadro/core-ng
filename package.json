@@ -6,7 +6,11 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postinstall": "npm run core-material:install:assets",
+    "core-material:install:assets": "npm run core-material:install:images && npm run core-material:install:favicon",
+    "core-material:install:images": "cp -R ./node_modules/core-material/assets/brand ./src/assets/core-material",
+    "core-material:install:favicon": "cp -R ./node_modules/core-material/assets/favicon/* ./src"
   },
   "private": true,
   "dependencies": {

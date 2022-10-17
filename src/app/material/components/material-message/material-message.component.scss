@@ -1,17 +1,1 @@
-@import 'abstracts/all';
-
-.msg {
-  display: inline-block;
-  padding: $co-box-padding-y $co-box-padding-x;
-  border-radius: $co-box-border-radius;
-  min-width: 10rem;
-
-  & > .material-icons + span {
-    margin: 0 0 0 $co-box-padding-x;
-  }
-
-  &.is--block {
-    width: 100%;
-    display: block;
-  }
-}
+@import 'core-material/sass/components/message';

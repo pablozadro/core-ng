@@ -6,6 +6,7 @@ It ain't much, but it's honest work.
 
 ```bash
 npm install
+npm link core-material
 ng serve # run development server on http://localhost:9001
 ng serve --configuration=local 
 ```

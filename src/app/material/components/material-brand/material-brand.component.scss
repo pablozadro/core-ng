@@ -1,13 +1,3 @@
-@import 'abstracts/all';
+@import 'core-material/sass/components/brand';
 
-.brand {
-  display: inline-block;
-  height: 3em;
-  width: 3em;
 
-  & > img {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-  }
-}

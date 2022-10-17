@@ -1,14 +1,7 @@
-@import 'abstracts/all';
+@import 'core-material/sass/abstracts/all';
+@import 'core-material/sass/core/all';
+@import 'core-material/sass/layout/all';
 
-@import 'core/normalize';
-@import 'core/typography';
-
-@import 'layout/spacing';
-@import 'layout/sections';
-@import 'layout/articles';
-@import 'layout/grid';
-
-@import 'elements/forms';
-@import 'elements/lists';
-@import 'elements/modals';
-@import 'elements/tables';
+@import 'core-material/sass/components/forms';
+@import 'core-material/sass/components/tables';
+@import 'core-material/sass/components/lists';
