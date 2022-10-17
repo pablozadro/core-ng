@@ -4,12 +4,27 @@ It ain't much, but it's honest work.
 
 ## Getting started
 
+Install dependencies:
 ```bash
 npm install
+```
+
+Link Core-Material:
+```bash
 npm link core-material
+```
+
+Run development server:
+```bash
 ng serve # run development server on http://localhost:9001
 ng serve --configuration=local 
 ```
+
+
+
+---
+
+
 
 ## Commands
 
@@ -29,6 +44,11 @@ ng test
 # end-to-end tests via Protractor
 ng e2e 
 ```
+
+
+
+---
+
 
 
 ## Further help
