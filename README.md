@@ -9,11 +9,6 @@ Install dependencies:
 npm install
 ```
 
-Link Core-Material:
-```bash
-npm link core-material
-```
-
 Run development server:
 ```bash
 ng serve # run development server on http://localhost:9001

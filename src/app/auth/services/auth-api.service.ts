@@ -14,13 +14,15 @@ export interface AuthLoginBody {
   providedIn: 'root'
 })
 export class AuthApiService {
+  private LOGIN_URL = 'http://localhost:9000/api/v1/auth/login?delay=750';
+
   constructor(
     private window: Window,
     private coreApiService: CoreApiService,
   ) {}
 
   login(body: AuthLoginBody): Observable<any> {
-    return this.coreApiService.post('http://localhost:9000/api/v1/auth/login?delay=750', body);
+    return this.coreApiService.post(this.LOGIN_URL, body);
   }
   
   logout() {
