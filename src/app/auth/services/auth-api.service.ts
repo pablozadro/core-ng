@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 import { CoreApiService } from '@app/core/services/core-api.service';
 import { AuthUser } from '@app/auth/interfaces'
@@ -22,7 +22,7 @@ export class AuthApiService {
   ) {}
 
   login(body: AuthLoginBody): Observable<any> {
-    return this.coreApiService.post(this.LOGIN_URL, body);
+    return this.coreApiService.post(this.LOGIN_URL, body)
   }
   
   logout() {

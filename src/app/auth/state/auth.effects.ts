@@ -51,10 +51,7 @@ export class AuthEffects {
             }
           }
 
-          const dToken: any | null = this.authTokenService.decodeToken(token);
-
-          /** @todo: check token expiration time */
-          const user: AuthUser = dToken;
+          const user: AuthUser = this.authTokenService.decodeToken(token);
 
           if (this.authApiService.isTokenExpired(user)) {
             return {
@@ -64,7 +61,6 @@ export class AuthEffects {
           }
 
           this.authApiService.createUser(user, token);
-
           this.router.navigateByUrl('auth/profile');
 
           return {
