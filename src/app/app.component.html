@@ -1,6 +1,11 @@
-<app-core-topnav></app-core-topnav>
-<div class="app pd">
-  <router-outlet></router-outlet>
+<div class="app">
+  <div class="app__top">
+    <app-core-topnav></app-core-topnav>
+  </div>
+  <div class="app__main">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="app__footer">
+    <app-core-footer></app-core-footer>
+  </div>
 </div>
-<app-core-footer></app-core-footer>
-
