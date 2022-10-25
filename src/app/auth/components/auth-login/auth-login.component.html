@@ -1,4 +1,4 @@
-<div class="pd">
+<div class="box-pd">
   <div class="container">
     <div class="row">
       <div class="col-6 col-offset-3">
@@ -21,13 +21,13 @@
                 [formControl]="email" />
               <div *ngIf="email.invalid && (email.dirty || email.touched)">
                 <small id="email-help" class="sm error-color">
-                  <div *ngIf="email.errors?.['required']" class="mg-stack-sm">
+                  <div *ngIf="email.errors?.['required']" class="box-mg-stack-sm">
                     El email de usuario es requerido.
                   </div>
-                  <div *ngIf="email.errors?.['email']" class="mg-stack-sm">
+                  <div *ngIf="email.errors?.['email']" class="box-mg-stack-sm">
                     Formato inválido.
                   </div>
-                  <div *ngIf="email.errors?.['maxlength']" class="mg-stack-sm">
+                  <div *ngIf="email.errors?.['maxlength']" class="box-mg-stack-sm">
                     El email no debe tener mas de {{ emailMaxLength }} carácteres.
                   </div>
                 </small>
@@ -46,13 +46,13 @@
                 [formControl]="password" />
               <div *ngIf="password.invalid && (password.dirty || password.touched)">
                 <small id="password-help" class="sm error-color">
-                  <div *ngIf="password.errors?.['required']" class="mg-stack-sm">
+                  <div *ngIf="password.errors?.['required']" class="box-mg-stack-sm">
                     Password is required.
                   </div>
-                  <div *ngIf="password.errors?.['minlength']" class="mg-stack-sm">
+                  <div *ngIf="password.errors?.['minlength']" class="box-mg-stack-sm">
                     Password must be more than {{ passwordMinLength }} characters long.
                   </div>
-                  <div *ngIf="password.errors?.['maxlength']" class="mg-stack-sm">
+                  <div *ngIf="password.errors?.['maxlength']" class="box-mg-stack-sm">
                     Password must be less than {{ passwordMaxLength }} characters long.
                   </div>
                 </small>
@@ -60,7 +60,7 @@
             </div>
             
             <!-- Loading & Error & Submit -->
-            <div class="mg-stack">
+            <div class="box-mg-stack">
               <app-material-loading 
                 *ngIf="(loginStatus$ |  async) === IN_PROGRESS">
               </app-material-loading>
