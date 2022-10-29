@@ -9,6 +9,11 @@ Install dependencies:
 npm install
 ```
 
+Set Core-Material assets paths in `core.config.js` and install:
+```bash
+npx core-material assets
+```
+
 Run development server:
 ```bash
 ng serve # run development server on http://localhost:9001
