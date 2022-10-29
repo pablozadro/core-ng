@@ -5,5 +5,9 @@ module.exports = {
     brand: path.resolve(__dirname, 'src/assets'),
     favicon: path.resolve(__dirname, 'src'),
     manifest: path.resolve(__dirname, 'src'),
+  },
+  settings: {
+    eslint: path.resolve(__dirname, './'),
+    vscode: path.resolve(__dirname, './.vscode'),
   }
 }

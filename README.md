@@ -12,6 +12,7 @@ npm install
 Set Core-Material assets paths in `core.config.js` and install:
 ```bash
 npx core-material assets
+npx core-material settings
 ```
 
 Run development server:

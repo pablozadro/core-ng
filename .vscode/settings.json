@@ -22,7 +22,7 @@
       "editor.wordWrapColumn": 100
     },
     "[python]": {
-      "editor.tabSize": 4,
+      "editor.tabSize": 4
     },
     "workbench.colorCustomizations": {
       "activityBar.activeBackground": "#7decd6",
