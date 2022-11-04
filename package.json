@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "postinstall": "npm link core-x"
+    "postinstall": "npm link core-x && npm run core-x:install",
+    "core-x:install:favicon": "cp -R node_modules/core-x/public/images/favicon/* src/assets/",
+    "core-x:install:brand": "cp -R node_modules/core-x/public/images/brand src/assets/brand",
+    "core-x:install": "npm run core-x:install:brand && npm run core-x:install:favicon"
   },
   "private": true,
   "dependencies": {
