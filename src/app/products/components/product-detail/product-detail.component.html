@@ -1,0 +1,15 @@
+<article>
+  <header>
+    <h2 class="title md cap">{{product.title}}</h2>
+  </header>
+  <p class="sm box-mg-stack">{{product.description}}</p>
+  <p class="box-mg-stack">$ <span class="md">{{product.price}}</span></p>
+  <app-material-button 
+    theme="light-gray" 
+    text="delete" 
+    (click)="onDelete(product.id)">
+  </app-material-button>
+  <div *ngIf="(status$ | async) === 'INPROGRESS'">
+    <app-material-loading text="deleting product"></app-material-loading>
+  </div>
+</article>      

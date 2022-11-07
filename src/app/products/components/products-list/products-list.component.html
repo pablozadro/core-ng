@@ -1,0 +1,10 @@
+<section *ngIf="products">
+  <header>
+    <h3 class="title rg">{{products.length}} products</h3>
+  </header>
+  <ul class="products-list">
+    <li *ngFor="let product of products">
+      <app-product-detail [product]="product"></app-product-detail>
+    </li>
+  </ul>
+</section>

@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from '@app/shared/shared.module';
 import { AuthModule } from '@app/auth/auth.module';
+import { ProductsModule } from '@app/products/products.module';
 
 import { AuthInterceptorService } from '@app/auth/services/auth-interceptor.service';
 
@@ -15,6 +16,9 @@ import { AppComponent } from './app.component';
 
 import { authReducer } from '@app/auth/state/auth.reducer';
 import { AuthEffects } from '@app/auth/state/auth.effects';
+
+import { productsReducer } from '@app/products/state/products.reducer';
+import { ProductsEffects } from '@app/products/state/products.effects';
 
 
 @NgModule({
@@ -25,13 +29,16 @@ import { AuthEffects } from '@app/auth/state/auth.effects';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
+    ProductsModule,
     CoreModule,
     SharedModule,
     StoreModule.forRoot({ 
       auth: authReducer,
+      products: productsReducer
     }),
     EffectsModule.forRoot([
       AuthEffects,
+      ProductsEffects,
     ]),
   ],
     providers: [
