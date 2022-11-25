@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 
 import { CoreApiService } from '@app/core/services/core-api.service';
-import { Product } from '@app/products/models';
 
 
 @Injectable({
