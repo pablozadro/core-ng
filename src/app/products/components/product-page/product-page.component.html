@@ -1,9 +1,42 @@
+<div *ngIf="(status$ |  async) === 'INPROGRESS'; then loadingBlock else contentBlock"></div>
+<ng-template #loadingBlock>
+  <app-material-loading></app-material-loading>
+</ng-template>
+<ng-template #contentBlock>
 <div class="box-pd">
   <div class="container">
-    <article class="article">
+    <section *ngIf="error$ |  async as error" class="box-mg-stack">
+      <app-material-message
+        status="error" 
+        [text]="error"
+        icon="check_circle">
+      </app-material-message>
+    </section>
+    <article class="article" *ngIf="product$ | async as product">
       <header class="header">
-        <h1 class="title md cap">Product {{productID}}</h1>
+        <h1 class="title md">{{product.title}}</h1>
       </header>
+      <div class="row">
+        <div class="col-6">
+          <p class="pd gray-1-bkg box-mg-stack">{{product.category}} / {{product.brand}}</p>
+          <p>{{product.description}}</p>
+        </div>
+        <div class="col-4 col-offset-2">
+          <div class="box-mg-stack">
+            <small class="box-mg-r">Price</small>
+            <p>$<span class="lg">{{product.price}}</span></p>
+          </div>
+          <div class="box-mg-stack">
+            <small class="box-mg-r">Discount</small>
+            <p><span class="md">{{product.discountPercentage}}</span>%</p>
+          </div>
+          <div class="box-mg-stack">
+            <small class="box-mg-r">Rating</small>
+            <p><span class="md">{{product.rating}}</span></p>
+          </div>
+        </div>
+      </div>
     </article>
   </div>
 </div>
+</ng-template>

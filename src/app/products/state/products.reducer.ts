@@ -5,6 +5,9 @@ import { Product } from '@app/products/models';
 
 
 export interface ProductsState {
+  product: Product | null;
+  fetchProductStatus: string;
+  fetchProductError: string;
   products: Product[];
   fetchProductsStatus: string;
   fetchProductsError: string;
@@ -14,6 +17,9 @@ export interface ProductsState {
 
 
 const productsInitialState: ProductsState = {
+  product: null,
+  fetchProductStatus: 'PENDING',
+  fetchProductError: '',
   products: [],
   fetchProductsStatus: 'PENDING',
   fetchProductsError: '',
@@ -44,6 +50,28 @@ export const productsReducer = createReducer(
       products: [],
       fetchProductsStatus: 'COMPLETED',
       fetchProductsError: action.error,
+    }
+  }),
+  on(actions.fetchProduct, (state: ProductsState): ProductsState => {
+    return { 
+      ...state, 
+      fetchProductStatus: 'INPROGRESS',
+    }
+  }),
+  on(actions.fetchProductSuccess, (state: ProductsState, action: any): ProductsState => {
+    return { 
+      ...state,
+      product: action.product,
+      fetchProductStatus: 'COMPLETED',
+      fetchProductError: '',
+    }
+  }),
+  on(actions.fetchProductError, (state: ProductsState, action: any): ProductsState => {
+    return { 
+      ...state,
+      product: null,
+      fetchProductStatus: 'COMPLETED',
+      fetchProductError: action.error,
     }
   }),
   on(actions.deleteProduct, (state: ProductsState): ProductsState => {

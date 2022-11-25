@@ -12,6 +12,12 @@ export const getProducts = createSelector(
   (state: ProductsState) => state.products
 );
 
+export const getProduct = createSelector(
+  selectProducts,
+  (state: ProductsState) => state.product
+);
+
+
 export const getFetchProductsStatus = createSelector(
   selectProducts,
   (state: ProductsState) => state.fetchProductsStatus
@@ -20,6 +26,17 @@ export const getFetchProductsStatus = createSelector(
 export const getFetchProductsError = createSelector(
   selectProducts,
   (state: ProductsState) => state.fetchProductsError
+);
+
+
+export const getFetchProductStatus = createSelector(
+  selectProducts,
+  (state: ProductsState) => state.fetchProductStatus
+);
+
+export const getFetchProductError = createSelector(
+  selectProducts,
+  (state: ProductsState) => state.fetchProductError
 );
 
 

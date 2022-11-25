@@ -37,12 +37,34 @@ export class ProductsEffects {
     )
   );
 
+  fetchProduct$ = createEffect(() => this.actions$.pipe(
+    ofType(actions.FETCH_PRODUCT_PENDING),
+    mergeMap((action: any) => this.productsApiService.getProductByID(action.id)
+      .pipe(
+        map((res: any) => {
+          const product: Product[] = res.payload.product;
+
+          return {
+            type: actions.FETCH_PRODUCT_SUCCESS,
+            product
+          }
+        }),
+        catchError((e: any) => {
+          return of({
+            type: actions.FETCH_PRODUCT_ERROR, 
+            error: 'Error Fetching Product.'
+          })
+        })
+      ))
+    )
+  );
+
   deleteProduct$ = createEffect(() => this.actions$.pipe(
     ofType(actions.DELETE_PRODUCT_PENDING),
     mergeMap((action: any) => this.productsApiService.deleteProductByID(action.id)
       .pipe(
         map((res: any) => {
-          const products: Product[] = res;
+          const products: Product[] = res.payload.products;
 
           return {
             type: actions.DELETE_PRODUCT_SUCCESS,

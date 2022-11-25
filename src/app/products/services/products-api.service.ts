@@ -21,7 +21,11 @@ export class ProductsApiService {
     return this.coreApiService.get(`${this.CORE_API_BASE_URL}/products?delay=750`)
   }
 
+  getProductByID(id: number): Observable<any> {
+    return this.coreApiService.get(`${this.CORE_API_BASE_URL}/products/${id}?delay=750`)
+  }
+
   deleteProductByID(id: number): Observable<any> {
-    return this.coreApiService.delete(`${this.CORE_API_BASE_URL}/products?delay=750`)
+    return this.coreApiService.delete(`${this.CORE_API_BASE_URL}/products/${id}?delay=750`)
   }
 }
