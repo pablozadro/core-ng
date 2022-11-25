@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { environment } from '@env/environment';
 
 import { CoreApiService } from '@app/core/services/core-api.service';
 import { AuthUser } from '@app/auth/interfaces'
@@ -14,7 +15,7 @@ export interface AuthLoginBody {
   providedIn: 'root'
 })
 export class AuthApiService {
-  private LOGIN_URL = 'http://localhost:9000/api/v1/auth/login?delay=750';
+  private readonly CORE_API_BASE_URL = environment.coreApiBaseUrl;
 
   constructor(
     private window: Window,
@@ -22,7 +23,7 @@ export class AuthApiService {
   ) {}
 
   login(body: AuthLoginBody): Observable<any> {
-    return this.coreApiService.post(this.LOGIN_URL, body)
+    return this.coreApiService.post(`${this.CORE_API_BASE_URL}/auth/login?delay=750`, body)
   }
   
   logout() {

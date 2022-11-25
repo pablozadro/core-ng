@@ -1,11 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 
 import * as actions from '@app/products/state/products.actions';
-import { Products } from '@app/products/services/products-api.service';
+import { Product } from '@app/products/models';
 
 
 export interface ProductsState {
-  products: Products[];
+  products: Product[];
   fetchProductsStatus: string;
   fetchProductsError: string;
   deleteProductStatus: string;

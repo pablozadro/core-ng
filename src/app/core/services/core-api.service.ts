@@ -48,8 +48,12 @@ export class CoreApiService {
 
   private handleResponse(observable: Observable<any>): Observable<any> {
     return observable.pipe(
-      map((res: any): any => res.body),
-      catchError((err: any): any => err),
+      map((res: any): any => {
+        return res.body;
+      }),
+      catchError((err: any): any => {
+        return err;
+      }),
     )
   }
 }

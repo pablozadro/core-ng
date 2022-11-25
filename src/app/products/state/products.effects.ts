@@ -4,7 +4,8 @@ import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import * as actions from '@app/products/state/products.actions';
-import { Products, ProductsApiService } from '@app/products/services/products-api.service';
+import { ProductsApiService } from '@app/products/services/products-api.service';
+import { Product } from '@app/products/models';
 
 
 @Injectable()
@@ -19,7 +20,7 @@ export class ProductsEffects {
     mergeMap((action: any) => this.productsApiService.getProducts()
       .pipe(
         map((res: any) => {
-          const products: Products[] = res;
+          const products: Product[] = res.payload.products;
 
           return {
             type: actions.FETCH_PRODUCTS_SUCCESS,
@@ -29,7 +30,7 @@ export class ProductsEffects {
         catchError((e: any) => {
           return of({
             type: actions.FETCH_PRODUCTS_ERROR, 
-            error: 'error fetching products'
+            error: 'Error Fetching Products.'
           })
         })
       ))
@@ -41,7 +42,7 @@ export class ProductsEffects {
     mergeMap((action: any) => this.productsApiService.deleteProductByID(action.id)
       .pipe(
         map((res: any) => {
-          const products: Products[] = res;
+          const products: Product[] = res;
 
           return {
             type: actions.DELETE_PRODUCT_SUCCESS,

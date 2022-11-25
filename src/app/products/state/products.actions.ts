@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Products } from '@app/products/services/products-api.service';
+import { Product } from '@app/products/models';
 
 
 export const FETCH_PRODUCTS_PENDING = '[Products Component] Fetch Products Pending';
@@ -12,7 +12,7 @@ export const fetchProducts = createAction(
 
 export const fetchProductsSuccess = createAction(
   FETCH_PRODUCTS_SUCCESS,
-  props<{ products: Products[]; }>()
+  props<{ products: Product[]; }>()
 );
 
 export const fetchProductsError = createAction(

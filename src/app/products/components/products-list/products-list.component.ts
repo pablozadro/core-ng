@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Products } from '@app/products/services/products-api.service';
+import { Product } from '@app/products/models';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Products } from '@app/products/services/products-api.service';
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent implements OnInit {
-  @Input() products: Products[] | null = null;
+  @Input() products: Product[] | null = null;
 
   constructor() { }
 

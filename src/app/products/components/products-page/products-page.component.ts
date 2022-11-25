@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Products } from '@app/products/services/products-api.service';
+import { Product } from '@app/products/models';
 import { fetchProducts } from '@app/products/state/products.actions';
 import { 
   getProducts, 
@@ -20,7 +20,7 @@ import {
 export class ProductsPageComponent implements OnInit {
   loading = false;
 
-  products$: Observable<Products[]> = this.store.select(getProducts);
+  products$: Observable<Product[]> = this.store.select(getProducts);
   status$: Observable<string> = this.store.select(getFetchProductsStatus);
   error$: Observable<string> = this.store.select(getFetchProductsError);
 

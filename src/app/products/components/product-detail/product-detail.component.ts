@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Products } from '@app/products/services/products-api.service';
+import { Product } from '@app/products/models';
 import { deleteProduct } from '@app/products/state/products.actions';
 
 import {
@@ -17,7 +17,7 @@ import {
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  @Input() product!: Products;
+  @Input() product!: Product;
   status$: Observable<string> = this.store.select(getDeleteProductStatus);
   error$: Observable<string> = this.store.select(getDeleteProductError);
 
