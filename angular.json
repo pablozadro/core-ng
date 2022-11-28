@@ -88,9 +88,7 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "port": 9002
-          },
+          "options": {},
           "configurations": {
             "production": {
               "browserTarget": "core-ng:build:production"
