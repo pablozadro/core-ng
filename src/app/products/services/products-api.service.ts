@@ -5,13 +5,9 @@ import { environment } from '@env/environment';
 import { CoreApiService } from '@app/core/services/core-api.service';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ProductsApiService {
   private readonly CORE_API_BASE_URL = environment.coreApiBaseUrl;
-
-  
 
   constructor(
     private coreApiService: CoreApiService

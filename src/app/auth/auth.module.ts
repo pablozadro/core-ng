@@ -15,6 +15,6 @@ import { AuthProfileComponent } from './components/auth-profile/auth-profile.com
   imports: [
     SharedModule,
     AuthRoutingModule,
-  ]
+  ],
 })
 export class AuthModule { }
