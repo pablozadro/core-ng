@@ -20,8 +20,5 @@ import { ProductPageComponent } from './components/product-page/product-page.com
     SharedModule,
     ProductsRoutingModule,
   ],
-  providers: [
-    ProductsApiService
-  ]
 })
 export class ProductsModule { }
