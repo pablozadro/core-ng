@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '@app/shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -16,7 +15,6 @@ import { AuthProfileComponent } from './components/auth-profile/auth-profile.com
   imports: [
     SharedModule,
     AuthRoutingModule,
-    ReactiveFormsModule,
   ]
 })
 export class AuthModule { }
