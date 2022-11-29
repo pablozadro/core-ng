@@ -7,7 +7,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from '@app/shared/shared.module';
 import { AuthModule } from '@app/auth/auth.module';
-import { ProductsModule } from '@app/products/products.module';
 
 import { AuthInterceptorService } from '@app/auth/services/auth-interceptor.service';
 
@@ -29,7 +28,6 @@ import { ProductsEffects } from '@app/products/state/products.effects';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    ProductsModule,
     CoreModule,
     SharedModule,
     StoreModule.forRoot({ 
