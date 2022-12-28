@@ -1,0 +1,15 @@
+@function theme($theme, $property) {
+  @if map-has-key($co-themes, $theme) {
+    $themeMap: map-get($co-themes, $theme);
+
+    @if map-has-key($themeMap, $property) {
+      $prop: map-get($themeMap, $property);
+      @return $prop;
+    }
+    @error 'The color theme `#{$theme}` has no prop `#{$property}`';
+    @return null;
+  }
+
+  @error 'The color theme `#{$theme}` doesn\'t exists.`';
+  @return null;
+}

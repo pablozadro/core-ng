@@ -1,0 +1,256 @@
+// ---------------------------------------------------------------------------------------------- //
+// -- GLOBALS -- //
+// ---------------------------------------------------------------------------------------------- //
+
+$co-gold: 1.618;
+
+
+// ---------------------------------------------------------------------------------------------- //
+// -- COLORS -- //
+// ---------------------------------------------------------------------------------------------- //
+
+$co-color-primary: rgb(80,230,200);
+$co-color-secondary: rgb(12,118,204);
+$co-color-warning: rgb(249,234,105);
+$co-color-error: rgb(204,60,55);
+$co-color-success: rgb(37,168,120);
+
+$co-color-white: rgb(250,250,250);
+$co-color-gray-1: rgb(240,240,240);
+$co-color-gray-2: rgb(220,220,220);
+$co-color-gray-3: rgb(200,200,200);
+$co-color-gray-4: rgb(140,140,140);
+$co-color-gray-5: rgb(120,120,120);
+$co-color-gray-6: rgb(100,100,100);
+$co-color-gray-7: rgb(70,70,70);
+$co-color-gray-8: rgb(50,50,50);
+$co-color-gray-9: rgb(30,30,30);
+$co-color-black: rgb(10,10,10);
+
+$co-colors: (
+  'primary': $co-color-primary,
+  'secondary': $co-color-secondary,
+  'warning': $co-color-warning,
+  'error': $co-color-error,
+  'success': $co-color-success,
+  'white': $co-color-white,
+  'gray-1': $co-color-gray-1,
+  'gray-2': $co-color-gray-2,
+  'gray-3': $co-color-gray-3,
+  'gray-4': $co-color-gray-4,
+  'gray-5': $co-color-gray-5,
+  'gray-6': $co-color-gray-6,
+  'gray-7': $co-color-gray-7,
+  'gray-8': $co-color-gray-8,
+  'gray-9': $co-color-gray-9,
+  'black': $co-color-black,
+);
+
+$co-themes: (
+  'primary': (
+    'color': $co-color-white,
+    'background-color': $co-color-primary,
+    'border-color': $co-color-primary,
+    'color-hover': $co-color-white,
+    'background-color-hover': darken($co-color-primary, 10),
+    'border-color-hover': darken($co-color-primary, 10),
+    'color-disabled': rgba($co-color-white, 0.8),
+    'background-color-disabled': desaturate($co-color-primary, 30%),
+    'border-color-disabled': desaturate($co-color-primary, 30%),
+    'background-color-alpha': rgba($co-color-primary, 0.9),
+  ),
+  'secondary': (
+    'color': $co-color-white,
+    'background-color': $co-color-secondary,
+    'border-color': $co-color-secondary,
+    'color-hover': $co-color-white,
+    'background-color-hover': darken($co-color-secondary, 10),
+    'border-color-hover': darken($co-color-secondary, 10),
+    'color-disabled': rgba($co-color-white, 0.8),
+    'background-color-disabled': desaturate($co-color-secondary, 30%),
+    'border-color-disabled': desaturate($co-color-secondary, 30%),
+    'background-color-alpha': rgba($co-color-secondary, 0.9),
+  ),
+  'warning': (
+    'color': $co-color-white,
+    'background-color': $co-color-warning,
+    'border-color': $co-color-warning,
+    'color-hover': $co-color-white,
+    'background-color-hover': darken($co-color-warning, 10),
+    'border-color-hover': darken($co-color-warning, 10),
+    'color-disabled': rgba($co-color-white, 0.8),
+    'background-color-disabled': desaturate($co-color-warning, 30%),
+    'border-color-disabled': desaturate($co-color-warning, 30%),
+    'background-color-alpha': rgba($co-color-warning, 0.9),
+  ),
+  'error': (
+    'color': $co-color-white,
+    'background-color': $co-color-error,
+    'border-color': $co-color-error,
+    'color-hover': $co-color-white,
+    'background-color-hover': darken($co-color-error, 10),
+    'border-color-hover': darken($co-color-error, 10),
+    'color-disabled': rgba($co-color-white, 0.8),
+    'background-color-disabled': desaturate($co-color-error, 30%),
+    'border-color-disabled': desaturate($co-color-error, 30%),
+    'background-color-alpha': rgba($co-color-error, 0.9),
+  ),
+  'success': (
+    'color': $co-color-white,
+    'background-color': $co-color-success,
+    'border-color': $co-color-success,
+    'color-hover': $co-color-white,
+    'background-color-hover': darken($co-color-success, 10),
+    'border-color-hover': darken($co-color-success, 10),
+    'color-disabled': rgba($co-color-white, 0.8),
+    'background-color-disabled': desaturate($co-color-success, 30%),
+    'border-color-disabled': desaturate($co-color-success, 30%),
+    'background-color-alpha': rgba($co-color-success, 0.9),
+  ),
+  'black': (
+    'color': $co-color-white,
+    'background-color': $co-color-black,
+    'border-color': $co-color-black,
+    'color-hover': $co-color-white,
+    'background-color-hover': $co-color-black,
+    'border-color-hover': $co-color-black,
+    'color-disabled': $co-color-gray-3,
+    'background-color-disabled': $co-color-gray-8,
+    'border-color-disabled': $co-color-gray-8,
+    'background-color-alpha': rgba($co-color-black, 0.8),
+  ),
+  'white': (
+    'color': $co-color-gray-9,
+    'background-color': $co-color-white,
+    'border-color': $co-color-gray-1,
+    'color-hover': $co-color-gray-9,
+    'background-color-hover': $co-color-gray-2,
+    'border-color-hover': $co-color-gray-2,
+    'color-disabled': $co-color-gray-3,
+    'background-color-disabled': $co-color-white,
+    'border-color-disabled': $co-color-gray-2,
+    'background-color-alpha': rgba($co-color-white, 0.9),
+  ),
+  'light-gray': (
+    'color': $co-color-gray-7,
+    'background-color': $co-color-gray-1,
+    'border-color': $co-color-gray-2,
+    'color-hover': $co-color-gray-7,
+    'background-color-hover': $co-color-gray-2,
+    'border-color-hover': $co-color-gray-2,
+    'color-disabled': $co-color-gray-4,
+    'background-color-disabled': $co-color-gray-1,
+    'border-color-disabled': $co-color-gray-1,
+    'background-color-alpha': rgba($co-color-white, 0.9),
+  ),
+  'medium-gray': (
+    'color': $co-color-white,
+    'background-color': $co-color-gray-5,
+    'border-color': $co-color-gray-5,
+    'color-hover': $co-color-white,
+    'background-color-hover': $co-color-gray-7,
+    'border-color-hover': $co-color-gray-7,
+    'color-disabled': $co-color-gray-3,
+    'background-color-disabled': $co-color-gray-5,
+    'border-color-disabled': $co-color-gray-5,
+    'background-color-alpha': rgba($co-color-white, 0.9),
+  ),
+  'dark-gray': (
+    'color': $co-color-white,
+    'background-color': $co-color-gray-8,
+    'border-color': $co-color-gray-8,
+    'color-hover': $co-color-white,
+    'background-color-hover': $co-color-gray-9,
+    'border-color-hover': $co-color-gray-9,
+    'color-disabled': $co-color-gray-3,
+    'background-color-disabled': $co-color-gray-8,
+    'border-color-disabled': $co-color-gray-8,
+    'background-color-alpha': rgba($co-color-white, 0.9),
+  ),
+);
+
+
+// ---------------------------------------------------------------------------------------------- //
+// -- TYPOGRAPHY -- //
+// ---------------------------------------------------------------------------------------------- //
+
+$co-font-weight-light: 200;
+$co-font-weight-regular: 400;
+$co-font-weight-medium: 500;
+$co-font-weight-bold: 700;
+
+$co-font-weights: (
+  'light': $co-font-weight-light, 
+  'regular': $co-font-weight-regular, 
+  'medium': $co-font-weight-medium, 
+  'bold': $co-font-weight-bold
+);
+
+$co-line-height-sm: 1.6;
+$co-line-height-rg: 1.6;
+$co-line-height-md: 1.4;
+$co-line-height-lg: 1.2;
+$co-line-height-xl: 1.2;
+$co-line-height-xxl: 1.2;
+
+$co-line-heights: (
+  'sm': $co-line-height-sm,
+  'rg': $co-line-height-rg,
+  'md': $co-line-height-md,
+  'lg': $co-line-height-lg,
+  'xl': $co-line-height-xl,
+  'xxl': $co-line-height-xxl,
+);
+
+$co-font-size-sm: 0.85rem;
+$co-font-size-rg: 1rem;
+$co-font-size-md: $co-font-size-rg * $co-gold;
+$co-font-size-lg: $co-font-size-rg * $co-gold * 2;
+$co-font-size-xl: $co-font-size-rg * $co-gold * 3;
+$co-font-size-xxl: $co-font-size-rg * $co-gold * 4;
+
+$co-font-sizes: (
+  'sm': $co-font-size-sm,
+  'rg': $co-font-size-rg,
+  'md': $co-font-size-md,
+  'lg': $co-font-size-lg,
+  'xl': $co-font-size-xl,
+  'xxl': $co-font-size-xxl,
+);
+
+$co-font-family-sans-serif: sans-serif;
+
+
+
+// ---------------------------------------------------------------------------------------------- //
+// -- BOX -- //
+// ---------------------------------------------------------------------------------------------- //
+
+$co-box-gutter: 1rem;
+$co-box-padding-x: 0.7em;
+$co-box-padding-y: 0.35em;
+$co-box-border-size: 0.1rem;
+$co-box-border-radius: 0.3em;
+
+
+// ---------------------------------------------------------------------------------------------- //
+// -- ANIMATIONS -- //
+// ---------------------------------------------------------------------------------------------- //
+
+$co-box-transition-duration: 150ms;
+
+
+// ---------------------------------------------------------------------------------------------- //
+// -- LAYOUT -- //
+// ---------------------------------------------------------------------------------------------- //
+
+$co-layout-dimensions: (
+  'topnav-height': 8vh,
+  'content-height': 92vh,
+);
+
+$co-layout-index: (
+  'modals': 120,
+  'topnav': 100,
+  'loading': 80,
+);
