@@ -5,32 +5,32 @@
 <ng-template #contentBlock>
 <div class="box-pd">
   <div class="container">
-    <section *ngIf="error$ |  async as error" class="box-mg-stack">
+    <section *ngIf="error$ |  async as error" class="box-mg-stack-sm">
       <app-material-message
         status="error" 
         [text]="error"
         icon="check_circle">
       </app-material-message>
     </section>
-    <article class="article" *ngIf="product$ | async as product">
-      <header class="header">
+    <article class="box-mg-stack" *ngIf="product$ | async as product">
+      <header>
         <h1 class="title md">{{product.title}}</h1>
       </header>
       <div class="row">
         <div class="col-6">
-          <p class="pd gray-1-bkg box-mg-stack">{{product.category}} / {{product.brand}}</p>
+          <p class="box-pd-sm gray-1-bkg box-mg-stack-sm">{{product.category}} / {{product.brand}}</p>
           <p>{{product.description}}</p>
         </div>
         <div class="col-4 col-offset-2">
-          <div class="box-mg-stack">
+          <div class="box-mg-stack-sm">
             <small class="box-mg-r">Price</small>
             <p>$<span class="lg">{{product.price}}</span></p>
           </div>
-          <div class="box-mg-stack">
+          <div class="box-mg-stack-sm">
             <small class="box-mg-r">Discount</small>
             <p><span class="md">{{product.discountPercentage}}</span>%</p>
           </div>
-          <div class="box-mg-stack">
+          <div class="box-mg-stack-sm">
             <small class="box-mg-r">Rating</small>
             <p><span class="md">{{product.rating}}</span></p>
           </div>

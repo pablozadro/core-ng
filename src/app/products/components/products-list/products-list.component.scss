@@ -2,11 +2,10 @@
 
 .products-list {
   list-style-type: none;
-  margin: 0;
   padding: 0;
 
   & > li  {
     border-bottom: 1px solid theme('light-gray', 'border-color');
-    padding: $co-box-gutter 0;
+    padding: ($co-box-gutter * $co-gold * 2) 0;
   }
 }

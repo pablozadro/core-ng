@@ -1,50 +1,3 @@
-<!-- <div class="box-pd">
-  <div class="container">
-    <article class="article">
-      <header class="header">
-        <h1 class="title md">Products</h1>
-      </header>
-
-      <div 
-        *ngIf="(deleteStatus$ |  async) === 'COMPLETED' && !(deleteError$ |  async)"
-        class="box-mg-stack">
-        <app-material-message
-          status="success" 
-          text="product deleted succesfully"
-          icon="check_circle">
-        </app-material-message>
-      </div>
-
-      <div *ngIf="(status$ |  async) === 'INPROGRESS'; then loadingBlock else contentBlock"></div>
-      <ng-template #loadingBlock>
-        <app-material-loading></app-material-loading>
-      </ng-template>
-      <ng-template #contentBlock>
-        <article class="article">
-          <header class="header">
-          <h1 class="title md">Products</h1>
-          </header>
-          <div *ngIf="error$ |  async as error" class="box-mg-stack">
-            <app-material-message
-              status="error" 
-              [text]="error"
-              icon="check_circle">
-            </app-material-message>
-          </div>
-          <app-products-list 
-            *ngIf="products$ | async as products"
-            [products]="products">
-          </app-products-list>
-        </article>
-      </ng-template>
-    </article>
-  </div>
-</div> -->
-
-
-
-
-
 <div *ngIf="(status$ |  async) === 'INPROGRESS'; then loadingBlock else contentBlock"></div>
 <ng-template #loadingBlock>
   <app-material-loading></app-material-loading>
@@ -52,8 +5,8 @@
 <ng-template #contentBlock>
 <div class="box-pd">
   <div class="container">
-    <article class="article">
-      <header class="header">
+    <article class="box-mg-stack">
+      <header>
         <h1 class="title md">Products</h1>
       </header>
       <section *ngIf="error$ |  async as error" class="box-mg-stack">
