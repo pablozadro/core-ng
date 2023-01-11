@@ -1,42 +1,63 @@
-<div *ngIf="(status$ |  async) === 'INPROGRESS'; then loadingBlock else contentBlock"></div>
-<ng-template #loadingBlock>
-  <app-material-loading></app-material-loading>
-</ng-template>
-<ng-template #contentBlock>
-<div class="box-pd">
-  <div class="container">
-    <section *ngIf="error$ |  async as error" class="box-mg-stack-sm">
-      <app-material-message
-        status="error" 
-        [text]="error"
-        icon="check_circle">
-      </app-material-message>
-    </section>
-    <article class="box-mg-stack" *ngIf="product$ | async as product">
-      <header>
-        <h1 class="title md">{{product.title}}</h1>
-      </header>
-      <div class="row">
-        <div class="col-6">
-          <p class="box-pd-sm gray-1-bkg box-mg-stack-sm">{{product.category}} / {{product.brand}}</p>
-          <p>{{product.description}}</p>
-        </div>
-        <div class="col-4 col-offset-2">
-          <div class="box-mg-stack-sm">
-            <small class="box-mg-r">Price</small>
-            <p>$<span class="lg">{{product.price}}</span></p>
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-offset-3">
+      <div class="box-pd">
+        <div *ngIf="(status$ |  async) === 'INPROGRESS'; then loadingBlock else contentBlock"></div>
+        <!-- Loading -->
+        <ng-template #loadingBlock>
+          <div class="align-center">
+            <app-material-spinner></app-material-spinner>
           </div>
-          <div class="box-mg-stack-sm">
-            <small class="box-mg-r">Discount</small>
-            <p><span class="md">{{product.discountPercentage}}</span>%</p>
-          </div>
-          <div class="box-mg-stack-sm">
-            <small class="box-mg-r">Rating</small>
-            <p><span class="md">{{product.rating}}</span></p>
-          </div>
-        </div>
+        </ng-template>
+        <!-- Content -->
+        <ng-template #contentBlock>
+          <!-- Error -->
+          <section *ngIf="error$ |  async as error" class="box-mg-stack-sm">
+            <app-material-message
+              status="error" 
+              [text]="error"
+              icon="check_circle">
+            </app-material-message>
+          </section>
+
+          <article *ngIf="product$ | async as product">
+            <header>
+              <h1 class="title md">{{product.title}}</h1>
+              <a routerLink="/products" class="primary-color">
+                <i class="material-icons">arrow_back</i>
+                <span>Products</span>
+              </a>
+            </header>
+            <div class="light-gray-theme box-pd-sm box-mg-stack sm">
+              <p>Category: {{product.category}}</p>
+              <p>Brand: {{product.brand}}</p>
+              <p>{{product.description}}</p>
+            </div>
+            <ul class="bordered-list">
+              <li>
+                <div class="flex-align-center flex-justify-start">
+                  <p class="box-mg-right-sm">Price</p>
+                  <span class="black-color">$ </span>
+                  <span class="md black-color"> {{product.price}}</span>
+                </div>
+              </li>
+              <li>
+                <div class="flex-align-center flex-justify-start">
+                  <p class="box-mg-right-sm">Discount Percentage</p>
+                  <span class="black-color">% </span>
+                  <span class="md black-color"> {{product.discountPercentage}}</span>
+                </div>
+              </li>
+              <li>
+                <div class="flex-align-center flex-justify-start">
+                  <p class="box-mg-right-sm">Rating</p>
+                  <span class="md black-color">{{product.rating}}</span>
+                </div>
+              </li>
+            </ul>
+          </article>
+        </ng-template>
       </div>
-    </article>
+    </div>
   </div>
 </div>
-</ng-template>

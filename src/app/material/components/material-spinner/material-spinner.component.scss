@@ -1,0 +1,20 @@
+@import 'core-x/src/sass/components/spinner';
+
+
+@keyframes loadingRotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+
+.spinner {
+  display: inline-block;
+  animation-duration: 750ms;
+  animation-name: loadingRotateAnimation;
+  animation-iteration-count: infinite;
+  transition-timing-function: ease-in-out;
+}

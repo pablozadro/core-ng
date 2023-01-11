@@ -1,4 +1,4 @@
-<article>
+<article class="box-mg-stack">
   <header>
     <h2 class="title md cap">
       <a 
@@ -8,8 +8,14 @@
       </a>
     </h2>
   </header>
-  <p class="sm box-mg-stack-sm">{{product.description}}</p>
-  <p class="box-mg-stack-sm">$ <span class="md">{{product.price}}</span></p>
+  <div class="box-mg-stack-sm">
+    <p class="sm ">{{product.description}}</p>
+  </div>
+  <div class="box-mg-stack-sm flex-align-center flex-justify-start">
+    <p class="box-mg-right-sm">Price</p>
+    <span class="black-color">$ </span>
+    <span class="md black-color">{{product.price}}</span>
+  </div>
   <app-material-button 
     theme="light-gray" 
     text="delete" 

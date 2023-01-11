@@ -2,7 +2,7 @@
   <div class="box-pd-sm light-gray-theme">
     <p><strong>{{products.length}}</strong> products</p>
   </div>
-  <ul class="products-list">
+  <ul class="bordered-list">
     <li *ngFor="let product of products">
       <app-product-detail [product]="product"></app-product-detail>
     </li>

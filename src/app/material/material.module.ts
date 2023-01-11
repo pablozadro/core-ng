@@ -5,6 +5,7 @@ import { MaterialButtonComponent } from './components/material-button/material-b
 import { MaterialBrandComponent } from './components/material-brand/material-brand.component';
 import { MaterialLoadingComponent } from './components/material-loading/material-loading.component';
 import { MaterialMessageComponent } from './components/material-message/material-message.component';
+import { MaterialSpinnerComponent } from './components/material-spinner/material-spinner.component';
 
 
 
@@ -13,7 +14,8 @@ import { MaterialMessageComponent } from './components/material-message/material
     MaterialButtonComponent,
     MaterialBrandComponent,
     MaterialLoadingComponent,
-    MaterialMessageComponent
+    MaterialMessageComponent,
+    MaterialSpinnerComponent
   ],
   imports: [
     CommonModule
@@ -22,7 +24,8 @@ import { MaterialMessageComponent } from './components/material-message/material
     MaterialButtonComponent,
     MaterialBrandComponent,
     MaterialLoadingComponent,
-    MaterialMessageComponent
+    MaterialMessageComponent,
+    MaterialSpinnerComponent
   ],
 })
 export class MaterialModule { }
