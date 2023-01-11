@@ -8,10 +8,10 @@
     <nav class="topnav__content-main">
       <ul class="topnav__list">
         <li>
-          <a class="topnav__link black-color" (click)="close()" routerLink="/">Home</a>
+          <a class="link black-color" (click)="close()" routerLink="/">Home</a>
         </li>
         <li>
-          <a class="topnav__link black-color" (click)="close()" routerLink="/products">Products</a>
+          <a class="link black-color" (click)="close()" routerLink="/products">Products</a>
         </li>
       </ul>
     </nav>
@@ -20,7 +20,7 @@
         <div *ngIf="user$ | async; then loggedBlock else notLoggedBlock"></div>
         <ng-template #notLoggedBlock>
           <li>
-            <a class="topnav__link black-color" routerLink="/auth/login">
+            <a class="link black-color" routerLink="/auth/login">
               <i class="material-icons">login</i>
               <span>Login</span>
             </a>
@@ -28,13 +28,13 @@
         </ng-template>
         <ng-template #loggedBlock>
           <li>
-            <a class="topnav__link black-color" routerLink="/auth/profile">
+            <a class="link black-color" routerLink="/auth/profile">
               <i class="material-icons">account_circle</i>
               <span>{{(user$ | async)?.email}}</span>
             </a>
           </li>
           <li>
-            <a class="topnav__link black-color" routerLink="" (click)="logout()">
+            <a class="link black-color" routerLink="" (click)="logout()">
               <i class="material-icons">logout</i>
               <span>Logout</span>
             </a>
