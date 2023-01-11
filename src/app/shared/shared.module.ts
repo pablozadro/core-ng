@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MaterialModule } from '@app/material/material.module';
-
+import { MaterialBrandModule } from '@app/material/brand';
+import { MaterialButtonModule } from '@app/material/button';
+import { MaterialLoadingModule } from '@app/material/loading';
+import { MaterialMessageModule } from '@app/material/message';
+import { MaterialSpinnerModule } from '@app/material/spinner';
 
 @NgModule({
   declarations: [],
@@ -15,7 +18,11 @@ import { MaterialModule } from '@app/material/material.module';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    MaterialModule,
+    MaterialBrandModule,
+    MaterialButtonModule,
+    MaterialLoadingModule,
+    MaterialMessageModule,
+    MaterialSpinnerModule,
   ]
 })
 export class SharedModule { }
