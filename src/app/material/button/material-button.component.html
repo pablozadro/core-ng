@@ -1,12 +1,27 @@
 <button
-  type="button"
-  [class]="getClassName()">
-  <div *ngIf="icon; then thenBlock else elseBlock"></div>
-  <ng-template #thenBlock>
-    <i class="material-icons">{{icon}}</i>
-    <span *ngIf="text">{{text}}</span>
-  </ng-template>
-  <ng-template #elseBlock>
-    {{text}}
-  </ng-template>
+  [type]="type"
+  class="{{theme}}-btn"
+  [ngClass]="{
+    'is--block': block,
+    'is--square': square
+  }">
+
+  <span 
+    *ngIf="label"
+    [ngClass]="{
+      'is--right': iconPosition === 'left',
+      'is--left': iconPosition === 'right'
+    }">
+    {{label}}
+  </span>
+
+  <i 
+    *ngIf="icon" class="material-icons"
+    [ngClass]="{
+      'is--right': iconPosition === 'right',
+      'is--left': iconPosition === 'left'
+    }">
+    {{icon}}
+  </i>
+
 </button>

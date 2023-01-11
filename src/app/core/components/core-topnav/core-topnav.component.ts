@@ -76,10 +76,6 @@ export class CoreTopnavComponent implements OnInit {
     this.isToggled = false;
   }
 
-  getClass() {
-    return this.isToggled ? 'topnav__content is--active' : 'topnav__content';
-  }
-
   logout() {
     this.store.dispatch(logout());
   }

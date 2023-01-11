@@ -17,8 +17,9 @@
     <span class="md black-color">{{product.price}}</span>
   </div>
   <app-material-button 
-    theme="light-gray" 
-    text="delete" 
+    theme="secondary" 
+    label="Delete"
+    icon="close"
     (click)="onDelete(product.id)">
   </app-material-button>
   <div *ngIf="(status$ | async) === 'INPROGRESS'">

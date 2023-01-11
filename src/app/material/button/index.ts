@@ -16,23 +16,13 @@ import {
     host: { class: 'app-material-element' }
 })
 export class MaterialButton {
-  @Input() text: string = '';
-  @Input() theme: 'primary' | 'secondary' | 'black' | 'white' | 'light-gray' = 'primary';
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
+  @Input() label?: string;
+  @Input() theme: 'primary' | 'secondary' | 'black' | 'white' | 'light-gray' = 'primary';
   @Input() icon?: string;
-  @Input() square?: boolean
-  @Input() block?: boolean
-
-  getClassName() {
-    let c = `${this.theme}-btn`;
-    if (this.square) {
-      c = `${c} is--square`;
-    }
-    if (this.block) {
-      c = `${c} is--block`;
-    }
-    return c;
-  }
+  @Input() iconPosition: 'left' | 'right' = 'right';
+  @Input() square = false;
+  @Input() block = false;
 }
 
 @NgModule({

@@ -2,7 +2,9 @@
   <a class="topnav__brand" routerLink="/">
     <app-material-brand size="sm"></app-material-brand>
   </a>
-  <div [ngClass]="getClass()">
+  <div
+    class="topnav__content"
+    [ngClass]="{ 'is--active': isToggled }">
     <nav class="topnav__content-main">
       <ul class="topnav__list">
         <li>

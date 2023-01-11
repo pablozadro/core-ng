@@ -18,6 +18,7 @@ import {
 export class MaterialBrand {
   @Input() theme: 'primary' | 'black' | 'white' = 'primary';
   @Input() size: 'sm' | 'rg' | 'md' | 'lg' | 'xl' | 'xxl' = 'rg';
+  @Input() alt = 'Core Brand Logo';
 }
 
 @NgModule({
