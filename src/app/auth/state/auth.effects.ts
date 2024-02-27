@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of, tap } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap  } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-
 import * as actions from './auth.actions';
 
 
@@ -27,7 +25,8 @@ export class AuthEffects {
         if (res.error) {
           return ({ type: actions.LOGIN_ERROR_TYPE, error: res.error })
         }
-        return ({ type: actions.LOGIN_SUCCESS_TYPE, token: res.token })
+        this.route.navigateByUrl('/auth/profile');
+        return ({ type: actions.LOGIN_SUCCESS_TYPE, user: res.user })
       })
     ))
   ));

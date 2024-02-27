@@ -1,15 +1,16 @@
 import { createReducer, on } from '@ngrx/store';
 import * as actions from './auth.actions';
+import { AuthUser } from '../types';
 
 export interface AuthState {
   loading: boolean;
-  token: string | null;
+  user: AuthUser | null;
   error: any;
 };
 
 const initialState: AuthState = {
   loading: false,
-  token: null,
+  user: null,
   error: null
 };
 
@@ -20,7 +21,7 @@ export const authReducer = createReducer(
       ...state,
       loading: true,
       error: null,
-      token: null
+      user: null
     }
   }),
   on(actions.loginSuccess, (state: AuthState, action): AuthState => {
@@ -28,14 +29,14 @@ export const authReducer = createReducer(
       ...state,
       loading: false,
       error: null,
-      token: action.token
+      user: action.user
     }
   }),
   on(actions.loginError, (state: AuthState, action): AuthState => {
     return {
       ...state,
       loading: false,
-      token: null,
+      user: null,
       error: action.error
     }
   }),

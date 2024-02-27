@@ -1,4 +1,6 @@
 import { createAction, props } from '@ngrx/store';
+import { AuthUser } from '../types';
+
 
 export const LOGIN_TYPE = '[Auth] Login';
 export const login = createAction(
@@ -6,11 +8,13 @@ export const login = createAction(
   props<{ email: string; password: string; }>()
 );
 
+
 export const LOGIN_SUCCESS_TYPE = '[Auth] Login Success';
 export const loginSuccess = createAction(
   LOGIN_SUCCESS_TYPE,
-  props<{ token: string; }>()
+  props<{ user: AuthUser; }>()
 );
+
 
 export const LOGIN_ERROR_TYPE = '[Auth] Login Error';
 export const loginError = createAction(

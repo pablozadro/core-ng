@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, of, throwError } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { CoreApiService } from '@/core/services/core-api.service';
+import { CoreStorageService } from '@/core/services/storage.service';
+import { AuthUser } from '../types';
+
 
 interface AuthLoginPayload {
   email: string; 
@@ -9,7 +11,7 @@ interface AuthLoginPayload {
 }
 
 interface AuthLoginResponse {
-  token: string | null;
+  user: AuthUser | null;
   error: string | null;
 }
 
@@ -19,7 +21,8 @@ interface AuthLoginResponse {
 export class AuthService {
 
   constructor(
-    private readonly coreApiService: CoreApiService
+    private readonly coreApiService: CoreApiService,
+    private readonly coreStorageService: CoreStorageService,
   ) { }
 
   login(payload: AuthLoginPayload): Observable<AuthLoginResponse> {
@@ -27,12 +30,24 @@ export class AuthService {
 
     return this.coreApiService.post(url, payload)
       .pipe(
+        tap(res => {
+          if (res.error || !res.payload.token) {
+            this.coreStorageService.removeItem('auth-user');
+          }
+          if(!res.error && res.payload.token) {
+            this.coreStorageService.setItem('auth-user', {
+              token: res.payload.token,
+              email: payload.email
+            })
+          }
+        }),
         map(res => {
           if (res.error) {
-            return ({ token: null, error: res.error });
+            return ({ user: null, error: res.error });
           }
-          return ({ token: res.payload.token, error: null });
+          return ({ user: {token: res.payload.token, email: payload.email }, error: null });
         })
       )
   }
+
 }
