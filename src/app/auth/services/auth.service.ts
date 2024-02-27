@@ -27,20 +27,23 @@ export class AuthService {
     return this.http.post(url, payload, { observe: 'response' })
       .pipe(
         catchError((error: any) => {
-          console.log('-> Error', error);
+          // Request not completed
           return of({ token: null, error: 'Network Error' })
         }),
         map((res: any): AuthLoginResponse => {
-          console.log('-> Res', res);
           if (res.error) {
+            // Request not completed cathched error
             return ({ token: null, error: res.error })
           }
+          // Request completed
           return res.body;
         }),
         map((res: any) => {
           if (res.error) {
+            // Request completed with errors
             return ({ token: null, error: res.error.message })
           }
+          // Request completed and success
           return ({ token: res.payload.token, error: null })
         })
       )
