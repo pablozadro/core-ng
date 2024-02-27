@@ -2,4 +2,7 @@
   <header>
     <h1>Profile</h1>
   </header>
+  <div *ngIf="user">
+    <p>Email: {{user.email}}</p>
+  </div>
 </section>

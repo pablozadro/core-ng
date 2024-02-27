@@ -1,9 +1,13 @@
 <nav>
   <a routerLink="">Inicio</a>
   <span> / </span>
-  <a routerLink="auth/login">Login</a>
-  <span> / </span>
-  <a routerLink="auth/profile">Profile</a>
-  <span> / </span>
-  <span *ngIf="user">Welcome {{ user.email }}</span>
+  <span *ngIf="user; then loggedBlock else notLoggedBlock"></span>
+  <ng-template #loggedBlock>
+    <span *ngIf="user">Welcome <a routerLink="auth/profile">{{ user.email }}</a></span>
+    <span> / </span>
+    <button type="button" (click)="onLogout()">Logout</button>
+  </ng-template>
+  <ng-template #notLoggedBlock>
+    <a routerLink="auth/login">Login</a>
+  </ng-template>
 </nav>

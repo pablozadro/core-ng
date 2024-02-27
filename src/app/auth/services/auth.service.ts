@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
+import { Router } from '@angular/router';
+
 import { CoreApiService } from '@/core/services/core-api.service';
 import { CoreStorageService } from '@/core/services/storage.service';
 import { AuthUser } from '../types';
@@ -19,11 +21,18 @@ interface AuthLoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
+  readonly AUTH_USER_STORAGE_KEY = 'auth-user';
 
   constructor(
     private readonly coreApiService: CoreApiService,
     private readonly coreStorageService: CoreStorageService,
+    private readonly route: Router,
   ) { }
+
+  logout() {
+    this.coreStorageService.removeItem(this.AUTH_USER_STORAGE_KEY);
+    this.route.navigateByUrl('/auth/login');
+  }
 
   login(payload: AuthLoginPayload): Observable<AuthLoginResponse> {
     const url = 'http://localhost:9001/api/v1/auth/login';
@@ -32,10 +41,10 @@ export class AuthService {
       .pipe(
         tap(res => {
           if (res.error || !res.payload.token) {
-            this.coreStorageService.removeItem('auth-user');
+            this.coreStorageService.removeItem(this.AUTH_USER_STORAGE_KEY);
           }
           if(!res.error && res.payload.token) {
-            this.coreStorageService.setItem('auth-user', {
+            this.coreStorageService.setItem(this.AUTH_USER_STORAGE_KEY, {
               token: res.payload.token,
               email: payload.email
             })
@@ -50,4 +59,7 @@ export class AuthService {
       )
   }
 
+  getUser(): AuthUser | null {
+    return this.coreStorageService.getItem(this.AUTH_USER_STORAGE_KEY);
+  }
 }
