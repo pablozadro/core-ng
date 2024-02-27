@@ -41,6 +41,9 @@
       </div>
     </div>
 
+    <div *ngIf="loading">loading...</div>
+    <div *ngIf="error">{{ error }}</div>
+
     <!-- Submit -->
     <div>
       <button type="button" (click)="onSubmit()" [disabled]="form.invalid">Login</button>

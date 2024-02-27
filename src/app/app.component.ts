@@ -3,12 +3,13 @@ import { RouterOutlet } from '@angular/router';
 
 import { TopnavComponent } from '@/core/components/topnav/topnav.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    TopnavComponent
+    TopnavComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
