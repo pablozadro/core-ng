@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CoreModule } from './core/core.module';
 
 import { TopnavComponent } from './core/components/topnav/topnav.component';
 
@@ -8,8 +7,7 @@ import { TopnavComponent } from './core/components/topnav/topnav.component';
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet, 
-    CoreModule,
+    RouterOutlet,
     TopnavComponent
   ],
   templateUrl: './app.component.html',
