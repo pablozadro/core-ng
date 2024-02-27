@@ -8,7 +8,7 @@ import {
   ReactiveFormsModule 
 } from '@angular/forms';
 
-import { PASSWORD_MIN_LEN, PASSWORD_MAX_LEN } from '../../config';
+import { PASSWORD_MIN_LEN, PASSWORD_MAX_LEN } from '@/auth/config';
 
 @Component({
   selector: 'app-login-page',
