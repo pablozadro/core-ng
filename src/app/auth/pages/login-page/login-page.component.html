@@ -1,0 +1,37 @@
+<section>
+  <header>
+    <h1>Login</h1>
+  </header>
+
+  <form>
+    <!-- Email -->
+    <div>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="user@domain" [formControl]="email"/>
+      </div>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div *ngIf="email.errors?.['required']">Email is required.</div>
+        <div *ngIf="email.errors?.['email']">Email format wrong.</div>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" value="******" [formControl]="password"/>
+      </div>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div *ngIf="password.errors?.['required']">Password is required.</div>
+        <div *ngIf="password.errors?.['minlength']">Password should be more than {{passwordMinLen}}.</div>
+        <div *ngIf="password.errors?.['maxlength']">Password should be less than {{passwordMaxLen}}.</div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div>
+      <mat-button label="Login" (click)="onSubmit()"></mat-button>
+    </div>
+  </form>
+</section>
