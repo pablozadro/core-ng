@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { TopnavComponent } from '@/core/components/topnav/topnav.component';
 import { AuthState } from '@/auth/state/auth.reducer';
 import { AuthService } from '@/auth/services/auth.service';
 import { loginSuccess } from '@/auth/state/auth.actions';
 import { AppState } from './app.state';
+
 
 @Component({
   selector: 'app-root',
@@ -30,10 +31,8 @@ export class AppComponent {
     private readonly authService: AuthService,
     private store: Store<AppState>,
   ) {
-    
     const user = this.authService.getUser();
-    if (user) {
-      this.store.dispatch(loginSuccess({ user }));
-    }
+    if (!user) return;
+    this.store.dispatch(loginSuccess({ user }));
   }
  }

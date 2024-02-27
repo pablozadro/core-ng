@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { NgIf, AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { 
@@ -10,16 +10,17 @@ import {
   ReactiveFormsModule 
 } from '@angular/forms';
 
-import { PASSWORD_MIN_LEN, PASSWORD_MAX_LEN } from '@/auth/config';
-import { login } from '../../state/auth.actions';
-import { AuthState } from '@/auth/state/auth.reducer';
 import { AppState } from '@/app.state';
+import { PASSWORD_MIN_LEN, PASSWORD_MAX_LEN } from '../../config';
+import { login } from '../../state/auth.actions';
+import { selectAuthLoading, selectAuthError } from '../../state/auth.selector';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
   imports: [
     NgIf,
+    AsyncPipe,
     FormsModule,
     ReactiveFormsModule,
   ],
@@ -27,9 +28,9 @@ import { AppState } from '@/app.state';
   styleUrl: './login-page.component.scss'
 })
 export class LoginPageComponent {
-  auth$: Observable<AuthState> = this.store.select((state: any): AuthState => state.auth);
-  loading = false;
-  error: string |  null = null;
+  loading$: Observable<boolean> = this.store.select(selectAuthLoading);
+  error$: Observable<string | null> = this.store.select(selectAuthError);
+
   passwordMinLen = PASSWORD_MIN_LEN;
   passwordMaxLen = PASSWORD_MAX_LEN;
 
@@ -53,10 +54,7 @@ export class LoginPageComponent {
   constructor(
     private store: Store<AppState>
   ) {
-    this.auth$.subscribe((auth: AuthState) => {
-      this.loading = auth.loading;
-      this.error = auth.error;
-    })
+    
   }
 
   onSubmit() {

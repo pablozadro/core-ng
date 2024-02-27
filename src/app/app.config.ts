@@ -10,6 +10,7 @@ import { coreInterceptor } from '@/core/interceptors/core-interceptor.service';
 import { authReducer } from '@/auth/state/auth.reducer';
 import { AuthEffects } from '@/auth/state/auth.effects';
 
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),

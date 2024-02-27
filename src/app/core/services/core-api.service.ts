@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Observable, catchError, of, map } from 'rxjs';
 
 
 interface CoreApiResponse {

@@ -41,8 +41,8 @@
       </div>
     </div>
 
-    <div *ngIf="loading">loading...</div>
-    <div *ngIf="error">{{ error }}</div>
+    <div *ngIf="loading$ | async">loading...</div>
+    <div *ngIf="error$ | async as error">{{ error }}</div>
 
     <!-- Submit -->
     <div>

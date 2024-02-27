@@ -17,6 +17,7 @@ interface AuthLoginResponse {
   error: string | null;
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,11 +29,6 @@ export class AuthService {
     private readonly coreStorageService: CoreStorageService,
     private readonly route: Router,
   ) { }
-
-  logout() {
-    this.coreStorageService.removeItem(this.AUTH_USER_STORAGE_KEY);
-    this.route.navigateByUrl('/auth/login');
-  }
 
   login(payload: AuthLoginPayload): Observable<AuthLoginResponse> {
     const url = 'http://localhost:9001/api/v1/auth/login';
@@ -57,6 +53,11 @@ export class AuthService {
           return ({ user: {token: res.payload.token, email: payload.email }, error: null });
         })
       )
+  }
+
+  logout() {
+    this.coreStorageService.removeItem(this.AUTH_USER_STORAGE_KEY);
+    this.route.navigateByUrl('/auth/login');
   }
 
   getUser(): AuthUser | null {
