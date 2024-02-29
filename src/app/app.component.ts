@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { TopnavComponent } from '@/core/components/topnav/topnav.component';
+import { TopnavComponent } from '@/material/components/topnav/topnav.component';
 import { AuthState } from '@/auth/state/auth.reducer';
 import { AuthService } from '@/auth/services/auth.service';
 import { loginSuccess } from '@/auth/state/auth.actions';
