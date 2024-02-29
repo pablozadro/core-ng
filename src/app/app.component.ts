@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { ThemeTogglerService } from '@/material/services/theme-toggler.service';
 import { TopnavComponent } from '@/material/components/topnav/topnav.component';
 import { AuthState } from '@/auth/state/auth.reducer';
 import { AuthService } from '@/auth/services/auth.service';
@@ -29,8 +30,10 @@ export class AppComponent {
 
   constructor(
     private readonly authService: AuthService,
-    private store: Store<AppState>,
+    private readonly store: Store<AppState>,
+    private readonly themeTogglerService: ThemeTogglerService
   ) {
+    // this.themeTogglerService.initTheme();
     const user = this.authService.getUser();
     if (!user) return;
     this.store.dispatch(loginSuccess({ user }));

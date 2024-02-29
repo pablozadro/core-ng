@@ -1,52 +1,53 @@
-<section>
-  <header>
-    <h1>Login</h1>
-  </header>
+<div class="fluid-container box-pd-rg">
+  <section>
+    <header>
+      <h1 class="title lg">Login</h1>
+    </header>
 
-  <form>
-    <!-- Email -->
-    <div>
-      <div>
-        <label for="email">Email</label>
-        <br>
-        <input 
-          id="email" 
-          name="email" 
-          type="email" 
-          placeholder="user@domain" 
-          [formControl]="email"/>
+    <form>
+      <!-- Email -->
+      <!-- Email -->
+      <div class="box-mg-stack-rg">
+        <div>
+          <label for="email">Email</label>
+          <br>
+          <co-control 
+            type="email" 
+            [formControl]="email"
+            [warning]="email.invalid && (email.dirty || email.touched)"
+            placeholder="user@domain"/>
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Email format wrong.</div>
+        </div>
       </div>
-      <div *ngIf="email.invalid && (email.dirty || email.touched)">
-        <div *ngIf="email.errors?.['required']">Email is required.</div>
-        <div *ngIf="email.errors?.['email']">Email format wrong.</div>
-      </div>
-    </div>
 
-    <!-- Password -->
-    <div>
-      <div>
-        <label for="password">Password</label>
-        <br>
-        <input 
-          id="password" 
-          name="password" 
-          type="password" 
-          value="******" 
-          [formControl]="password"/>
+      <!-- Password -->
+      <div class="box-mg-stack-rg">
+        <div>
+          <label for="password">Password</label>
+          <br>
+          <co-control 
+            type="password"
+            [showHidePassword]="true"
+            [formControl]="password"
+            [warning]="password.invalid && (password.dirty || password.touched)"/>
+        </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+          <div *ngIf="password.errors?.['required']">Password is required.</div>
+          <div *ngIf="password.errors?.['minlength']">Password should be more than {{passwordMinLen}}.</div>
+          <div *ngIf="password.errors?.['maxlength']">Password should be less than {{passwordMaxLen}}.</div>
+        </div>
       </div>
-      <div *ngIf="password.invalid && (password.dirty || password.touched)">
-        <div *ngIf="password.errors?.['required']">Password is required.</div>
-        <div *ngIf="password.errors?.['minlength']">Password should be more than {{passwordMinLen}}.</div>
-        <div *ngIf="password.errors?.['maxlength']">Password should be less than {{passwordMaxLen}}.</div>
+
+      <div *ngIf="loading$ | async">loading...</div>
+      <div *ngIf="error$ | async as error">{{ error }}</div>
+
+      <!-- Submit -->
+      <div class="box-mg-stack-rg">
+        <co-button label="Login" (click)="onSubmit()" [disabled]="form.invalid"/>
       </div>
-    </div>
-
-    <div *ngIf="loading$ | async">loading...</div>
-    <div *ngIf="error$ | async as error">{{ error }}</div>
-
-    <!-- Submit -->
-    <div>
-      <button type="button" (click)="onSubmit()" [disabled]="form.invalid">Login</button>
-    </div>
-  </form>
-</section>
+    </form>
+  </section>
+</div>

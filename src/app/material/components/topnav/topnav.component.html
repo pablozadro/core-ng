@@ -1,1 +1,45 @@
-<p>topnav works!</p>
+<nav class="topnav">
+  <div class="topnav__brand">
+    <co-brand />
+  </div>
+
+  <div class="topnav__content" [ngClass]="{ 'topnav__content--toggled': toggled }">
+    <ul class="topnav__main-list">
+      <li>
+        <a class="topnav__link" routerLink="">Inicio</a>
+      </li>
+    </ul>
+    <ul class="topnav__secondary-list" *ngIf="user$ | async as user; else notLogged">
+      <li>
+        <a class="topnav__link" routerLink="/auth/profile">
+          <span>{{user.email}}</span>
+          <i class="material-icons">account_circle</i>
+        </a>
+      </li>
+      <li>
+        <co-button label="Logout" (click)="onLogout()"/>
+      </li>
+      <li>
+        <co-button theme="flat" [squared]="true" icon="dark_mode" (click)="onToggleTheme()"/>
+      </li>
+    </ul>
+    <ng-template #notLogged>
+      <ul class="topnav__secondary-list">
+        <li>
+          <a class="topnav__link" routerLink="/auth/login">
+            <span>Login</span>
+            <i class="material-icons">account_circle</i>
+          </a>
+        </li>
+        <li>
+          <co-button theme="flat" [squared]="true" icon="dark_mode" (click)="onToggleTheme()"/>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+
+  <div class="topnav__toggler">
+    <co-button theme="flat" [icon]="icon" [squared]="true" (click)="onToggle()"/>
+  </div>
+</nav>
+

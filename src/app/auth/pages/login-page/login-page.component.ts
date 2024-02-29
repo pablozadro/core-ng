@@ -10,6 +10,8 @@ import {
   ReactiveFormsModule 
 } from '@angular/forms';
 
+import { ButtonComponent } from '@/material/components/button/button.component';
+import { ControlComponent } from '@/material/components/control/control.component';
 import { AppState } from '@/app.state';
 import { PASSWORD_MIN_LEN, PASSWORD_MAX_LEN } from '../../config';
 import { login } from '../../state/auth.actions';
@@ -23,6 +25,8 @@ import { selectAuthLoading, selectAuthError } from '../../state/auth.selector';
     AsyncPipe,
     FormsModule,
     ReactiveFormsModule,
+    ButtonComponent,
+    ControlComponent
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
@@ -35,12 +39,12 @@ export class LoginPageComponent {
   passwordMaxLen = PASSWORD_MAX_LEN;
 
   email = new FormControl(
-    'foo@localhost.io', [ 
+    '', [ 
     Validators.required, Validators.email 
   ]);
 
   password = new FormControl(
-    'abc123', [ 
+    '', [ 
     Validators.required, 
     Validators.minLength(PASSWORD_MIN_LEN),
     Validators.maxLength(PASSWORD_MAX_LEN),

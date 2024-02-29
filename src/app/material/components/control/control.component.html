@@ -1,1 +1,16 @@
-<p>control works!</p>
+<div class="control-wrapper">
+  <input 
+    [type]="type"
+    class="control {{size}}"
+    [ngClass]=" {
+      'control--warning': warning,
+      'control--error': error,
+      'control--icon': icon,
+    }"
+    [placeholder]="placeholder"
+    [formControl]="formControl" />
+  <i 
+    *ngIf="icon" 
+    class="material-icons control-icon"
+    (click)="onIconClick()">{{icon}}</i>
+</div>

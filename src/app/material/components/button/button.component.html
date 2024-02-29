@@ -1,1 +1,13 @@
-<p>button works!</p>
+<button 
+  [type]="type" 
+  class="btn btn-{{theme}} {{size}}" 
+  [ngClass]="{
+    'btn--icon-left': iconPosition === 'left',
+    'btn--icon-right': iconPosition === 'right',
+    'btn--squared': squared,
+    'btn--disabled': disabled,
+  }"
+  [disabled]="disabled">
+  <span *ngIf="label" class="btn__label">{{label}}</span>
+  <i *ngIf="icon" class="btn__icon material-icons">{{icon}}</i>
+</button>
