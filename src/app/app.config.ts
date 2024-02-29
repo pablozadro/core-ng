@@ -12,6 +12,7 @@ import { AuthEffects } from '@/auth/state/auth.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+
     provideRouter(routes),
     provideClientHydration(),
     provideStore(),

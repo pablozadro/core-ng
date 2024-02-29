@@ -1,39 +1,42 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+
 import { CoreStorageService } from '@/core/services/storage.service';
+import { CoTheme } from '../types';
+import { LIGHT_THEME, DARK_THEME } from '../config';
+
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeTogglerService {
   private readonly THEME_KEY = 'core-theme';
-  private theme: 'light' | 'dark' | null = null;
+  private theme: CoTheme = LIGHT_THEME;
+  private html;
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private readonly coreStorageService: CoreStorageService
-  ) { }
-
-  toggleTheme() {
-    if (typeof window !== undefined) {
-      const html$ = window.document.querySelector('html');
-      if(!html$) return;
-
-      const currentTheme = html$.dataset['theme'];
-      this.theme = currentTheme === 'light' ? 'dark':'light';
-      html$.dataset['theme'] = this.theme;
-      this.coreStorageService.setItem(this.THEME_KEY, this.theme);
+  ) {
+    this.html = this.document.querySelector('html');
+    const t = this.coreStorageService.getItem(this.THEME_KEY);
+    if (t) {
+      this.theme = t;
+      this.setTheme(this.theme);
     }
   }
 
-  initTheme() {
-    if (typeof window !== undefined) {
-      const storageTheme = this.coreStorageService.getItem(this.THEME_KEY);
-      const html$ = window.document.querySelector('html');
-      if(!html$) return;
-      if(storageTheme) {
-        this.theme = storageTheme;
-        html$.dataset['theme'] = storageTheme
-        this.coreStorageService.setItem(this.THEME_KEY, this.theme);
-      }
-    }
+  toggleTheme() {
+    const d = Object.assign({}, this.html?.dataset);
+    this.theme = d['theme'] === LIGHT_THEME ? DARK_THEME:LIGHT_THEME;
+    this.setTheme(this.theme);
+  }
+
+  private setTheme(theme: CoTheme) {
+    if (!this.html) return;
+    this.html.dataset['theme'] = theme;
+    this.coreStorageService.setItem(this.THEME_KEY, theme);
   }
 }
