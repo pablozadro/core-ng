@@ -33,7 +33,8 @@ export class AppComponent {
     private readonly store: Store<AppState>,
     private readonly themeTogglerService: ThemeTogglerService
   ) {
-    // this.themeTogglerService.initTheme();
+
+    this.themeTogglerService.initTheme();
     const user = this.authService.getUser();
     if (!user) return;
     this.store.dispatch(loginSuccess({ user }));

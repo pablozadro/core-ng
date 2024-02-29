@@ -1,6 +1,8 @@
 <div class="control-wrapper">
   <input 
     [type]="type"
+    [id]="id"
+    [name]="name"
     class="control {{size}}"
     [ngClass]=" {
       'control--warning': warning,
@@ -8,7 +10,7 @@
       'control--icon': icon,
     }"
     [placeholder]="placeholder"
-    [formControl]="formControl" />
+    [formControl]="control" />
   <i 
     *ngIf="icon" 
     class="material-icons control-icon"

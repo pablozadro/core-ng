@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgIf, NgClass } from '@angular/common';
 import { 
+  Form,
   FormControl,
   FormsModule, 
   ReactiveFormsModule 
@@ -25,15 +26,17 @@ import { CO_SIZE_RG } from '@/material/config';
 export class ControlComponent implements OnInit {
   @Input() size: CoSize = CO_SIZE_RG;
   @Input() type: 'text' | 'email' | 'password' = 'text';
+  @Input() name = '-';
+  @Input() id = '-';
   @Input() placeholder = '';
   @Input() warning = false;
   @Input() error = false;
   @Input() showHidePassword = false;
   @Input() icon: string | null = null;
-  // @ts-ignore
-  @Input() formControl: FormControl;
+  @Input() control!: FormControl;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
     if (this.showHidePassword) {

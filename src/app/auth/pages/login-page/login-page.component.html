@@ -6,18 +6,19 @@
 
     <form>
       <!-- Email -->
-      <!-- Email -->
       <div class="box-mg-stack-rg">
         <div>
           <label for="email">Email</label>
           <br>
           <co-control 
-            type="email" 
-            [formControl]="email"
-            [warning]="email.invalid && (email.dirty || email.touched)"
+            type="email"
+            name="email"
+            id="email"
+            [control]="email"
+            [error]="email.invalid && (email.dirty || email.touched)"
             placeholder="user@domain"/>
         </div>
-        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <div class="error-color sm" *ngIf="email.invalid && (email.dirty || email.touched)">
           <div *ngIf="email.errors?.['required']">Email is required.</div>
           <div *ngIf="email.errors?.['email']">Email format wrong.</div>
         </div>
@@ -29,20 +30,25 @@
           <label for="password">Password</label>
           <br>
           <co-control 
+            name="email"
+            id="email"
             type="password"
             [showHidePassword]="true"
-            [formControl]="password"
-            [warning]="password.invalid && (password.dirty || password.touched)"/>
+            [control]="password"
+            [error]="password.invalid && (password.dirty || password.touched)"/>
         </div>
-        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div class="error-color sm" *ngIf="password.invalid && (password.dirty || password.touched)">
           <div *ngIf="password.errors?.['required']">Password is required.</div>
           <div *ngIf="password.errors?.['minlength']">Password should be more than {{passwordMinLen}}.</div>
           <div *ngIf="password.errors?.['maxlength']">Password should be less than {{passwordMaxLen}}.</div>
         </div>
       </div>
 
-      <div *ngIf="loading$ | async">loading...</div>
-      <div *ngIf="error$ | async as error">{{ error }}</div>
+      <!-- Loading and Error Messages -->
+      <div class="box-mg-stack-rg">
+        <co-loading *ngIf="loading$ | async" />
+        <div *ngIf="error$ | async as error" class="error-color">{{ error }}</div>
+      </div>
 
       <!-- Submit -->
       <div class="box-mg-stack-rg">

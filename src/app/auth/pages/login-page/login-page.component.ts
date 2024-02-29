@@ -12,6 +12,7 @@ import {
 
 import { ButtonComponent } from '@/material/components/button/button.component';
 import { ControlComponent } from '@/material/components/control/control.component';
+import { LoadingComponent } from '@/material/components/loading/loading.component';
 import { AppState } from '@/app.state';
 import { PASSWORD_MIN_LEN, PASSWORD_MAX_LEN } from '../../config';
 import { login } from '../../state/auth.actions';
@@ -26,7 +27,8 @@ import { selectAuthLoading, selectAuthError } from '../../state/auth.selector';
     FormsModule,
     ReactiveFormsModule,
     ButtonComponent,
-    ControlComponent
+    ControlComponent,
+    LoadingComponent
   ],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
