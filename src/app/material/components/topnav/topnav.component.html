@@ -9,33 +9,32 @@
         <a class="topnav__link" routerLink="">Inicio</a>
       </li>
     </ul>
-    <ul class="topnav__secondary-list" *ngIf="user$ | async as user; else notLogged">
-      <li>
-        <a class="topnav__link" routerLink="/auth/profile">
-          <span>{{user.email}}</span>
-          <i class="material-icons">account_circle</i>
-        </a>
-      </li>
-      <li>
-        <co-button label="Logout" (click)="onLogout()"/>
-      </li>
-      <li>
-        <co-button theme="flat" [squared]="true" icon="dark_mode" (click)="onToggleTheme()"/>
-      </li>
-    </ul>
-    <ng-template #notLogged>
-      <ul class="topnav__secondary-list">
+    <ul class="topnav__secondary-list">
+      @if (user$ | async; as user) {
+        <li>
+          <a class="topnav__link" routerLink="/auth/profile">
+            <span>{{user.email}}</span>
+            <i class="material-icons">account_circle</i>
+          </a>
+        </li>
+        <li>
+          <co-button label="Logout" (click)="onLogout()"/>
+        </li>
+      } @else {
         <li>
           <a class="topnav__link" routerLink="/auth/login">
             <span>Login</span>
             <i class="material-icons">account_circle</i>
           </a>
         </li>
-        <li>
-          <co-button theme="flat" [squared]="true" icon="dark_mode" (click)="onToggleTheme()"/>
-        </li>
-      </ul>
-    </ng-template>
+      }
+      <li>
+        <co-button theme="flat" [squared]="true" icon="settings" (click)="onSettings()"/>
+      </li>
+      <li>
+        <co-button theme="flat" [squared]="true" icon="dark_mode" (click)="onToggleTheme()"/>
+      </li>
+    </ul>
   </div>
 
   <div class="topnav__toggler">
@@ -43,3 +42,12 @@
   </div>
 </nav>
 
+<co-modal id="modal-a">
+  <div class="container">
+    <section>
+      <header>
+        <h1 class="title lg">Settings</h1>
+      </header>
+    </section>
+  </div>
+</co-modal>
