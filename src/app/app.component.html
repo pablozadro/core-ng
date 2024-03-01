@@ -1,4 +1,15 @@
-<co-topnav />
 <div class="app">
-  <router-outlet />
+  <div class="app__topnav">
+    <co-topnav />
+  </div>
+  <div class="app__content">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="app__footer">
+    <footer class="align-center flat-theme">
+      <div class="box-pd-t-md box-pd-b-xxl box-pd-col-rg">
+        <small class="sm">Core-Material - 2024</small>
+      </div>
+    </footer>
+  </div>
 </div>
