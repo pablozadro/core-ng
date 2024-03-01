@@ -1,59 +1,62 @@
-<div class="fluid-container box-pd-rg">
-  <section>
-    <header>
-      <h1 class="title lg">Login</h1>
-    </header>
+<div class="container box-pd-rg">
+  <div class="row">
+    <div class="col-6 col-offset-3">
+      <section class="box-mg-t-lg">
+        <header>
+          <h1 class="title lg">Login</h1>
+        </header>
+            <form>
+              <!-- Email -->
+              <div class="box-mg-stack-rg">
+                <div>
+                  <label for="email">Email</label>
+                  <br>
+                  <co-control 
+                    type="email"
+                    name="email"
+                    id="email"
+                    [control]="email"
+                    [error]="email.invalid && (email.dirty || email.touched)"
+                    placeholder="user@domain"/>
+                </div>
+                <div class="error-color sm" *ngIf="email.invalid && (email.dirty || email.touched)">
+                  <div *ngIf="email.errors?.['required']">Email is required.</div>
+                  <div *ngIf="email.errors?.['email']">Email format wrong.</div>
+                </div>
+              </div>
 
-    <form>
-      <!-- Email -->
-      <div class="box-mg-stack-rg">
-        <div>
-          <label for="email">Email</label>
-          <br>
-          <co-control 
-            type="email"
-            name="email"
-            id="email"
-            [control]="email"
-            [error]="email.invalid && (email.dirty || email.touched)"
-            placeholder="user@domain"/>
-        </div>
-        <div class="error-color sm" *ngIf="email.invalid && (email.dirty || email.touched)">
-          <div *ngIf="email.errors?.['required']">Email is required.</div>
-          <div *ngIf="email.errors?.['email']">Email format wrong.</div>
-        </div>
-      </div>
+              <!-- Password -->
+              <div class="box-mg-stack-rg">
+                <div>
+                  <label for="password">Password</label>
+                  <br>
+                  <co-control 
+                    name="email"
+                    id="email"
+                    type="password"
+                    [showHidePassword]="true"
+                    [control]="password"
+                    [error]="password.invalid && (password.dirty || password.touched)"/>
+                </div>
+                <div class="error-color sm" *ngIf="password.invalid && (password.dirty || password.touched)">
+                  <div *ngIf="password.errors?.['required']">Password is required.</div>
+                  <div *ngIf="password.errors?.['minlength']">Password should be more than {{passwordMinLen}}.</div>
+                  <div *ngIf="password.errors?.['maxlength']">Password should be less than {{passwordMaxLen}}.</div>
+                </div>
+              </div>
 
-      <!-- Password -->
-      <div class="box-mg-stack-rg">
-        <div>
-          <label for="password">Password</label>
-          <br>
-          <co-control 
-            name="email"
-            id="email"
-            type="password"
-            [showHidePassword]="true"
-            [control]="password"
-            [error]="password.invalid && (password.dirty || password.touched)"/>
-        </div>
-        <div class="error-color sm" *ngIf="password.invalid && (password.dirty || password.touched)">
-          <div *ngIf="password.errors?.['required']">Password is required.</div>
-          <div *ngIf="password.errors?.['minlength']">Password should be more than {{passwordMinLen}}.</div>
-          <div *ngIf="password.errors?.['maxlength']">Password should be less than {{passwordMaxLen}}.</div>
-        </div>
-      </div>
+              <!-- Loading and Error Messages -->
+              <div class="box-mg-stack-rg">
+                <co-loading *ngIf="loading$ | async" />
+                <div *ngIf="error$ | async as error" class="error-color">{{ error }}</div>
+              </div>
 
-      <!-- Loading and Error Messages -->
-      <div class="box-mg-stack-rg">
-        <co-loading *ngIf="loading$ | async" />
-        <div *ngIf="error$ | async as error" class="error-color">{{ error }}</div>
-      </div>
-
-      <!-- Submit -->
-      <div class="box-mg-stack-rg">
-        <co-button label="Login" (click)="onSubmit()" [disabled]="form.invalid"/>
-      </div>
-    </form>
-  </section>
+              <!-- Submit -->
+              <div class="box-mg-stack-rg">
+                <co-button label="Login" (click)="onSubmit()" [disabled]="form.invalid"/>
+              </div>
+            </form>
+      </section>
+    </div>
+  </div>
 </div>

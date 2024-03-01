@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { CoreApiService } from '@/core/services/core-api.service';
 import { CoreStorageService } from '@/core/services/storage.service';
+import { AppState } from '@/app.state';
+import { logout } from '@/auth/state/auth.actions';
 import { AuthUser } from '../types';
-
 
 interface AuthLoginPayload {
   email: string; 
@@ -28,6 +30,7 @@ export class AuthService {
     private readonly coreApiService: CoreApiService,
     private readonly coreStorageService: CoreStorageService,
     private readonly route: Router,
+    private store: Store<AppState>
   ) { }
 
   login(payload: AuthLoginPayload): Observable<AuthLoginResponse> {
@@ -57,6 +60,7 @@ export class AuthService {
 
   logout() {
     this.coreStorageService.removeItem(this.AUTH_USER_STORAGE_KEY);
+    this.store.dispatch(logout());
     this.route.navigateByUrl('/auth/login');
   }
 

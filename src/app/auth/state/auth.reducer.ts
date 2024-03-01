@@ -40,5 +40,13 @@ export const authReducer = createReducer(
       error: action.error
     }
   }),
+  on(actions.logout, (state: AuthState): AuthState => {
+    return {
+      ...state,
+      loading: false,
+      user: null,
+      error: null
+    }
+  }),
 
 );

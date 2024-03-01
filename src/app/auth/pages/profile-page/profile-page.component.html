@@ -1,10 +1,14 @@
-<div class="fluid-container box-pd-rg">
-  <section>
-    <header>
-      <h1 class="title lg">Profile</h1>
-    </header>
-    <div *ngIf="user">
-      <p>Email: {{user.email}}</p>
-    </div>
-  </section>
+<div class="container box-pd-rg">
+  <div class="row">
+    <div class="col-6 col-offset-3">
+      <section class="box-mg-t-lg">
+        <header>
+          <h1 class="title lg">Profile</h1>
+        </header>
+        <div *ngIf="user">
+          <p>Email: {{user.email}}</p>
+        </div>
+      </section>
+        </div>
+  </div>
 </div>
