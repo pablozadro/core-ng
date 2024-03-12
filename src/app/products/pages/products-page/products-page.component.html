@@ -1,0 +1,22 @@
+<div class="container box-pd-rg">
+  <section class="box-mg-t-lg">
+    <header>
+      <h1 class="title lg">Products</h1>
+    </header>
+
+    <div *ngIf="loading; then loadingBlock else contentBlock"></div>
+    <ng-template #loadingBlock>
+      <co-loading></co-loading>
+    </ng-template>
+    <ng-template #contentBlock>
+      <div *ngIf="products; then productsBlock else errorBlock"></div>
+      <ng-template #productsBlock>
+        <p>{{products?.length}} length</p>
+      </ng-template>
+      <ng-template #errorBlock>
+        <div class="error-color">No products to display.</div>
+      </ng-template>
+    </ng-template>
+
+  </section>
+</div>
