@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable, catchError, of, map } from 'rxjs';
+
+
+export interface CoreApiResponse {
+  payload: any;
+  error: any;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +17,23 @@ export class CoreApiService {
     private readonly http: HttpClient
   ) { }
 
-  get(url: string) {
-    return this.http.request('get', url);
+  get(url: string): Observable<CoreApiResponse> {
+    return this.http
+      .request('get', url)
+      .pipe(this.handleResponse)
   }
 
-  post(url: string, body: any) {
-    return this.http.request('post', url, { body });
+  post(url: string, body: any): Observable<CoreApiResponse> {
+    return this.http
+      .request('post', url, { body })
+      .pipe(this.handleResponse)
+  }
+
+  handleResponse(obs:Observable<any>): Observable<CoreApiResponse> {
+    return obs.pipe(
+      catchError(() => {
+        return of({ payload: null, error: 'Request Error' })
+      })
+    )
   }
 }

@@ -17,6 +17,12 @@
     </div>
   </div>
   <div>
+    @if(loading) {
+      <div>login...</div>
+    }
+    @if(!loading && msg) {
+      <div>{{msg}}</div>
+    }
     <button type="submit">Login</button>
   </div>
 </form>
