@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthApiService } from '@/auth/services/auth-api.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
+import { AuthApiService } from '@/auth/services/auth-api.service';
+import { login } from '@/auth/state/auth.actions';
+import { CORE_INPROGRESS_STATUS } from '@/core/config';
 
 @Component({
   selector: 'app-auth-login',
@@ -24,6 +28,8 @@ export class AuthLoginComponent {
   showHidePasswordType = this.SHOW_HIDE_PASSWORD_TYPE;
   showHidePasswordText = this.SHOW_HIDE_SHOW_TEXT;
 
+  state$!: Observable<Store>;
+
   loading = false;
   msg = '';
 
@@ -43,8 +49,14 @@ export class AuthLoginComponent {
   });
 
   constructor(
-    private readonly authApiService: AuthApiService
-  ) {}
+    private readonly authApiService: AuthApiService,
+    private readonly store: Store<any>
+  ) {
+    this.store.subscribe((state: any) => {
+      console.log('-> state', state);
+      this.loading = state.auth.status === CORE_INPROGRESS_STATUS;
+    })
+  }
 
   onShowHide() {
     if(this.showHidePasswordType === this.SHOW_HIDE_PASSWORD_TYPE) {
@@ -58,14 +70,20 @@ export class AuthLoginComponent {
 
   onFormSubmit() {
     if(this.form.invalid) return;
-    this.loading  = true;
-    this.authApiService.login({ 
+
+    this.store.dispatch(login({
       email: this.email.value || '', 
       password: this.password.value || ''
-    }).subscribe(token => {
-      this.loading  = false;
-      this.msg = !!token ? 'success':'error';
-      console.log('-> token', token);
-    });
+    }));
+
+    // this.loading  = true;
+    // this.authApiService.login({ 
+    //   email: this.email.value || '', 
+    //   password: this.password.value || ''
+    // }).subscribe(token => {
+    //   this.loading  = false;
+    //   this.msg = !!token ? 'success':'error';
+    //   console.log('-> token', token);
+    // });
   }
 }

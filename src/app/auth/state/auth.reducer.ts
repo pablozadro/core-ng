@@ -1,4 +1,4 @@
-import { createReducer, on } from '@ngrx/store';
+import { createReducer, createSelector, on } from '@ngrx/store';
 import * as actions from './auth.actions';
 import {
   CoreStatusType,
@@ -8,7 +8,7 @@ import {
 } from '@/core/config';
 
 
-export const AUTH_FEATURE_KEY = 'AUTH';
+export const AUTH_FEATURE_KEY = 'auth';
 
 export interface AuthState {
   status: CoreStatusType,
@@ -25,26 +25,11 @@ export const initialAuthState: AuthState = {
 export const authReducer = createReducer(
   initialAuthState,
   on(actions.login, state => {
+    console.log('-> login', state);
     return {
       ...state,
       status: CORE_INPROGRESS_STATUS,
       error: '',
-      token: '',
-    }
-  }),
-  on(actions.loginSuccess, (state, { token }) => {
-    return {
-      ...state,
-      status: CORE_DONE_STATUS,
-      error: '',
-      token,
-    }
-  }),
-  on(actions.loginError, (state, { error }) => {
-    return {
-      ...state,
-      status: CORE_DONE_STATUS,
-      error,
       token: '',
     }
   }),
