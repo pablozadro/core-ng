@@ -1,14 +1,22 @@
-<form>
+<form (submit)="onFormSubmit(); $event.preventDefault();">
   <div>
     <label for="id">Email</label>
     <input id="id" type="email" [formControl]="email">
+    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div *ngIf="email.errors?.['required']">Email is required.</div>
+      <div *ngIf="email.errors?.['email']">Email format wrong.</div>
+    </div>
   </div>
   <div>
     <label for="password">Password</label>
     <input id="password" [type]="showHidePasswordType" [formControl]="password">
     <span (click)="onShowHide()">{{showHidePasswordText}}</span>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.errors?.['required']">Password is required.</div>
+      <div *ngIf="password.errors?.['minlength']">Password should be at least {{PASSWORD_MIN_LEN}} length.</div>
+    </div>
   </div>
   <div>
-    <button (click)="onFormSubmit()"></button>
+    <button type="submit">Login</button>
   </div>
 </form>
