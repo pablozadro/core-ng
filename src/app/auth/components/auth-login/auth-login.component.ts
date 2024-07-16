@@ -31,7 +31,7 @@ export class AuthLoginComponent {
   state$!: Observable<Store>;
 
   loading = false;
-  msg = '';
+  error = '';
 
   email = new FormControl('abc@mock.io', [
     Validators.required, 
@@ -53,8 +53,8 @@ export class AuthLoginComponent {
     private readonly store: Store<any>
   ) {
     this.store.subscribe((state: any) => {
-      console.log('-> state', state);
       this.loading = state.auth.status === CORE_INPROGRESS_STATUS;
+      this.error = state.auth.error;
     })
   }
 
@@ -75,15 +75,5 @@ export class AuthLoginComponent {
       email: this.email.value || '', 
       password: this.password.value || ''
     }));
-
-    // this.loading  = true;
-    // this.authApiService.login({ 
-    //   email: this.email.value || '', 
-    //   password: this.password.value || ''
-    // }).subscribe(token => {
-    //   this.loading  = false;
-    //   this.msg = !!token ? 'success':'error';
-    //   console.log('-> token', token);
-    // });
   }
 }

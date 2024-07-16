@@ -25,11 +25,26 @@ export const initialAuthState: AuthState = {
 export const authReducer = createReducer(
   initialAuthState,
   on(actions.login, state => {
-    console.log('-> login', state);
     return {
       ...state,
       status: CORE_INPROGRESS_STATUS,
       error: '',
+      token: '',
+    }
+  }),
+  on(actions.loginSuccess, (state, { token }) => {
+    return {
+      ...state,
+      status: CORE_DONE_STATUS,
+      error: '',
+      token,
+    }
+  }),
+  on(actions.loginError, (state, { error }) => {
+    return {
+      ...state,
+      status: CORE_DONE_STATUS,
+      error,
       token: '',
     }
   }),

@@ -17,12 +17,14 @@
     </div>
   </div>
   <div>
-    @if(loading) {
-      <div>login...</div>
-    }
-    @if(!loading && msg) {
-      <div>{{msg}}</div>
-    }
+    <div>
+      @if(loading) {
+        <div>login...</div>
+      }
+      @if(!loading && error) {
+        <div>{{error}}</div>
+      }
+    </div>
     <button type="submit">Login</button>
   </div>
 </form>

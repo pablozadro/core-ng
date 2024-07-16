@@ -8,6 +8,7 @@
     "paths": {
       "@/*": ["src/app/*"]
     },
+    "useDefineForClassFields": false,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

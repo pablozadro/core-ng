@@ -1,4 +1,8 @@
 <nav class="topnav">
   <a routerLink="">Inicio</a>
-  <a routerLink="/auth/login">Login</a>
+  @if(token) {
+    <a routerLink="/auth/profile">Welcome</a>
+  } @else {
+    <a routerLink="/auth/login">Login</a>
+  }
 </nav>
