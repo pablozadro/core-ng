@@ -1,0 +1,14 @@
+<form>
+  <div>
+    <label for="id">Email</label>
+    <input id="id" type="email" [formControl]="email">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input id="password" [type]="showHidePasswordType" [formControl]="password">
+    <span (click)="onShowHide()">{{showHidePasswordText}}</span>
+  </div>
+  <div>
+    <button (click)="onFormSubmit()"></button>
+  </div>
+</form>
