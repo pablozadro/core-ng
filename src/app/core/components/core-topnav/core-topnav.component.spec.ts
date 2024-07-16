@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CoreTopnavComponent } from './core-topnav.component';
+import { provideRouter } from '@angular/router';
 
 describe('CoreTopnavComponent', () => {
   let component: CoreTopnavComponent;
@@ -8,7 +8,12 @@ describe('CoreTopnavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CoreTopnavComponent]
+      imports: [
+        CoreTopnavComponent
+      ],
+      providers: [
+        provideRouter([])
+      ]
     })
     .compileComponents();
 

@@ -4,6 +4,18 @@ import { CoreLandingComponent } from '@/core/components/core-landing/core-landin
 
 
 export const routes: Routes = [
-  { path: '', component: CoreLandingComponent },
-  { path: 'auth/login', component: AuthLoginComponent }
+  { 
+    path: '', 
+    component: CoreLandingComponent,
+    data: {
+      title: 'Welcome'
+    }
+  },
+  { 
+    path: 'auth/login', 
+    component: AuthLoginComponent,
+    data: {
+      title: 'Login'
+    }
+  }
 ];
