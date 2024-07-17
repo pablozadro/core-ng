@@ -2,14 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthLoginComponent } from './auth-login.component';
 import { provideHttpClient } from '@angular/common/http';
 import { CoreApiService } from '@/core/services/core-api.service';
-import { provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { initialAuthState } from '@/auth/state/auth.reducer'
-
+import { login } from '@/auth/state/auth.actions';
 
 describe('AuthLoginComponent', () => {
   let component: AuthLoginComponent;
   let coreApiService: CoreApiService;
   let fixture: ComponentFixture<AuthLoginComponent>;
+  let store: MockStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -27,6 +28,7 @@ describe('AuthLoginComponent', () => {
     fixture = TestBed.createComponent(AuthLoginComponent);
     component = fixture.componentInstance;
     coreApiService = TestBed.inject(CoreApiService);
+    store = TestBed.inject(MockStore);
     fixture.detectChanges();
   });
 
@@ -130,7 +132,7 @@ describe('AuthLoginComponent', () => {
   describe('onFormSubmit()', () => {
     
     it('should do nothing if form is invalid', () => {
-      const spy = spyOn(coreApiService, 'post');
+      const spy = spyOn(store, 'dispatch');
       spy.and.callThrough();
       component.email.setValue('');
       component.password.setValue('');
@@ -140,12 +142,16 @@ describe('AuthLoginComponent', () => {
     });
 
     it('should send request if form is valid', () => {
-      const spy = spyOn(coreApiService, 'post');
+      const spy = spyOn(store, 'dispatch');
       spy.and.callThrough();
       component.email.setValue('abc@mock.io');
       component.password.setValue('abc123');
       expect(component.form.valid).toEqual(true);
       component.onFormSubmit();
+      expect(spy).toHaveBeenCalledOnceWith(login({
+        email: component.email.value || '',
+        password: component.password.value || '',
+      }));
     });
   });
 

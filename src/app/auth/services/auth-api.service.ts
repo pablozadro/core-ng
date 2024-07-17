@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CoreApiResponse, CoreApiService } from '@/core/services/core-api.service';
-import { Observable, map, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 
 export interface AuthLoginBody {
@@ -20,7 +20,7 @@ export class AuthApiService {
 
   login(body: AuthLoginBody): Observable<string | null> {
     return this.coreApiService
-      .post(this.AUTH_LOGIN_URL,body)
+      .post(this.AUTH_LOGIN_URL, body)
       .pipe(
         map((res: CoreApiResponse) => {
           if(res.error) return null;
