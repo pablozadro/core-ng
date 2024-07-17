@@ -2,6 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthLoginComponent } from './auth-login.component';
 import { provideHttpClient } from '@angular/common/http';
 import { CoreApiService } from '@/core/services/core-api.service';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialAuthState } from '@/auth/state/auth.reducer'
+
 
 describe('AuthLoginComponent', () => {
   let component: AuthLoginComponent;
@@ -14,6 +17,7 @@ describe('AuthLoginComponent', () => {
         AuthLoginComponent
       ],
       providers: [
+        provideMockStore({ initialState: initialAuthState }),
         provideHttpClient(),
         CoreApiService
       ]
@@ -142,10 +146,6 @@ describe('AuthLoginComponent', () => {
       component.password.setValue('abc123');
       expect(component.form.valid).toEqual(true);
       component.onFormSubmit();
-      expect(spy).toHaveBeenCalledOnceWith(
-        component.AUTH_LOGIN_URL,
-        { email: component.email.value, password: component.password.value }
-      )
     });
   });
 

@@ -1,22 +1,30 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { AuthState, AUTH_FEATURE_KEY } from '@/auth/state/auth.reducer';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-core-topnav',
   standalone: true,
-  imports: [RouterModule],
+  imports: [
+    RouterModule,
+  ],
   templateUrl: './core-topnav.component.html',
   styleUrl: './core-topnav.component.scss'
 })
 export class CoreTopnavComponent {
-  token!: string | null;
+  token = '';
+  auth$!: Observable<AuthState>;
+
 
   constructor(
     private readonly store: Store<any>
   ) {
-    this.store.subscribe((state: any) => {
-      this.token = state.auth.token;
+    this.auth$ = this.store.pipe(select(AUTH_FEATURE_KEY));
+    this.auth$.subscribe(state => {
+      this.token = state ? state.token:'';
     });
   }
 }

@@ -24,10 +24,13 @@ describe('CoreApiService', () => {
   describe('get()', () => {
 
     it('should call http client properly', () => {
-      const spy = spyOn(http,'request');
-      spy.and.callThrough();
+      const spyHandleResponse = spyOn(service, 'handleResponse');
+      const spyRequest = spyOn(http,'request');
+      spyRequest.and.callThrough();
+      spyHandleResponse.and.callThrough();
       service.get('abc');
-      expect(spy).toHaveBeenCalledOnceWith('get', 'abc');
+      expect(spyHandleResponse).toHaveBeenCalledTimes(1);
+      expect(spyRequest).toHaveBeenCalledOnceWith('get', 'abc');
     });
   });
 
@@ -35,10 +38,13 @@ describe('CoreApiService', () => {
   describe('post()', () => {
 
     it('should call http client properly', () => {
-      const spy = spyOn(http, 'request');
-      spy.and.callThrough();
+      const spyHandleResponse = spyOn(service, 'handleResponse');
+      const spyRequest = spyOn(http,'request');
+      spyRequest.and.callThrough();
+      spyHandleResponse.and.callThrough();
       service.post('abc', { id: 1 });
-      expect(spy).toHaveBeenCalledOnceWith('post', 'abc', { body: { id: 1 } });
+      expect(spyHandleResponse).toHaveBeenCalledTimes(1);
+      expect(spyRequest).toHaveBeenCalledOnceWith('post', 'abc', { body: { id: 1 } });
     });
   });
 });

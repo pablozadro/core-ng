@@ -33,12 +33,12 @@ export class AuthLoginComponent {
   loading = false;
   error = '';
 
-  email = new FormControl('abc@mock.io', [
+  email = new FormControl('', [
     Validators.required, 
     Validators.email
   ]);
 
-  password = new FormControl('abc123', [
+  password = new FormControl('', [
     Validators.required,
     Validators.minLength(this.PASSWORD_MIN_LEN)
   ]);

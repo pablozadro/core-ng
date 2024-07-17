@@ -2,12 +2,14 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { filter } from 'rxjs';
 import { provideRouter, Router, NavigationEnd } from '@angular/router';
-
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialAuthState } from '@/auth/state/auth.reducer'
 
 const links: { path: string; title?: string; }[]=  [
   { path: 'mock1', title: 'Mock title' },
   { path: 'mock2' },
 ];
+
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -20,6 +22,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
+        provideMockStore({ initialState: initialAuthState }),
         provideRouter([
           { 
             path: links[0].path, 
