@@ -26,7 +26,7 @@
   @return getColor('white');
 }
 
-@function getSize($size) {
-  $val: map-get($sizes, $size);
+@function getBoxSize($size) {
+  $val: map-get($box-sizes, $size);
   @return $val;
 }

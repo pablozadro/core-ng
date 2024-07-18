@@ -1,0 +1,42 @@
+@import '../abstracts/all';
+
+@each $size, $value in $box-sizes {
+  .box-mg-b-#{$size} { margin-bottom: $value; }
+  .box-mg-t-#{$size} { margin-top: $value; }
+  .box-mg-l-#{$size} { margin-left: $value; }
+  .box-mg-r-#{$size} { margin-right: $value; }
+  .box-mg-stack-#{$size} {
+    @extend .box-mg-t-#{$size};
+    @extend .box-mg-b-#{$size};
+  }
+  .box-mg-col-#{$size} {
+    @extend .box-mg-l-#{$size};
+    @extend .box-mg-r-#{$size};
+  }
+  .box-mg-#{$size} {
+    @extend .box-mg-stack-#{$size};
+    @extend .box-mg-col-#{$size};
+  }
+
+  .box-pd-b-#{$size} { padding-bottom: $value; }
+  .box-pd-t-#{$size} { padding-top: $value; }
+  .box-pd-l-#{$size} { padding-left: $value; }
+  .box-pd-r-#{$size} { padding-right: $value; }
+  .box-pd-stack-#{$size} {
+    @extend .box-pd-t-#{$size};
+    @extend .box-pd-b-#{$size};
+  }
+  .box-pd-col-#{$size} {
+    @extend .box-pd-l-#{$size};
+    @extend .box-pd-r-#{$size};
+  }
+  .box-pd-#{$size} {
+    @extend .box-pd-stack-#{$size};
+    @extend .box-pd-col-#{$size};
+  }
+
+}
+
+.box-rounded { border-radius: var(--box-border-radius); }
+.box-block { display: block; }
+.box-inline { display: inline-block; }

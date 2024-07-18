@@ -22,5 +22,5 @@
 }
 
 @mixin TextSpacing {
-  margin: 0 0 getSize('rg') 0;
+  margin: 0 0 getBoxSize('rg') 0;
 }

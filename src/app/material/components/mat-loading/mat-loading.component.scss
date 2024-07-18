@@ -1,0 +1,13 @@
+@import '../.././../../sass/abstracts/all';
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid getColor('grey-7');
+  border-right-color: getColor('primary');
+  animation: l2 1s infinite linear;
+}
+
+@keyframes l2 {to{transform: rotate(1turn)}}

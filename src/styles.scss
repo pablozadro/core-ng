@@ -1,3 +1,8 @@
 @import './sass/themes/root';
+
 @import './sass/core/normalize';
 @import './sass/core/typography';
+
+@import './sass/layout/box';
+@import './sass/layout/flex';
+@import './sass/layout/grid';

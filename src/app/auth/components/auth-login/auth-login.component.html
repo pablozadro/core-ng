@@ -17,14 +17,16 @@
     </div>
   </div>
   <div>
-    <div>
+    <div class="box-mg-stack-rg">
       @if(loading) {
-        <div>login...</div>
+        <app-mat-loading />
       }
       @if(!loading && error) {
-        <div>{{error}}</div>
+        <div class="error-color">{{error}}</div>
       }
     </div>
-    <button type="submit">Login</button>
+    <div class="box-mg-stack-rg">
+      <button type="submit">Login</button>
+    </div>
   </div>
 </form>

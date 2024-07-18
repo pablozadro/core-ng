@@ -46,7 +46,7 @@ $colors: (
   'warning': var(--color-warning-200),
 );
 
-$sizes: (
+$box-sizes: (
   'sm': math.div($x, $gold),
   'rg': $x * $gold,
   'md': $x * $gold * 2,
@@ -54,3 +54,10 @@ $sizes: (
   'xl': $x * $gold * 4,
   'xxl': $x * $gold * 5,
 );
+
+$grid-size: 12;
+$grid-gutter: 1rem;
+$grid-breakpoint: 980px;
+$grid-containers-min-width: 360px;
+$grid-fluid-container-width: 80%;
+$grid-container-width: 980px;

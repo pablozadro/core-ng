@@ -41,7 +41,6 @@ h1, h2, h3, h4, h5, h6,
 }
 
 
-
 a,
 .link {
   text-decoration: none;
@@ -49,4 +48,19 @@ a,
   &:focus {
     text-decoration: underline;
   }
+}
+
+
+.align-center { text-align: center; }
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+.lowercase { text-transform: lowercase; }
+.uppercase { text-transform: uppercase; }
+.capitalize { text-transform: capitalize; }
+.regular { font-weight: getFontWeight('regular'); }
+.bold { font-weight: getFontWeight('bold'); }
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

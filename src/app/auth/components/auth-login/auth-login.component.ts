@@ -7,13 +7,16 @@ import { Observable } from 'rxjs';
 import { AuthApiService } from '@/auth/services/auth-api.service';
 import { login } from '@/auth/state/auth.actions';
 import { CORE_INPROGRESS_STATUS } from '@/core/config';
+import { MatLoadingComponent } from '@/material/components/mat-loading/mat-loading.component'; 
+
 
 @Component({
   selector: 'app-auth-login',
   standalone: true,
   imports: [
     NgIf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatLoadingComponent
   ],
   templateUrl: './auth-login.component.html',
   styleUrl: './auth-login.component.scss'
