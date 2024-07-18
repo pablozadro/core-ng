@@ -1,0 +1,8 @@
+@mixin Title {
+  color: getColor('black');
+  font-weight: getFontWeight('bold');
+}
+
+@mixin TextSpacing {
+  margin: 0 0 getSize('rg') 0;
+}

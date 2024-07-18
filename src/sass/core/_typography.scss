@@ -1,0 +1,53 @@
+@import '../abstracts/all';
+
+
+body {
+  font-family: sans-serif;
+  font-size: getFontSize('rg');
+  line-height: getLineHeight('rg');
+  font-weight: getFontWeight('regular');
+  color: getBodyColor();
+  background-color: getBodyBackgroundColor();
+}
+
+h1, h2, h3, h4, h5, h6,
+.title {
+  @include Title;
+}
+
+p,
+h1, h2, h3, h4, h5, h6,
+.title,
+.txt {
+  @include TextSpacing;
+}
+
+
+@each $color, $value in $colors {
+
+  $_color: getColor($color);
+
+  .#{$color}-color { color: $_color }
+  .#{$color}-bkg {  background-color: $_color }
+}
+
+
+@each $size, $value in $type-font-sizes {
+
+  .#{$size} { 
+    font-size: getFontSize($size);
+
+    &.title, &.txt { line-height: getLineHeight($size); }
+  }
+}
+
+
+
+a,
+.link {
+  text-decoration: none;
+  &:hover, &:focus { outline: none; }
+  &:focus {
+    text-decoration: underline;
+  }
+}

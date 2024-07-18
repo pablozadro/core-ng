@@ -1,0 +1,32 @@
+@function getFontSize($size) {
+  $val: map-get($type-font-sizes, $size);
+  @return $val;
+}
+
+@function getLineHeight($size) {
+  $val: map-get($type-line-heights, $size);
+  @return $val;
+}
+
+@function getFontWeight($weight) {
+  $val: map-get($type-font-weights, $weight);
+  @return $val;
+}
+
+@function getColor($color) {
+  $val: map-get($colors, $color);
+  @return $val;
+}
+
+@function getBodyColor() {
+  @return getColor('grey-7');
+}
+
+@function getBodyBackgroundColor() {
+  @return getColor('white');
+}
+
+@function getSize($size) {
+  $val: map-get($sizes, $size);
+  @return $val;
+}

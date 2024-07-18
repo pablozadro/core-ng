@@ -1,9 +1,9 @@
 <nav class="topnav">
-  <a routerLink="">Inicio</a>
+  <a class="link primary-color" routerLink="">Inicio</a>
   @if(token) {
-    <a routerLink="/auth/profile" data-id="logged-link">Welcome</a>
+    <a class="link primary-color" routerLink="/auth/profile" data-id="logged-link">Welcome</a>
     <button (click)="onLogout()">Logout</button>
   } @else {
-    <a routerLink="/auth/login" data-id="logged-link">Login</a>
+    <a class="link primary-color" routerLink="/auth/login" data-id="logged-link">Login</a>
   }
 </nav>
