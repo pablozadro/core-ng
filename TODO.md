@@ -1,8 +1,9 @@
 # TODO
 
-1. add Roboto
-2. create flex
-3. create grid
-4. create favicon
-5. create brand
-6. start components
+1. add Roboto > DONE
+2. spacing utils
+3. favicon
+4. brand
+5. flex
+6. grid
+7. start components

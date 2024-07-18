@@ -1,6 +1,24 @@
-@mixin Title {
-  color: getColor('black');
+@mixin FontFamilyLight() {
+  font-family: "Roboto", sans-serif;
+  font-weight: getFontWeight('light');
+  font-style: normal;
+}
+
+@mixin FontFamilyRegular() {
+  font-family: "Roboto", sans-serif;
+  font-weight: getFontWeight('regular');
+  font-style: normal;
+}
+
+@mixin FontFamilyBold() {
+  font-family: "Roboto", sans-serif;
   font-weight: getFontWeight('bold');
+  font-style: normal;
+}
+
+@mixin Title {
+  @include FontFamilyBold();
+  color: getColor('black');
 }
 
 @mixin TextSpacing {

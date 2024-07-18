@@ -2,10 +2,9 @@
 
 
 body {
-  font-family: sans-serif;
+  @include FontFamilyRegular();
   font-size: getFontSize('rg');
   line-height: getLineHeight('rg');
-  font-weight: getFontWeight('regular');
   color: getBodyColor();
   background-color: getBodyBackgroundColor();
 }
