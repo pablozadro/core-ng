@@ -1,27 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { Store } from '@ngrx/store';
 import { Router, RouterOutlet, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
 import { CoreTopnavComponent } from '@/core/components/core-topnav/core-topnav.component';
+import { AuthApiService } from '@/auth/services/auth-api.service';
+import { loginSuccess } from './auth/state/auth.actions';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    AsyncPipe,
     CoreTopnavComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  DEFAULT_PAGE_TITLE = 'Unknown Page';
-  pageTitle!: string;
+  pageTitle = 'Unknown Page';
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly router: Router,
+    private readonly authApiService: AuthApiService,
+    private readonly store: Store
   ) {}
 
   ngOnInit(): void {
@@ -30,8 +32,14 @@ export class AppComponent implements OnInit {
       .subscribe(() => {
         const route = this.route.firstChild || this.route;
         route.data.subscribe(data => {
-          this.pageTitle = data['title'] || this.DEFAULT_PAGE_TITLE;
-        })
-      })
+          if(!data['title']) return;
+          this.pageTitle = data['title'];
+        });
+      });
+
+    const token = this.authApiService.getToken();
+    if(token) {
+      this.store.dispatch(loginSuccess({ token }));
+    }
   }
 }

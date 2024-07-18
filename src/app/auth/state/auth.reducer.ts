@@ -48,4 +48,17 @@ export const authReducer = createReducer(
       token: '',
     }
   }),
+  on(actions.logout, state => {
+    return {
+      ...state,
+      status: CORE_INPROGRESS_STATUS,
+    }
+  }),
+  on(actions.logoutSuccess, state => {
+    return {
+      ...state,
+      status: CORE_DONE_STATUS,
+      token: '',
+    }
+  }),
 );

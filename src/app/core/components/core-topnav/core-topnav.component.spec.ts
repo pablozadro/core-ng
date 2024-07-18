@@ -15,14 +15,14 @@ import { DebugElement } from '@angular/core';
   standalone: true,
   template: '',
 })
-export class AuthLoginComponent {}
+class AuthLoginComponent {}
 
 @Component({
   selector: 'app-core-landing',
   standalone: true,
   template: '',
 })
-export class AuthProfileComponent {}
+class AuthProfileComponent {}
 
 
 describe('CoreTopnavComponent', () => {

@@ -17,3 +17,14 @@ export const loginError = createAction(
   AUTH_LOGIN_ERROR,
   props<{ error: string; }>()
 );
+
+
+export const AUTH_LOGOUT = '[Auth] Logout';
+export const logout = createAction(
+  AUTH_LOGOUT,
+);
+
+export const AUTH_LOGOUT_SUCCESS = '[Auth] Logout Success';
+export const logoutSuccess = createAction(
+  AUTH_LOGOUT_SUCCESS,
+);

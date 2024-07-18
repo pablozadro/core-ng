@@ -2,6 +2,7 @@
   <a routerLink="">Inicio</a>
   @if(token) {
     <a routerLink="/auth/profile" data-id="logged-link">Welcome</a>
+    <button (click)="onLogout()">Logout</button>
   } @else {
     <a routerLink="/auth/login" data-id="logged-link">Login</a>
   }
