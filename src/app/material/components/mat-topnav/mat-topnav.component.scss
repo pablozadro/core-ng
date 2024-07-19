@@ -1,0 +1,57 @@
+@import 'abstracts/all';
+
+.nav {
+  @include ThemeMix('flat');
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 getBoxSize('rg');
+  height: getTopnavHeight();
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $topnav-index;
+}
+
+.nav__brand {}
+
+.nav__content {
+  flex-grow: 2;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: getBoxSize('rg');
+}
+
+.nav__main-list,
+.nav__secondary-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.nav__main-list {
+  justify-content: flex-start;
+
+  & > li {
+    margin-right: getBoxSize('rg');
+  }
+}
+
+.nav__secondary-list {
+  justify-content: flex-end;
+
+  & > li {
+    margin-left: getBoxSize('rg');
+  }
+}
+
+.nav__toggle {
+  display: none;
+}

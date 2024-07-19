@@ -1,9 +1,13 @@
 <button 
   type="button" 
   class="btn {{size}} btn-{{theme}}"
-  icon="add_circle">
-  <span class="btn__label">{{label}}</span>
+  [class.squared]="squared">
+
+  @if(label) {
+    <span class="btn__label">{{label}}</span>
+  }
   @if(icon) {
     <span class="btn__icon material-icons">{{icon}}</span>
   }
+
 </button>

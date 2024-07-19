@@ -43,6 +43,7 @@ h1, h2, h3, h4, h5, h6,
 
 a,
 .link {
+  color: var(--theme-link-color);
   text-decoration: none;
   &:hover, &:focus { outline: none; }
   &:focus {

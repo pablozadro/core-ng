@@ -15,8 +15,9 @@ import {
   styleUrl: './mat-btn.component.scss'
 })
 export class MatBtnComponent {
-  @Input() label = 'Click';
+  @Input() label!: string;
   @Input() theme: MatTheme = MAT_THEME_PRIMARY;
   @Input() size: MatSize = MAT_SIZE_RG;
   @Input() icon!: string;
+  @Input() squared = false;
 }

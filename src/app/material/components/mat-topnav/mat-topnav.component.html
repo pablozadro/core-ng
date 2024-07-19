@@ -1,12 +1,32 @@
-<nav>
-  <a class="link primary-color" routerLink="">Inicio</a>
-  <span> / </span>
-  @if(token) {
-    <a class="link primary-color" routerLink="/auth/profile" data-id="logged-link">Welcome</a>
-    <span> / </span>
-    <button (click)="onLogout()">Logout</button>
-  } @else {
-    <a class="link primary-color" routerLink="/auth/login" data-id="logged-link">Login</a>
-  }
-  <app-mat-btn (click)="onToggleTheme()" label="Toggle" />
+<nav class="nav">
+  <div class="nav__brand">
+    <app-mat-brand theme="black"/>
+  </div>
+  <div class="nav__content">
+    <ul class="nav__main-list">
+      <li>
+        <a class="link" routerLink="">Inicio</a>
+      </li>
+    </ul>
+    <ul class="nav__secondary-list">
+      @if(token) {
+        <li>
+          <a class="link" routerLink="/auth/profile" data-id="logged-link">Welcome</a>
+        </li>
+        <li>
+          <button (click)="onLogout()">Logout</button>
+        </li>
+      } @else {
+        <li>
+          <a class="link" routerLink="/auth/login" data-id="logged-link">Login</a>
+        </li>
+      }
+      <li>
+        <app-mat-btn icon="light_mode" [squared]="true" (click)="onToggleTheme()"/>
+      </li>
+    </ul>
+  </div>
+  <div class="nav__toggle">
+    <app-mat-btn icon="menu" [squared]="true" (click)="onToggleNav()"/>
+  </div>
 </nav>

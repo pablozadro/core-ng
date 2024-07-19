@@ -1,4 +1,4 @@
-<div class="control__wrapper" [class]="{ 'float-label': floatLabel }">
+<div class="control__wrapper" [class.floatlabel]="floatLabel">
   @if (label) {
     <label [for]="id" class="control__label">{{label}}</label>
   }
