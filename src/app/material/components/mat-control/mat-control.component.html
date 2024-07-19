@@ -1,0 +1,11 @@
+<div class="control__wrapper" [class]="{ 'float-label': floatLabel }">
+  @if (label) {
+    <label [for]="id" class="control__label">{{label}}</label>
+  }
+  <input 
+    class="control {{size}}" 
+    [id]="id" 
+    [name]="id" 
+    [type]="type" 
+    [formControl]="control">
+</div>

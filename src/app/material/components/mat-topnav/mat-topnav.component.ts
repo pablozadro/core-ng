@@ -7,15 +7,15 @@ import { logout } from '@/auth/state/auth.actions';
 
 
 @Component({
-  selector: 'app-core-topnav',
+  selector: 'app-mat-topnav',
   standalone: true,
   imports: [
     RouterModule,
   ],
-  templateUrl: './core-topnav.component.html',
-  styleUrl: './core-topnav.component.scss'
+  templateUrl: './mat-topnav.component.html',
+  styleUrl: './mat-topnav.component.scss'
 })
-export class CoreTopnavComponent {
+export class MatTopnavComponent {
   token = '';
   auth$!: Observable<AuthState>;
 

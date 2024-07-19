@@ -9,3 +9,11 @@ body {
   min-height: 100vh;
 }
 
+button,
+a,
+input {
+  .material-icons {
+    vertical-align: middle;
+    font-size: 1.4em;
+  }
+}

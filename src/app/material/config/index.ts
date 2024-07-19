@@ -1,10 +1,15 @@
 
 export type MatBrandTheme = 'primary' | 'black' | 'white';
 export type MatSize = 'sm' | 'rg' | 'md' | 'lg' | 'xl' | 'xxl';
+export type MatTheme = 'primary' | 'secondary' | 'flat';
 
 export const MAT_BRAND_THEME_PRIMARY: MatBrandTheme = 'primary';
 export const MAT_BRAND_THEME_BLACK: MatBrandTheme = 'black';
 export const MAT_BRAND_THEME_WHITE: MatBrandTheme = 'white';
+
+export const MAT_THEME_PRIMARY: MatTheme = 'primary';
+export const MAT_THEME_SECONDARY: MatTheme = 'secondary';
+export const MAT_THEME_FLAT: MatTheme = 'flat';
 
 export const MAT_SIZE_SM: MatSize = 'sm';
 export const MAT_SIZE_RG: MatSize = 'rg';

@@ -46,6 +46,26 @@ $colors: (
   'warning': var(--color-warning-200),
 );
 
+
+$themes: (
+  'primary': (
+    'color': var(--color-white),
+    'background-color': var(--color-primary-200),
+    'background-color-hover': var(--color-primary-300),
+  ),
+  'secondary': (
+    'color': var(--color-white),
+    'background-color': var(--color-secondary-200),
+    'background-color-hover': var(--color-secondary-300),
+  ),
+  'flat': (
+    'color': var(--theme-mix-flat-color),
+    'background-color': var(--theme-mix-flat-background-color),
+    'background-color-hover': var(--theme-mix-flat-background-color-hover),
+  ),
+);
+
+
 $box-sizes: (
   'sm': math.div($x, $gold),
   'rg': $x * $gold,
@@ -61,3 +81,10 @@ $grid-breakpoint: 980px;
 $grid-containers-min-width: 360px;
 $grid-fluid-container-width: 80%;
 $grid-container-width: 980px;
+
+$box-height: 2.6em;
+$box-border-radius: 0.25em;
+$box-min-width: 6em;
+$box-animation-time: 250ms;
+
+$control-max-width: 18em;

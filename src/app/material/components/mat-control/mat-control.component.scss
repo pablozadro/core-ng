@@ -1,0 +1,29 @@
+@import 'abstracts/all';
+
+.control__wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+
+  & > .control__label {
+    margin: 0 0 getBoxSize('rg') 0;
+  }
+
+  &.float-label {
+    flex-flow: row nowrap;
+    align-items: center;
+
+    & > .control__label {
+      margin: 0 getBoxSize('rg') 0 0;
+    }
+  }
+}
+
+.control {
+  @include ThemeMixInteractive('flat');
+  display: inline-block;
+  height: $box-height;
+  padding: 0 getBoxSize('md');
+  min-width: $box-min-width;
+  max-width: $control-max-width;
+  border-radius: $box-border-radius;
+}

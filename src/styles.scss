@@ -1,8 +1,10 @@
-@import './sass/themes/root';
+@import './app/material/sass/themes/root';
+@import './app/material/sass/themes/light';
+@import './app/material/sass/themes/dark';
 
-@import './sass/core/normalize';
-@import './sass/core/typography';
+@import './app/material/sass/core/normalize';
+@import './app/material/sass/core/typography';
 
-@import './sass/layout/box';
-@import './sass/layout/flex';
-@import './sass/layout/grid';
+@import './app/material/sass/layout/box';
+@import './app/material/sass/layout/flex';
+@import './app/material/sass/layout/grid';

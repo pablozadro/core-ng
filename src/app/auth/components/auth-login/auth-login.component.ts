@@ -8,6 +8,8 @@ import { AuthApiService } from '@/auth/services/auth-api.service';
 import { login } from '@/auth/state/auth.actions';
 import { CORE_INPROGRESS_STATUS } from '@/core/config';
 import { MatLoadingComponent } from '@/material/components/mat-loading/mat-loading.component'; 
+import { MatBtnComponent } from '@/material/components/mat-btn/mat-btn.component';
+import { MatControlComponent } from '@/material/components/mat-control/mat-control.component';
 
 
 @Component({
@@ -16,20 +18,15 @@ import { MatLoadingComponent } from '@/material/components/mat-loading/mat-loadi
   imports: [
     NgIf,
     ReactiveFormsModule,
-    MatLoadingComponent
+    MatLoadingComponent,
+    MatBtnComponent,
+    MatControlComponent,
   ],
   templateUrl: './auth-login.component.html',
   styleUrl: './auth-login.component.scss'
 })
 export class AuthLoginComponent {
   PASSWORD_MIN_LEN = 6;
-  SHOW_HIDE_SHOW_TEXT = 'show';
-  SHOW_HIDE_HIDE_TEXT = 'hide';
-  SHOW_HIDE_PASSWORD_TYPE = 'password';
-  SHOW_HIDE_TEXT_TYPE = 'text';
-
-  showHidePasswordType = this.SHOW_HIDE_PASSWORD_TYPE;
-  showHidePasswordText = this.SHOW_HIDE_SHOW_TEXT;
 
   state$!: Observable<Store>;
 
@@ -59,16 +56,6 @@ export class AuthLoginComponent {
       this.loading = state.auth.status === CORE_INPROGRESS_STATUS;
       this.error = state.auth.error;
     })
-  }
-
-  onShowHide() {
-    if(this.showHidePasswordType === this.SHOW_HIDE_PASSWORD_TYPE) {
-      this.showHidePasswordType = this.SHOW_HIDE_TEXT_TYPE;
-      this.showHidePasswordText = this.SHOW_HIDE_HIDE_TEXT;
-    } else {
-      this.showHidePasswordType = this.SHOW_HIDE_PASSWORD_TYPE;
-      this.showHidePasswordText = this.SHOW_HIDE_SHOW_TEXT;
-    }
   }
 
   onFormSubmit() {

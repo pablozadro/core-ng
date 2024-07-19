@@ -24,3 +24,20 @@
 @mixin TextSpacing {
   margin: 0 0 getBoxSize('rg') 0;
 }
+
+@mixin ThemeMix($theme) {
+  border: none;
+  color: getThemeProp($theme, 'color');
+  background-color: getThemeProp($theme, 'background-color');
+}
+
+@mixin ThemeMixInteractive($theme) {
+  @include ThemeMix($theme);
+  &:hover,
+  &:focus {
+    border: none;
+    outline: none;
+    background-color: getThemeProp($theme, 'background-color-hover');
+    transition: all $box-animation-time ease-out;
+  }
+}

@@ -1,32 +1,27 @@
-<form (submit)="onFormSubmit(); $event.preventDefault();">
-  <div>
-    <label for="id">Email</label>
-    <input id="id" type="email" [formControl]="email">
-    <div *ngIf="email.invalid && (email.dirty || email.touched)">
+<form>
+  <div class="box-mg-stack-md">
+    <app-mat-control [control]="email" id="email" type="email" label="Email" />
+    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-color">
       <div *ngIf="email.errors?.['required']">Email is required.</div>
       <div *ngIf="email.errors?.['email']">Email format wrong.</div>
     </div>
   </div>
-  <div>
-    <label for="password">Password</label>
-    <input id="password" [type]="showHidePasswordType" [formControl]="password">
-    <span (click)="onShowHide()">{{showHidePasswordText}}</span>
-    <div *ngIf="password.invalid && (password.dirty || password.touched)">
+  <div class="box-mg-stack-md">
+    <app-mat-control [control]="password" id="password" type="password" label="Password"/>
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-color">
       <div *ngIf="password.errors?.['required']">Password is required.</div>
       <div *ngIf="password.errors?.['minlength']">Password should be at least {{PASSWORD_MIN_LEN}} length.</div>
     </div>
   </div>
-  <div>
-    <div class="box-mg-stack-rg">
+  <div class="box-mg-t-xl">
+    <app-mat-btn label="Login" (click)="onFormSubmit()"/>
+    <div class="box-mg-t-rg">
       @if(loading) {
         <app-mat-loading />
       }
       @if(!loading && error) {
         <div class="error-color">{{error}}</div>
       }
-    </div>
-    <div class="box-mg-stack-rg">
-      <button type="submit">Login</button>
     </div>
   </div>
 </form>

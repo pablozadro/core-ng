@@ -1,0 +1,20 @@
+@import 'abstracts/all';
+
+.btn {
+  display: inline-block;
+  height: $box-height;
+  padding: 0 getBoxSize('md');
+  min-width: $box-min-width;
+  text-align: center;
+  border-radius: $box-border-radius;
+
+  &__icon {
+    margin-left: getBoxSize('rg');
+  }
+}
+
+@each $theme, $value in $themes {
+  .btn-#{$theme} {
+    @include ThemeMixInteractive($theme);
+  }
+}

@@ -37,6 +37,6 @@
 
 }
 
-.box-rounded { border-radius: var(--box-border-radius); }
+.box-rounded { border-radius: var($box-border-radius); }
 .box-block { display: block; }
 .box-inline { display: inline-block; }

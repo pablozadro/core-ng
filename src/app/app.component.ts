@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router, RouterOutlet, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
-import { CoreTopnavComponent } from '@/core/components/core-topnav/core-topnav.component';
+
 import { AuthApiService } from '@/auth/services/auth-api.service';
 import { loginSuccess } from './auth/state/auth.actions';
+import { MatTopnavComponent } from '@/material/components/mat-topnav/mat-topnav.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    CoreTopnavComponent
+    MatTopnavComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

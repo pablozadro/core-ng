@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { CoreTopnavComponent } from './core-topnav.component';
+import { MatTopnavComponent } from './mat-topnav.component';
 import { provideRouter, Router } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
@@ -25,9 +25,9 @@ class AuthLoginComponent {}
 class AuthProfileComponent {}
 
 
-describe('CoreTopnavComponent', () => {
-  let component: CoreTopnavComponent;
-  let fixture: ComponentFixture<CoreTopnavComponent>;
+describe('MatTopnavComponent', () => {
+  let component: MatTopnavComponent;
+  let fixture: ComponentFixture<MatTopnavComponent>;
   let store: MockStore;
   let router: Router;
   let harness: RouterTestingHarness;
@@ -35,7 +35,7 @@ describe('CoreTopnavComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        CoreTopnavComponent
+        MatTopnavComponent
       ],
       providers: [
         provideRouter([
@@ -47,7 +47,7 @@ describe('CoreTopnavComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CoreTopnavComponent);
+    fixture = TestBed.createComponent(MatTopnavComponent);
     component = fixture.componentInstance;
     store = TestBed.inject(MockStore);
     router = TestBed.inject(Router);

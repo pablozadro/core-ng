@@ -34,6 +34,11 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/app/material/sass"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -93,6 +98,11 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/app/material/sass"
+              ]
+            },
             "scripts": []
           }
         }
