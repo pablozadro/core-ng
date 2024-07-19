@@ -6,8 +6,8 @@ import { provideEffects } from '@ngrx/effects';
 
 import { routes } from './app.routes';
 import { AuthEffects } from '@/auth/state/auth.effects';
-import { authReducer, AUTH_FEATURE_KEY } from '@/auth/state/auth.reducer';
-
+import { APP_FEATURE_KEY, appReducer } from './app.reducer';
+import { MaterialEffects } from '@/material/state/material.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideStore(),
-    provideState({ name: AUTH_FEATURE_KEY, reducer: authReducer }),
-    provideEffects(AuthEffects),
+    provideState({ name: APP_FEATURE_KEY, reducer: appReducer }),
+    provideEffects(AuthEffects, MaterialEffects),
   ]
 };

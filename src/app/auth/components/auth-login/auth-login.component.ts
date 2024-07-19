@@ -53,8 +53,8 @@ export class AuthLoginComponent {
     private readonly store: Store<any>
   ) {
     this.store.subscribe((state: any) => {
-      this.loading = state.auth.status === CORE_INPROGRESS_STATUS;
-      this.error = state.auth.error;
+      this.loading = state.app.auth.status === CORE_INPROGRESS_STATUS;
+      this.error = state.app.auth.error;
     })
   }
 

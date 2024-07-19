@@ -6,6 +6,7 @@ import { filter } from 'rxjs';
 import { AuthApiService } from '@/auth/services/auth-api.service';
 import { loginSuccess } from './auth/state/auth.actions';
 import { MatTopnavComponent } from '@/material/components/mat-topnav/mat-topnav.component';
+import { initTheme } from '@/material/state/material.actions';
 
 
 @Component({
@@ -29,6 +30,8 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.store.dispatch(initTheme());
+
     this.router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe(() => {

@@ -1,6 +1,7 @@
 # TODO
 
-## Components
-- btn
-- input
+- state selectors
+- btn disabled, square
+- control show/hide
 - topnav
+- theme toggler

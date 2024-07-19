@@ -18,14 +18,6 @@
   @return $val;
 }
 
-@function getBodyColor() {
-  @return getColor('grey-7');
-}
-
-@function getBodyBackgroundColor() {
-  @return getColor('white');
-}
-
 @function getBoxSize($size) {
   $val: map-get($box-sizes, $size);
   @return $val;

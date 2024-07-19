@@ -14,8 +14,7 @@
     </div>
   </div>
   <div class="box-mg-t-xl">
-    <app-mat-btn label="Login" (click)="onFormSubmit()"/>
-    <div class="box-mg-t-rg">
+    <div class="box-mg-stack-rg">
       @if(loading) {
         <app-mat-loading />
       }
@@ -23,5 +22,6 @@
         <div class="error-color">{{error}}</div>
       }
     </div>
+    <app-mat-btn label="Login" (click)="onFormSubmit()"/>
   </div>
 </form>
