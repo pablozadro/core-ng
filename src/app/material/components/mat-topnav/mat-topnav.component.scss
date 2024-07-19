@@ -15,7 +15,6 @@
   z-index: $topnav-index;
 }
 
-.nav__brand {}
 
 .nav__content {
   flex-grow: 2;
@@ -24,6 +23,10 @@
   align-items: center;
   justify-content: space-between;
   padding-left: getBoxSize('rg');
+}
+
+.nav__content .main-links {
+  outline: 1px dotted blue;
 }
 
 .nav__main-list,

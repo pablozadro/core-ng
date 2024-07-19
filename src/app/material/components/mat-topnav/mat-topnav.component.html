@@ -4,11 +4,37 @@
   </div>
   <div class="nav__content">
     <ul class="nav__main-list">
-      <li>
-        <a class="link" routerLink="">Inicio</a>
-      </li>
+      @for (link of mainLinks; track link) {
+        <li>
+          @if(link.type === 'link') {
+            <a class="link" [routerLink]="link.url">{{link.label}}</a>
+          }
+          @if(link.type === 'button') {
+            <app-mat-btn 
+              [icon]="link.icon" 
+              [label]="link.label" 
+              [squared]="link.squared" />
+          }
+        </li>
+      }
     </ul>
     <ul class="nav__secondary-list">
+      @for (link of secondaryLinks; track link) {
+        <li>
+          @if(link.type === 'link') {
+            <a class="link" [routerLink]="link.url">{{link.label}}</a>
+          }
+          @if(link.type === 'button') {
+            <app-mat-btn 
+              [icon]="link.icon" 
+              [label]="link.label" 
+              [squared]="link.squared" 
+              (click)="link.action()"/>
+          }
+        </li>
+      }
+    </ul>
+    <!-- <ul class="nav__secondary-list">
       @if(token) {
         <li>
           <a class="link" routerLink="/auth/profile" data-id="logged-link">Welcome</a>
@@ -24,7 +50,7 @@
       <li>
         <app-mat-btn icon="light_mode" [squared]="true" (click)="onToggleTheme()"/>
       </li>
-    </ul>
+    </ul> -->
   </div>
   <div class="nav__toggle">
     <app-mat-btn icon="menu" [squared]="true" (click)="onToggleNav()"/>

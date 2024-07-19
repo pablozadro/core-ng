@@ -1,0 +1,7 @@
+@import 'abstracts/all';
+
+.footer {
+  @include ThemeMix('flat');
+  text-align: center;
+  padding: getBoxSize('lg') 0 getBoxSize('xl' 0);
+}

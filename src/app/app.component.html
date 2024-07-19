@@ -1,9 +1,10 @@
 <app-mat-topnav />
+
 <div class="app">
-  <section class="fluid-container box-mg-t-xl">
-    <header>
-      <h1 data-id="app-page-title">{{pageTitle}}</h1>
-    </header>
+  <div class="app__content">
     <router-outlet />
-  </section>
+  </div>
+  <div class="app__footer">
+    <app-core-footer />
+  </div>
 </div>

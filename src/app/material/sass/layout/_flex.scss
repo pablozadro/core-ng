@@ -25,12 +25,12 @@
 
 .flex-justify-start {
   @extend %Flex;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .flex-justify-end {
   @extend %Flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .flex-justify-between {

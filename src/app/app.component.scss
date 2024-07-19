@@ -3,3 +3,7 @@
 .app {
   padding-top: getTopnavHeight();
 }
+
+.app__content {
+  min-height: calc(100vh - getTopnavHeight());
+}

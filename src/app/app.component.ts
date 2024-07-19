@@ -6,6 +6,7 @@ import { filter } from 'rxjs';
 import { AuthApiService } from '@/auth/services/auth-api.service';
 import { loginSuccess } from './auth/state/auth.actions';
 import { MatTopnavComponent } from '@/material/components/mat-topnav/mat-topnav.component';
+import { CoreFooterComponent } from '@/core/components/core-footer/core-footer.component';
 import { initTheme } from '@/material/state/material.actions';
 
 
@@ -14,7 +15,8 @@ import { initTheme } from '@/material/state/material.actions';
   standalone: true,
   imports: [
     RouterOutlet,
-    MatTopnavComponent
+    MatTopnavComponent,
+    CoreFooterComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

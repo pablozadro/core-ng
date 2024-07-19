@@ -35,7 +35,7 @@ export class AuthEffects {
     ofType(actions.logout),
     tap(() => {
       this.authApiService.removeToken();
-      this.router.navigate(['/']);
+      this.router.navigate(['/auth/login']);
     }),
     map(() => {
       return actions.logoutSuccess();
