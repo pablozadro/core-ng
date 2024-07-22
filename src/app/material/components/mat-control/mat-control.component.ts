@@ -21,7 +21,9 @@ export class MatControlComponent implements OnInit {
   @Input() label!: string;
   @Input() id!: string;
   @Input() size: MatSize = MAT_SIZE_RG;
-  @Input() floatLabel = false;  
+  @Input() floatLabel = false;
+  @Input() showHide = false;
+  @Input() showHideIcon = 'visibility';
 
   ngOnInit(): void {
     if(!this.control) {
@@ -30,5 +32,10 @@ export class MatControlComponent implements OnInit {
     if(!this.id) {
       throw new Error('<app-mat-control> id is required.')
     }
+  }
+
+  onShowHide() {
+    this.type = this.type === 'password' ? 'text':'password';
+    this.showHideIcon = this.type === 'password' ? 'visibility':'visibility_off';
   }
 }

@@ -22,8 +22,18 @@
   @include ThemeMixInteractive('flat');
   display: inline-block;
   height: $box-height;
-  padding: 0 getBoxSize('md');
+  padding: 0 3rem 0 getBoxSize('rg');
   min-width: $box-min-width;
   max-width: $control-max-width;
   border-radius: $box-border-radius;
+}
+
+.input__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.input__icon {
+  margin-left: -2rem;
 }

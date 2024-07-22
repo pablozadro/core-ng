@@ -2,10 +2,15 @@
   @if (label) {
     <label [for]="id" class="control__label">{{label}}</label>
   }
-  <input 
-    class="control {{size}}" 
-    [id]="id" 
-    [name]="id" 
-    [type]="type" 
-    [formControl]="control">
+  <div class="input__wrapper">
+    <input 
+      class="control {{size}}" 
+      [id]="id" 
+      [name]="id" 
+      [type]="type" 
+      [formControl]="control">
+      @if (showHide) {
+        <i class="material-icons input__icon" (click)="onShowHide()">{{showHideIcon}}</i>
+      }
+  </div>
 </div>

@@ -2,8 +2,11 @@
 
 .app {
   padding-top: getTopnavHeight();
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
 }
 
-.app__content {
-  min-height: calc(100vh - getTopnavHeight());
-}
+.app__content { flex-grow: 1; }
+// .app__footer { }
+

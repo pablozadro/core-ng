@@ -20,4 +20,5 @@ export class MatBtnComponent {
   @Input() label?: string;
   @Input() icon?: string;
   @Input() squared? = false;
+  @Input() disabled? = false;
 }
