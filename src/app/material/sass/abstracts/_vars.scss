@@ -65,6 +65,15 @@ $themes: (
   ),
 );
 
+$brand-themes: (
+  'primary': var(--color-primary-200),
+  'secondary': var(--color-secondary-200),
+  'black': var(--color-black),
+  'white': var(--color-white),
+  'flat': var(--theme-brand-background-color),
+  'flot': var(--color-secondary-200)
+);
+
 
 $box-sizes: (
   'sm': math.div($x, $gold),

@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @function getFontSize($size) {
   $val: map-get($type-font-sizes, $size);
   @return $val;
@@ -31,4 +33,13 @@
 
 @function getTopnavHeight() {
   @return $topnav-height;
+}
+
+@function getGridColumnWidth($col-size, $grid-size) {
+  @return math.percentage(math.div($col-size, $grid-size));
+}
+
+@function getBrandColor($theme) {
+  $val: map-get($brand-themes, $theme);
+  @return $val;
 }

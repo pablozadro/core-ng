@@ -1,6 +1,16 @@
+@import 'abstracts/all';
+
 .brand {
   display: block;
   width: 2em;
   height: 2em;
   margin: 0 auto;
+
+  @each $theme, $value in $brand-themes {
+    &.#{$theme} {
+      & > svg > path {
+        fill: getBrandColor($theme);
+      }
+    }
+  }
 }
