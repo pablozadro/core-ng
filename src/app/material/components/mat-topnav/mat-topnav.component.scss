@@ -25,12 +25,8 @@
   padding-left: getBoxSize('rg');
 }
 
-.nav__content .main-links {
-  outline: 1px dotted blue;
-}
 
-.nav__main-list,
-.nav__secondary-list {
+:host ::ng-deep .nav__content ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -39,7 +35,7 @@
   align-items: center;
 }
 
-.nav__main-list {
+:host ::ng-deep .nav__content ul:first-child {
   justify-content: flex-start;
 
   & > li {
@@ -47,7 +43,7 @@
   }
 }
 
-.nav__secondary-list {
+:host ::ng-deep .nav__content ul:last-child {
   justify-content: flex-end;
 
   & > li {

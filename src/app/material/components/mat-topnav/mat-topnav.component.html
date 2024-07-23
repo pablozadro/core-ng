@@ -3,54 +3,8 @@
     <app-mat-brand theme="primary" type="solid"/>
   </div>
   <div class="nav__content">
-    <ul class="nav__main-list">
-      @for (link of mainLinks; track link) {
-        <li>
-          @if(link.type === 'link') {
-            <a class="link" [routerLink]="link.url">{{link.label}}</a>
-          }
-          @if(link.type === 'button') {
-            <app-mat-btn 
-              [icon]="link.icon" 
-              [label]="link.label" 
-              [squared]="link.squared" />
-          }
-        </li>
-      }
-    </ul>
-    <ul class="nav__secondary-list">
-      @for (link of secondaryLinks; track link) {
-        <li>
-          @if(link.type === 'link') {
-            <a class="link" [routerLink]="link.url">{{link.label}}</a>
-          }
-          @if(link.type === 'button') {
-            <app-mat-btn 
-              [icon]="link.icon" 
-              [label]="link.label" 
-              [squared]="link.squared" 
-              (click)="link.action()"/>
-          }
-        </li>
-      }
-    </ul>
-    <!-- <ul class="nav__secondary-list">
-      @if(token) {
-        <li>
-          <a class="link" routerLink="/auth/profile" data-id="logged-link">Welcome</a>
-        </li>
-        <li>
-          <button (click)="onLogout()">Logout</button>
-        </li>
-      } @else {
-        <li>
-          <a class="link" routerLink="/auth/login" data-id="logged-link">Login</a>
-        </li>
-      }
-      <li>
-        <app-mat-btn icon="light_mode" [squared]="true" (click)="onToggleTheme()"/>
-      </li>
-    </ul> -->
+    <ng-content select="[main]"></ng-content>
+    <ng-content select="[secondary]"></ng-content>
   </div>
   <div class="nav__toggle">
     <app-mat-btn icon="menu" [squared]="true" (click)="onToggleNav()"/>

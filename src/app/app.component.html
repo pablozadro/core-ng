@@ -1,4 +1,28 @@
-<app-mat-topnav />
+<app-mat-topnav>
+  <ul main>
+    <li>
+      <a class="link" routerLink="/">Inicio</a>
+    </li>
+  </ul>
+  <ul secondary>
+    @if(token) {
+      <li>
+        <a class="link" routerLink="/auth/profile">Welcome</a>
+      </li>
+      <li>
+        <app-mat-btn theme="flat" (click)="onLogout()" label="Logout" />
+      </li>
+    } @else {
+      <li>
+        <a class="link" routerLink="/auth/login">Login</a>
+      </li>
+    }
+    <li>
+      <app-mat-btn theme="flat" (click)="onToggleTheme()" [squared]="true" icon="light_mode" />
+    </li>
+  </ul>
+</app-mat-topnav>
+
 <div class="app">
   <div class="app__content">
     <router-outlet />
