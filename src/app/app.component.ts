@@ -46,17 +46,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(initTheme());
-
-    this.router.events
-      .pipe(filter(e => e instanceof NavigationEnd))
-      .subscribe(() => {
-        const route = this.route.firstChild || this.route;
-        route.data.subscribe(data => {
-          if(!data['title']) return;
-          this.pageTitle = data['title'];
-        });
-      });
-
     const token = this.authApiService.getToken();
     if(token) {
       this.store.dispatch(loginSuccess({ token }));

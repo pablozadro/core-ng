@@ -7,18 +7,18 @@
   <ul secondary>
     @if(token) {
       <li>
-        <a class="link" routerLink="/auth/profile">Welcome</a>
+        <a class="link" routerLink="/auth/profile" data-id="profile-link">Welcome</a>
       </li>
       <li>
-        <app-mat-btn theme="flat" (click)="onLogout()" label="Logout" />
+        <app-mat-btn theme="flat" (click)="onLogout()" label="Logout" data-id="logout-btn"/>
       </li>
     } @else {
       <li>
-        <a class="link" routerLink="/auth/login">Login</a>
+        <a class="link" routerLink="/auth/login" data-id="login-link">Login</a>
       </li>
     }
     <li>
-      <app-mat-btn theme="flat" (click)="onToggleTheme()" [squared]="true" icon="light_mode" />
+      <app-mat-btn theme="flat" (click)="onToggleTheme()" [squared]="true" icon="light_mode" data-id="theme-toggler-btn"/>
     </li>
   </ul>
 </app-mat-topnav>

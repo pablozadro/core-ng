@@ -1,20 +1,20 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { provideRouter, Router } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
-import { filter } from 'rxjs';
-import { provideRouter, Router, NavigationEnd } from '@angular/router';
-import { provideMockStore } from '@ngrx/store/testing';
-import { initialAuthState } from '@/auth/state/auth.reducer'
-
-const links: { path: string; title?: string; }[]=  [
-  { path: 'mock1', title: 'Mock title' },
-  { path: 'mock2' },
-];
-
+import { initialAppState } from '@/app.reducer';
+import { CORE_DONE_STATUS } from '@/core/config';
+import { logout } from '@/auth/state/auth.actions';
+import { toggleTheme } from '@/material/state/material.actions';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
+  let el: HTMLElement;
   let router: Router;
+  let store: MockStore<any>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,67 +22,134 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
-        provideMockStore({ initialState: initialAuthState }),
-        provideRouter([
-          { 
-            path: links[0].path, 
-            component: AppComponent, 
-            data: { title: links[0].title } 
-          },
-          { 
-            path: links[1].path, 
-            component: AppComponent, 
-            data: { } 
-          },
-        ])
+        provideHttpClient(),
+        provideMockStore({ initialState: initialAppState }),
+        provideRouter([])
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
+    el = fixture.debugElement.nativeElement;
     router = TestBed.inject(Router);
+    store = TestBed.inject(MockStore);
+
     fixture.detectChanges();
   });
+
 
   it('should create the app', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should render <app-mat-topnav>', () => {
+    const topnav = el.querySelector('app-mat-topnav');
+    expect(topnav).toBeTruthy();
+  });
 
-  describe('Topnav', () => {
+  it('should render <app-core-footer>', () => {
+    const footer = el.querySelector('app-core-footer');
+    expect(footer).toBeTruthy();
+  });
 
-    it('should render app-core-topnav', () => {
-      const topnav = fixture.nativeElement.querySelector('app-core-topnav');
-      expect(topnav).toBeTruthy();
+
+  describe('Token', () => {
+
+    beforeEach(() => {
+      store.setState({
+        app: {
+          auth: {
+            status: CORE_DONE_STATUS,
+            error: '',
+            token: 'abc123',
+          }
+        }
+      });
+      fixture.detectChanges();
+    });
+
+    it('should set token', () => {
+      expect(component.token).toEqual('abc123');
+    });
+
+    it('should render profile link', () => {
+      const profileLink = el.querySelector('[data-id=profile-link]');
+      expect(profileLink).toBeTruthy();
+      expect(profileLink?.textContent).toEqual('Welcome');
+      expect(profileLink?.getAttribute('routerLink')).toEqual('/auth/profile');
+    });
+
+    it('should render logut button', () => {
+      const logoutButton = el.querySelector('[data-id=logout-btn]');
+      expect(logoutButton).toBeTruthy();
+      expect(logoutButton?.getAttribute('label')).toEqual('Logout');
+    });
+  });
+
+  describe('No Token', () => {
+
+    beforeEach(() => {
+      store.setState({
+        app: {
+          auth: {
+            status: CORE_DONE_STATUS,
+            error: '',
+            token: '',
+          }
+        }
+      });
+      fixture.detectChanges();
+    });
+
+    it('should render login link', () => {
+      const loginLink = el.querySelector('[data-id=login-link]');
+      expect(loginLink).toBeTruthy();
+      expect(loginLink?.textContent).toEqual('Login');
+      expect(loginLink?.getAttribute('routerLink')).toEqual('/auth/login');
     });
   });
 
 
-  describe('Page Title', () => {
+  describe('onLogout()', () => {
 
-    it('should set page title from router data', done => {
-      router.events.pipe(filter(e => e instanceof NavigationEnd))
-        .subscribe(() => {
-          fixture.detectChanges();
-          const h1 = fixture.nativeElement.querySelector('[data-id=app-page-title]');
-          const title = h1?.textContent;
-          expect(title).toEqual(links[0].title);
-          done();
-        })
-      router.navigate([links[0].path])
+    it('should dispatch logout() action', () => {
+      spyOn(store, 'dispatch').and.callThrough();
+      component.onLogout();
+      expect(store.dispatch).toHaveBeenCalledOnceWith(logout());
     });
 
-    it('should set default page title if no router data', done => {
-      router.events.pipe(filter(e => e instanceof NavigationEnd))
-        .subscribe(() => {
-          fixture.detectChanges();
-          const h1 = fixture.nativeElement.querySelector('[data-id=app-page-title]');
-          const title = h1?.textContent;
-          expect(title).toEqual(component.DEFAULT_PAGE_TITLE);
-          done();
-        })
-      router.navigate([links[1].path])
+    it('on click button should call onLogout()', () => {
+      spyOn(component, 'onLogout').and.callThrough();
+      store.setState({
+        app: {
+          auth: {
+            status: CORE_DONE_STATUS,
+            error: '',
+            token: 'abc123',
+          }
+        }
+      });
+      fixture.detectChanges();
+      const btn = fixture.debugElement.query(By.css('[data-id=logout-btn]'));
+      btn.triggerEventHandler('click');
+      expect(component.onLogout).toHaveBeenCalledTimes(1);
     });
   });
 
+
+  describe('onToogleTheme()', () => {
+
+    it('should dispatch toggleTheme() action', () => {
+      spyOn(store, 'dispatch').and.callThrough();
+      component.onToggleTheme();
+      expect(store.dispatch).toHaveBeenCalledOnceWith(toggleTheme());
+    });
+
+    it('on click button should call onThemeToggler()', () => {
+      spyOn(component, 'onToggleTheme').and.callThrough();
+      const btn = fixture.debugElement.query(By.css('[data-id=theme-toggler-btn]'));
+      btn.triggerEventHandler('click');
+      expect(component.onToggleTheme).toHaveBeenCalledTimes(1);
+    });
+  });
 });

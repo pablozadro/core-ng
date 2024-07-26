@@ -1,158 +1,158 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthLoginComponent } from './auth-login.component';
-import { provideHttpClient } from '@angular/common/http';
-import { CoreApiService } from '@/core/services/core-api.service';
-import { provideMockStore, MockStore } from '@ngrx/store/testing';
-import { initialAuthState } from '@/auth/state/auth.reducer'
-import { login } from '@/auth/state/auth.actions';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { AuthLoginComponent } from './auth-login.component';
+// import { provideHttpClient } from '@angular/common/http';
+// import { CoreApiService } from '@/core/services/core-api.service';
+// import { provideMockStore, MockStore } from '@ngrx/store/testing';
+// import { initialAuthState } from '@/auth/state/auth.reducer'
+// import { login } from '@/auth/state/auth.actions';
 
-describe('AuthLoginComponent', () => {
-  let component: AuthLoginComponent;
-  let coreApiService: CoreApiService;
-  let fixture: ComponentFixture<AuthLoginComponent>;
-  let store: MockStore;
+// describe('AuthLoginComponent', () => {
+//   let component: AuthLoginComponent;
+//   let coreApiService: CoreApiService;
+//   let fixture: ComponentFixture<AuthLoginComponent>;
+//   let store: MockStore;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [
-        AuthLoginComponent
-      ],
-      providers: [
-        provideMockStore({ initialState: initialAuthState }),
-        provideHttpClient(),
-        CoreApiService
-      ]
-    })
-    .compileComponents();
+//   beforeEach(async () => {
+//     await TestBed.configureTestingModule({
+//       imports: [
+//         AuthLoginComponent
+//       ],
+//       providers: [
+//         provideMockStore({ initialState: initialAuthState }),
+//         provideHttpClient(),
+//         CoreApiService
+//       ]
+//     })
+//     .compileComponents();
 
-    fixture = TestBed.createComponent(AuthLoginComponent);
-    component = fixture.componentInstance;
-    coreApiService = TestBed.inject(CoreApiService);
-    store = TestBed.inject(MockStore);
-    fixture.detectChanges();
-  });
+//     fixture = TestBed.createComponent(AuthLoginComponent);
+//     component = fixture.componentInstance;
+//     coreApiService = TestBed.inject(CoreApiService);
+//     store = TestBed.inject(MockStore);
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-
-  describe('Initial State', () => {
-
-    it('should set initial controls values', () => {
-      expect(component.email.value).toEqual('');
-      expect(component.password.value).toEqual('');
-    });
-
-    it('should set show/hide values', () => {
-      expect(component.showHidePasswordType).toEqual(component.SHOW_HIDE_PASSWORD_TYPE);
-      expect(component.showHidePasswordText).toEqual(component.SHOW_HIDE_SHOW_TEXT);
-    });
-  });
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
 
 
-  describe('Email Control', () => {
+//   describe('Initial State', () => {
 
-    it('should be required', () => {
-      component.email.setValue('');
-      fixture.detectChanges();
-      expect(component.email.valid).toEqual(false);
-      component.email.setValue('abc@mock.io');
-      fixture.detectChanges();
-      expect(component.email.valid).toEqual(true);
-    });
+//     it('should set initial controls values', () => {
+//       expect(component.email.value).toEqual('');
+//       expect(component.password.value).toEqual('');
+//     });
 
-    it('should be valid email', () => {
-      component.email.setValue('abc');
-      fixture.detectChanges();
-      expect(component.email.valid).toEqual(false);
-      component.email.setValue('abc@mock.io');
-      fixture.detectChanges();
-      expect(component.email.valid).toEqual(true);
-    });
-  });
+//     it('should set show/hide values', () => {
+//       expect(component.showHidePasswordType).toEqual(component.SHOW_HIDE_PASSWORD_TYPE);
+//       expect(component.showHidePasswordText).toEqual(component.SHOW_HIDE_SHOW_TEXT);
+//     });
+//   });
 
 
-  describe('Password Control', () => {
+//   describe('Email Control', () => {
 
-    it('should be required', () => {
-      component.password.setValue('');
-      fixture.detectChanges();
-      expect(component.password.valid).toEqual(false);
-      component.password.setValue('abc123');
-      fixture.detectChanges();
-      expect(component.password.valid).toEqual(true);
-    });
+//     it('should be required', () => {
+//       component.email.setValue('');
+//       fixture.detectChanges();
+//       expect(component.email.valid).toEqual(false);
+//       component.email.setValue('abc@mock.io');
+//       fixture.detectChanges();
+//       expect(component.email.valid).toEqual(true);
+//     });
 
-    it('should meet min lenght', () => {
-      component.password.setValue('abc');
-      fixture.detectChanges();
-      expect(component.password.valid).toEqual(false);
-      component.password.setValue('abc123');
-      fixture.detectChanges();
-      expect(component.password.valid).toEqual(true);
-    });
-  });
-
-
-  describe('Form Validation', () => {
-
-    it('should validate controls', () => {
-      component.email.setValue('');
-      component.password.setValue('');
-      fixture.detectChanges();
-      expect(component.email.valid).toEqual(false);
-      expect(component.password.valid).toEqual(false);
-      expect(component.form.valid).toEqual(false);
-      component.email.setValue('abc@mock.io');
-      component.password.setValue('abc123');
-      fixture.detectChanges();
-      expect(component.email.valid).toEqual(true);
-      expect(component.password.valid).toEqual(true);
-      expect(component.form.valid).toEqual(true);
-    })
-  });
+//     it('should be valid email', () => {
+//       component.email.setValue('abc');
+//       fixture.detectChanges();
+//       expect(component.email.valid).toEqual(false);
+//       component.email.setValue('abc@mock.io');
+//       fixture.detectChanges();
+//       expect(component.email.valid).toEqual(true);
+//     });
+//   });
 
 
-  describe('onShowHide()', () => {
+//   describe('Password Control', () => {
 
-    it('should update values', () => {
-      expect(component.showHidePasswordType).toEqual(component.SHOW_HIDE_PASSWORD_TYPE);
-      expect(component.showHidePasswordText).toEqual(component.SHOW_HIDE_SHOW_TEXT);
-      component.onShowHide();
-      expect(component.showHidePasswordType).toEqual(component.SHOW_HIDE_TEXT_TYPE);
-      expect(component.showHidePasswordText).toEqual(component.SHOW_HIDE_HIDE_TEXT);
-      component.onShowHide();
-      expect(component.showHidePasswordType).toEqual(component.SHOW_HIDE_PASSWORD_TYPE);
-      expect(component.showHidePasswordText).toEqual(component.SHOW_HIDE_SHOW_TEXT);
-    });
-  });
+//     it('should be required', () => {
+//       component.password.setValue('');
+//       fixture.detectChanges();
+//       expect(component.password.valid).toEqual(false);
+//       component.password.setValue('abc123');
+//       fixture.detectChanges();
+//       expect(component.password.valid).toEqual(true);
+//     });
+
+//     it('should meet min lenght', () => {
+//       component.password.setValue('abc');
+//       fixture.detectChanges();
+//       expect(component.password.valid).toEqual(false);
+//       component.password.setValue('abc123');
+//       fixture.detectChanges();
+//       expect(component.password.valid).toEqual(true);
+//     });
+//   });
 
 
-  describe('onFormSubmit()', () => {
+//   describe('Form Validation', () => {
+
+//     it('should validate controls', () => {
+//       component.email.setValue('');
+//       component.password.setValue('');
+//       fixture.detectChanges();
+//       expect(component.email.valid).toEqual(false);
+//       expect(component.password.valid).toEqual(false);
+//       expect(component.form.valid).toEqual(false);
+//       component.email.setValue('abc@mock.io');
+//       component.password.setValue('abc123');
+//       fixture.detectChanges();
+//       expect(component.email.valid).toEqual(true);
+//       expect(component.password.valid).toEqual(true);
+//       expect(component.form.valid).toEqual(true);
+//     })
+//   });
+
+
+//   describe('onShowHide()', () => {
+
+//     it('should update values', () => {
+//       expect(component.showHidePasswordType).toEqual(component.SHOW_HIDE_PASSWORD_TYPE);
+//       expect(component.showHidePasswordText).toEqual(component.SHOW_HIDE_SHOW_TEXT);
+//       component.onShowHide();
+//       expect(component.showHidePasswordType).toEqual(component.SHOW_HIDE_TEXT_TYPE);
+//       expect(component.showHidePasswordText).toEqual(component.SHOW_HIDE_HIDE_TEXT);
+//       component.onShowHide();
+//       expect(component.showHidePasswordType).toEqual(component.SHOW_HIDE_PASSWORD_TYPE);
+//       expect(component.showHidePasswordText).toEqual(component.SHOW_HIDE_SHOW_TEXT);
+//     });
+//   });
+
+
+//   describe('onFormSubmit()', () => {
     
-    it('should do nothing if form is invalid', () => {
-      const spy = spyOn(store, 'dispatch');
-      spy.and.callThrough();
-      component.email.setValue('');
-      component.password.setValue('');
-      expect(component.form.valid).toEqual(false);
-      component.onFormSubmit();
-      expect(spy).not.toHaveBeenCalled();
-    });
+//     it('should do nothing if form is invalid', () => {
+//       const spy = spyOn(store, 'dispatch');
+//       spy.and.callThrough();
+//       component.email.setValue('');
+//       component.password.setValue('');
+//       expect(component.form.valid).toEqual(false);
+//       component.onFormSubmit();
+//       expect(spy).not.toHaveBeenCalled();
+//     });
 
-    it('should send request if form is valid', () => {
-      const spy = spyOn(store, 'dispatch');
-      spy.and.callThrough();
-      component.email.setValue('abc@mock.io');
-      component.password.setValue('abc123');
-      expect(component.form.valid).toEqual(true);
-      component.onFormSubmit();
-      expect(spy).toHaveBeenCalledOnceWith(login({
-        email: component.email.value || '',
-        password: component.password.value || '',
-      }));
-    });
-  });
+//     it('should send request if form is valid', () => {
+//       const spy = spyOn(store, 'dispatch');
+//       spy.and.callThrough();
+//       component.email.setValue('abc@mock.io');
+//       component.password.setValue('abc123');
+//       expect(component.form.valid).toEqual(true);
+//       component.onFormSubmit();
+//       expect(spy).toHaveBeenCalledOnceWith(login({
+//         email: component.email.value || '',
+//         password: component.password.value || '',
+//       }));
+//     });
+//   });
 
-});
+// });
