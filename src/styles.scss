@@ -1,10 +1,3 @@
-@import './app/material/sass/themes/root';
-@import './app/material/sass/themes/light';
-@import './app/material/sass/themes/dark';
-
-@import './app/material/sass/core/normalize';
-@import './app/material/sass/core/typography';
-
-@import './app/material/sass/layout/box';
-@import './app/material/sass/layout/flex';
-@import './app/material/sass/layout/grid';
+@import 'themes/all';
+@import 'core/all';
+@import 'layout/all';

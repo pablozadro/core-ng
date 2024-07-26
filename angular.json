@@ -36,6 +36,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "node_modules/core-sass/src",
                 "src/app/material/sass"
               ]
             },
@@ -100,6 +101,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "node_modules/core-sass/src",
                 "src/app/material/sass"
               ]
             },
