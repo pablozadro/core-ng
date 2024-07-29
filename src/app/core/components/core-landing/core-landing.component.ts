@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MatBrandComponent } from '@/material/components/mat-brand/mat-brand.component';
 
 
@@ -12,5 +13,11 @@ import { MatBrandComponent } from '@/material/components/mat-brand/mat-brand.com
   styleUrl: './core-landing.component.scss'
 })
 export class CoreLandingComponent {
+  title = '';
 
+  constructor(
+    private readonly route: ActivatedRoute
+  ) {
+    this.title = this.route.snapshot.data['title'];
+  }
 }

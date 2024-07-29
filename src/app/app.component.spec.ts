@@ -9,6 +9,7 @@ import { CORE_DONE_STATUS } from '@/core/config';
 import { logout } from '@/auth/state/auth.actions';
 import { toggleTheme } from '@/material/state/material.actions';
 
+
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
@@ -42,18 +43,23 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render <app-mat-topnav>', () => {
-    const topnav = el.querySelector('app-mat-topnav');
-    expect(topnav).toBeTruthy();
-  });
 
-  it('should render <app-core-footer>', () => {
-    const footer = el.querySelector('app-core-footer');
-    expect(footer).toBeTruthy();
-  });
+  describe('Rendered components', () => {
+
+    it('should render <app-mat-topnav>', () => {
+      const topnav = el.querySelector('app-mat-topnav');
+      expect(topnav).toBeTruthy();
+    });
+
+    it('should render <app-core-footer>', () => {
+      const footer = el.querySelector('app-core-footer');
+      expect(footer).toBeTruthy();
+    });
+  })
 
 
   describe('Token', () => {
+    const token = 'abc123';
 
     beforeEach(() => {
       store.setState({
@@ -61,7 +67,7 @@ describe('AppComponent', () => {
           auth: {
             status: CORE_DONE_STATUS,
             error: '',
-            token: 'abc123',
+            token,
           }
         }
       });
@@ -69,7 +75,7 @@ describe('AppComponent', () => {
     });
 
     it('should set token', () => {
-      expect(component.token).toEqual('abc123');
+      expect(component.token).toEqual(token);
     });
 
     it('should render profile link', () => {
@@ -85,6 +91,7 @@ describe('AppComponent', () => {
       expect(logoutButton?.getAttribute('label')).toEqual('Logout');
     });
   });
+
 
   describe('No Token', () => {
 

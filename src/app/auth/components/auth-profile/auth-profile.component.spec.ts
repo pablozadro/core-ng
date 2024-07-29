@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideRouter } from '@angular/router';
 import { AuthProfileComponent } from './auth-profile.component';
 
 describe('AuthProfileComponent', () => {
@@ -8,7 +8,8 @@ describe('AuthProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthProfileComponent]
+      imports: [AuthProfileComponent],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 
