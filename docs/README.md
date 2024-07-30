@@ -17,6 +17,7 @@ Project Content
 - [example](../src/app/material/components/mat-topnav/mat-topnav.component.html)
 
 ViewChild
+- [example](../src/app/app.component.ts)
 
 Signals
 
