@@ -9,6 +9,7 @@ export const routes: Routes = [
   { 
     path: '', 
     component: CoreLandingComponent,
+    title: 'Welcome',
     data: {
       title: 'Welcome'
     }
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { 
     path: 'auth/login', 
     component: AuthLoginComponent,
+    title: 'Login',
     data: {
       title: 'Login'
     }
@@ -24,6 +26,7 @@ export const routes: Routes = [
     path: 'auth/profile', 
     component: AuthProfileComponent,
     canActivate: [authTokenGuard],
+    title: 'Profile',
     data: {
       title: 'Profile'
     }

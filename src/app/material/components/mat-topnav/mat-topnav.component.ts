@@ -15,7 +15,6 @@ import { MatBrandComponent } from '@/material/components/mat-brand/mat-brand.com
 })
 export class MatTopnavComponent {
 
-
   constructor (
   ) {}
 
