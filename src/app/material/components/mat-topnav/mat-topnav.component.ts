@@ -14,9 +14,12 @@ import { MatBrandComponent } from '@/material/components/mat-brand/mat-brand.com
   styleUrl: './mat-topnav.component.scss'
 })
 export class MatTopnavComponent {
+  isToggled = false;
 
   constructor (
   ) {}
 
-  onToggleNav() {}
+  onToggleNav() {
+    this.isToggled = !this.isToggled;
+  }
 }

@@ -1,3 +1,4 @@
+@use 'sass:color';
 @import 'abstracts/all';
 
 .nav {
@@ -23,6 +24,10 @@
   align-items: center;
   justify-content: space-between;
   padding-left: getBoxSize('rg');
+
+  @media screen and (max-width: $topnav-breakpoint) {
+    display: none;
+  }
 }
 
 
@@ -53,4 +58,34 @@
 
 .nav__toggle {
   display: none;
+  @media screen and (max-width: $topnav-breakpoint) {
+    display: block;
+  }
+}
+
+
+.nav__content.active {
+  @media screen and (max-width: $topnav-breakpoint) {
+    display: block;
+    position: fixed;
+    top: getTopnavHeight();
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: $topnav-index;
+    padding: 0;
+    background-color: getThemeProp('flat', 'background-color-alpha');
+  }
+}
+
+:host ::ng-deep .nav__content.active ul {
+  @media screen and (max-width: $topnav-breakpoint) {
+    display: block;
+  }
+}
+:host ::ng-deep .nav__content.active ul > li {
+  @media screen and (max-width: $topnav-breakpoint) {
+    padding: 0 getBoxSize('rg');
+    margin: getBoxSize('rg') 0;
+  }
 }
