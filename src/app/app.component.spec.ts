@@ -8,6 +8,7 @@ import { initialAppState } from '@/app.reducer';
 import { CORE_DONE_STATUS } from '@/core/config';
 import { logout } from '@/auth/state/auth.actions';
 import { toggleTheme } from '@/material/state/material.actions';
+import { AuthApiService } from '@/auth/services/auth-api.service';
 
 
 describe('AppComponent', () => {
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
   let el: HTMLElement;
   let router: Router;
   let store: MockStore<any>;
+  let authApiService: AuthApiService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,7 +27,8 @@ describe('AppComponent', () => {
       providers: [
         provideHttpClient(),
         provideMockStore({ initialState: initialAppState }),
-        provideRouter([])
+        provideRouter([]),
+        AuthApiService
       ],
     }).compileComponents();
 
@@ -34,7 +37,7 @@ describe('AppComponent', () => {
     el = fixture.debugElement.nativeElement;
     router = TestBed.inject(Router);
     store = TestBed.inject(MockStore);
-
+    authApiService = TestBed.inject(AuthApiService);
     fixture.detectChanges();
   });
 
@@ -79,9 +82,15 @@ describe('AppComponent', () => {
     });
 
     it('should render profile link', () => {
+      spyOn(authApiService, 'getToken').and.returnValue('abc123');
+      spyOn(authApiService, 'getUser').and.returnValue({
+        email: 'foo@localhost.io',
+        iat: 1,
+        exp: 1,
+      });
       const profileLink = el.querySelector('[data-id=profile-link]');
       expect(profileLink).toBeTruthy();
-      expect(profileLink?.textContent).toEqual('Welcome');
+      expect(profileLink?.textContent).toEqual('foo@localhost.io');
       expect(profileLink?.getAttribute('routerLink')).toEqual('/auth/profile');
     });
 

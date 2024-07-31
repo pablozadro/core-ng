@@ -7,7 +7,7 @@
   <ul secondary>
     @if(token) {
       <li>
-        <a class="link" routerLink="/auth/profile" data-id="profile-link">Welcome</a>
+        <a class="link" routerLink="/auth/profile" data-id="profile-link">{{user?.email}}</a>
       </li>
       <li>
         <app-mat-btn theme="flat" (click)="onLogout()" label="Logout" data-id="logout-btn"/>

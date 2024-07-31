@@ -12,7 +12,7 @@ import { toggleTheme } from '@/material/state/material.actions';
 import { MatTopnavComponent } from '@/material/components/mat-topnav/mat-topnav.component';
 import { MatBtnComponent } from '@/material/components/mat-btn/mat-btn.component';
 import { initTheme } from '@/material/state/material.actions';
-
+import { AuthUser } from '@/auth/types';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +33,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   pageTitle = 'Unknown Page';
   auth$!: Observable<AuthState>;
   token = '';
+  user: AuthUser | null = null;
+
 
   constructor(
     private readonly authApiService: AuthApiService,
@@ -46,8 +48,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.store.dispatch(initTheme());
     const token = this.authApiService.getToken();
+    
     if(token) {
       this.store.dispatch(loginSuccess({ token }));
+      this.user = this.authApiService.getUser();
+    } else {
+      this.user = null;
     }
   }
 

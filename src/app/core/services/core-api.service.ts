@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of, map } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 
 export interface CoreApiResponse {
+  message: string;
   payload: any;
   error: any;
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +34,7 @@ export class CoreApiService {
   handleResponse(obs:Observable<any>): Observable<CoreApiResponse> {
     return obs.pipe(
       catchError(() => {
-        return of({ payload: null, error: 'Request Error' })
+        return of({ message: 'Error', payload: null, error: 'Request Error' })
       })
     )
   }

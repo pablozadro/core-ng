@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import * as jose from 'jose';
 import { CoreApiResponse, CoreApiService } from '@/core/services/core-api.service';
 import { Observable, map, of } from 'rxjs';
 import { CoreStorageService } from '@/core/services/core-storage.service';
+import { AuthUser } from '@/auth/types';
 
 
 export interface AuthLoginBody {
@@ -46,6 +48,13 @@ export class AuthApiService {
   logout() {
     this.removeToken();
     this.router.navigate(['auth/login']);
+  }
+
+  getUser(): AuthUser | null {
+    const token = this.getToken();
+    if (!token) return null;
+    const user: AuthUser = jose.decodeJwt(token);
+    return user;
   }
 
   getToken(): string | null {
