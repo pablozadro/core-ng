@@ -6,7 +6,8 @@
     "outDir": "./dist/out-tsc",
     "baseUrl": ".", 
     "paths": {
-      "@/*": ["src/app/*"]
+      "@root/*": ["src/*"],
+      "@/*": ["src/app/*"],
     },
     "useDefineForClassFields": false,
     "strict": true,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
-
+import { environment } from '@root/environments/environment';
 
 export interface CoreApiResponse {
   message: string;
@@ -21,13 +21,13 @@ export class CoreApiService {
 
   get(url: string): Observable<CoreApiResponse> {
     return this.http
-      .request('get', url)
+      .request('get', `${environment.coreApiBaseUrl}/${url}`)
       .pipe(this.handleResponse)
   }
 
   post(url: string, body: any): Observable<CoreApiResponse> {
     return this.http
-      .request('post', url, { body })
+      .request('post', `${environment.coreApiBaseUrl}/${url}`, { body })
       .pipe(this.handleResponse)
   }
 

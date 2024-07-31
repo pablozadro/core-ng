@@ -16,7 +16,7 @@ export interface AuthLoginBody {
   providedIn: 'root'
 })
 export class AuthApiService {
-  readonly AUTH_LOGIN_URL = 'http://localhost:9001/api/v1/auth/login';
+  readonly AUTH_LOGIN_URL = 'auth/login';
   readonly AUTH_STORAGE_TOKEN = 'auth-user';
 
   constructor(

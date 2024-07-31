@@ -42,6 +42,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   ) {
     this.store.subscribe(state => {
       this.token = state.app.auth ? state.app.auth.token:'';
+      this.user = this.authApiService.getUser();
     });
   }
 
@@ -51,9 +52,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     
     if(token) {
       this.store.dispatch(loginSuccess({ token }));
-      this.user = this.authApiService.getUser();
-    } else {
-      this.user = null;
     }
   }
 
