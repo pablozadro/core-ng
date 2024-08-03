@@ -10,10 +10,10 @@ Install dependencies:
 npm install
 ```
 
-Link Core-Sass:
+Link Core-X:
 
 ```bash
-npm link core-sass
+npm link core-x
 ```
 
 Run server:

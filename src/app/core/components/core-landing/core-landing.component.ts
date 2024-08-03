@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatBrandComponent } from '@/material/components/mat-brand/mat-brand.component';
+
+import { CoreBrandComponent } from 'core-x';
 
 
 @Component({
   selector: 'app-core-landing',
   standalone: true,
   imports: [
-    MatBrandComponent
+    CoreBrandComponent
   ],
   templateUrl: './core-landing.component.html',
   styleUrl: './core-landing.component.scss'

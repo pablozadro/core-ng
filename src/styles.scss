@@ -1,3 +1,14 @@
-@import 'themes/all';
-@import 'core/all';
-@import 'layout/all';
+@import '../node_modules/core-x/sass/themes/root';
+@import '../node_modules/core-x/sass/themes/light';
+@import '../node_modules/core-x/sass/themes/dark';
+@import '../node_modules/core-x/sass/abstracts/vars';
+@import '../node_modules/core-x/sass/core/normalize';
+@import '../node_modules/core-x/sass/core/typography';
+@import '../node_modules/core-x/sass/core/typography';
+@import '../node_modules/core-x/sass/layout/box';
+@import '../node_modules/core-x/sass/layout/flex';
+@import '../node_modules/core-x/sass/layout/grid';
+
+.section {
+  margin-top: getBoxSize('lg');
+}

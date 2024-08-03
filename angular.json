@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "preserveSymlinks": true,
             "outputPath": "dist/core-ng",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -36,8 +37,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "node_modules/core-sass/src",
-                "src/app/material/sass"
+                "node_modules/core-x/sass"
               ]
             },
             "scripts": []
@@ -107,8 +107,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "node_modules/core-sass/src",
-                "src/app/material/sass"
+                "node_modules/core-x/sass"
               ]
             },
             "scripts": []

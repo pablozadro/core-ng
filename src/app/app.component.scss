@@ -1,7 +1,4 @@
-@import "abstracts/all";
-
 .app {
-  padding-top: getTopnavHeight();
   display: flex;
   flex-flow: column nowrap;
   min-height: 100vh;
