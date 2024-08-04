@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { initialAppState } from '@/app.reducer';
 import { CORE_DONE_STATUS } from 'core-x';
 import { logout } from '@/auth/state/auth.actions';
-import { toggleTheme } from '@/material/state/material.actions';
 import { AuthApiService } from '@/auth/services/auth-api.service';
 
 

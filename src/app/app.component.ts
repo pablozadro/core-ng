@@ -3,15 +3,12 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CoreBtnComponent } from 'core-x';
+import { CoreBtnComponent, CoreThemeService, CoreTopnavComponent } from 'core-x';
 import { CoreFooterComponent } from '@/core/components/core-footer/core-footer.component';
-import { CoreTopnavComponent } from '@/core/components/core-topnav/core-topnav.component';
 import { AuthUser } from '@/auth/types';
 import { AuthState } from '@/auth/state/auth.reducer';
 import { loginSuccess, logout } from '@/auth/state/auth.actions';
 import { AuthApiService } from '@/auth/services/auth-api.service';
-import { toggleTheme } from '@/material/state/material.actions';
-import { initTheme } from '@/material/state/material.actions';
 
 
 @Component({
@@ -37,6 +34,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 
   constructor(
+    private readonly coreThemeService: CoreThemeService,
     private readonly authApiService: AuthApiService,
     private readonly store: Store<any>
   ) {
@@ -47,7 +45,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(initTheme());
+    this.coreThemeService.initTheme();
     const token = this.authApiService.getToken();
     
     if(token) {
@@ -64,7 +62,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   onToggleTheme() {
-    this.store.dispatch(toggleTheme());
+    this.coreThemeService.toggleTheme();
   }
 
 }

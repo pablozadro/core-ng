@@ -1,8 +1,10 @@
+@import 'abstracts/vars';
+
 .app {
   display: flex;
   flex-flow: column nowrap;
   min-height: 100vh;
-  padding-top: 60px; // topnav height
+  padding-top: $co-topnav-height;
 }
 
 .app__content { flex-grow: 1; }
