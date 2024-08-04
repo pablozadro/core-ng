@@ -4,30 +4,23 @@ It ain't much, but it's honest work.
 
 ## Getting Started
 
-Install dependencies:
-
 ```bash
 npm install
-```
-
-Link Core-X:
-
-```bash
 npm link core-x
-```
 
-Run server:
-
-```bash
 ng serve
 ```
-
 
 ## Tests
 
 ```bash
 npm run test
-npm run test:coverage
+npm run test:coverage # see ./coverage/index.html
 ```
 
-Check `coverage/index.html`.
+
+## Lint
+
+```bash
+ng lint
+```

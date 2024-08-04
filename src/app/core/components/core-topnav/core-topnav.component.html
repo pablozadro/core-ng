@@ -1,12 +1,12 @@
 <nav class="nav">
   <div class="nav__brand">
-    <app-mat-brand theme="primary" type="solid"/>
+    <core-brand size="rg"/>
   </div>
   <div class="nav__content" [class.active]="isToggled">
     <ng-content select="[main]"></ng-content>
     <ng-content select="[secondary]"></ng-content>
   </div>
   <div class="nav__toggle">
-    <app-mat-btn theme="flat" icon="menu" [squared]="true" (click)="onToggleNav()"/>
+    <core-btn mix="flat" icon="menu" [squared]="true" (click)="onToggleNav()" />
   </div>
 </nav>

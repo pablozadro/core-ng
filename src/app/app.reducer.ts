@@ -1,6 +1,16 @@
 import { combineReducers } from "@ngrx/store";
-import { authReducer, initialAuthState, AuthState } from "@/auth/state/auth.reducer";
-import { materialReducer, initialMaterialState, MaterialState } from "@/material/state/material.reducer";
+
+import { 
+  materialReducer, 
+  initialMaterialState, 
+  MaterialState 
+} from "@/material/state/material.reducer";
+
+import { 
+  authReducer, 
+  initialAuthState, 
+  AuthState 
+} from "@/auth/state/auth.reducer";
 
 
 export const APP_FEATURE_KEY = 'app';

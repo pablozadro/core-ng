@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { mergeMap, map, tap } from 'rxjs/operators';
-import { MatBrowserTheme } from '@/material/config';
+import { map, tap } from 'rxjs/operators';
+
+import { CoreBrowserTheme } from 'core-x';
 import * as actions from '@/material/state/material.actions';
-import { MaterialThemeService } from '@/material/services/material-theme.service';
+import { CoreThemeService } from 'core-x';
 
 
 @Injectable()
 export class MaterialEffects {
   constructor(
     private readonly actions$: Actions,
-    private readonly materialThemeService: MaterialThemeService,
+    private readonly coreThemeService: CoreThemeService,
     private readonly router: Router
   ) {}
 
@@ -19,7 +20,7 @@ export class MaterialEffects {
   initTheme$ = createEffect(() => this.actions$.pipe(
     ofType(actions.initTheme),
     tap(() => {
-      this.materialThemeService.initTheme();
+      this.coreThemeService.initTheme();
     }),
     map(() => {
       return actions.setThemeSuccess();
@@ -29,7 +30,7 @@ export class MaterialEffects {
   setTheme$ = createEffect(() => this.actions$.pipe(
     ofType(actions.setTheme),
     tap(action => {
-      this.materialThemeService.setTheme(action.theme as MatBrowserTheme)
+      this.coreThemeService.setTheme(action.theme as CoreBrowserTheme)
     }),
     map(() => {
       return actions.setThemeSuccess();
@@ -39,7 +40,7 @@ export class MaterialEffects {
   toggleTheme$ = createEffect(() => this.actions$.pipe(
     ofType(actions.toggleTheme),
     tap(() => {
-      this.materialThemeService.toggleTheme()
+      this.coreThemeService.toggleTheme()
     }),
     map(() => {
       return actions.toggleThemeSuccess();

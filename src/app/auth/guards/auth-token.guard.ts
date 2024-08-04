@@ -1,9 +1,11 @@
 import { CanActivateFn } from '@angular/router';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
+
 import { AuthApiService } from '@/auth/services/auth-api.service';
 
-export const authTokenGuard: CanActivateFn = (route, state) => {
+
+export const authTokenGuard: CanActivateFn = () => {
   const authApiService = inject(AuthApiService);
   const router = inject(Router);
   const storageToken = authApiService.getToken();

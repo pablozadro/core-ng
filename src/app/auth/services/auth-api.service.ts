@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import * as jose from 'jose';
-import { CoreApiResponse, CoreApiService } from '@/core/services/core-api.service';
 import { Observable, map, of } from 'rxjs';
-import { CoreStorageService } from '@/core/services/core-storage.service';
+import * as jose from 'jose';
+
+import { CoreStorageService } from 'core-x';
+import { CoreApiResponse, CoreApiService } from '@/core/services/core-api.service';
 import { AuthUser } from '@/auth/types';
 
 

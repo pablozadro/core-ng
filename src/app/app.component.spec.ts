@@ -1,11 +1,11 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { provideRouter, Router } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
 import { initialAppState } from '@/app.reducer';
-import { CORE_DONE_STATUS } from '@/core/config';
+import { CORE_DONE_STATUS } from 'core-x';
 import { logout } from '@/auth/state/auth.actions';
 import { toggleTheme } from '@/material/state/material.actions';
 import { AuthApiService } from '@/auth/services/auth-api.service';
@@ -15,7 +15,6 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
   let el: HTMLElement;
-  let router: Router;
   let store: MockStore<any>;
   let authApiService: AuthApiService;
 
@@ -35,7 +34,6 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     el = fixture.debugElement.nativeElement;
-    router = TestBed.inject(Router);
     store = TestBed.inject(MockStore);
     authApiService = TestBed.inject(AuthApiService);
     fixture.detectChanges();

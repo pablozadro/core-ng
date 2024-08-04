@@ -1,11 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
+
 import * as actions from './auth.actions';
 import {
   CoreStatusType,
   CORE_PENDING_STATUS,
   CORE_INPROGRESS_STATUS,
   CORE_DONE_STATUS
-} from '@/core/config';
+} from 'core-x';
 
 
 export const AUTH_FEATURE_KEY = 'auth';

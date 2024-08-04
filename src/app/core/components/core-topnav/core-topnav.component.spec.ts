@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatLoadingComponent } from './mat-loading.component';
+import { CoreTopnavComponent } from './core-topnav.component';
 
-describe('MatLoadingComponent', () => {
-  let component: MatLoadingComponent;
-  let fixture: ComponentFixture<MatLoadingComponent>;
+describe('CoreTopnavComponent', () => {
+  let component: CoreTopnavComponent;
+  let fixture: ComponentFixture<CoreTopnavComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatLoadingComponent]
+      imports: [CoreTopnavComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MatLoadingComponent);
+    fixture = TestBed.createComponent(CoreTopnavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

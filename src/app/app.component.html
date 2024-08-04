@@ -1,5 +1,4 @@
-
-<!-- <app-mat-topnav>
+<app-core-topnav>
   <ul main>
     <li>
       <a class="link" routerLink="/">Inicio</a>
@@ -11,7 +10,7 @@
         <a class="link" routerLink="/auth/profile" data-id="profile-link">{{user?.email}}</a>
       </li>
       <li>
-        <app-mat-btn theme="flat" (click)="onLogout()" label="Logout" data-id="logout-btn"/>
+        <core-btn mix="flat" (click)="onLogout()" label="Logout" data-id="logout-btn"/>
       </li>
     } @else {
       <li>
@@ -19,12 +18,10 @@
       </li>
     }
     <li>
-      <app-mat-btn theme="flat" (click)="onToggleTheme()" [squared]="true" icon="light_mode" data-id="theme-toggler-btn"/>
+      <core-btn mix="flat" (click)="onToggleTheme()" [squared]="true" icon="light_mode" data-id="theme-toggler-btn"/>
     </li>
   </ul>
-</app-mat-topnav>
--->
-
+</app-core-topnav>
 <div class="app">
   <div class="app__content">
     <router-outlet />

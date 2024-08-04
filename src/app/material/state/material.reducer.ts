@@ -1,26 +1,23 @@
 import { createReducer, on } from '@ngrx/store';
 import * as actions from './material.actions';
-import {
-  MatBrowserTheme,
 
-} from '@/material/config';
 import {
   CoreStatusType,
   CORE_PENDING_STATUS,
   CORE_INPROGRESS_STATUS,
   CORE_DONE_STATUS
-} from '@/core/config';
-
+} from 'core-x';
+import { CoreBrowserTheme, } from 'core-x';
 export const MATERIAL_FEATURE_KEY = 'material';
 
 export interface MaterialState {
   status: CoreStatusType;
-  theme: string;
+  theme: CoreBrowserTheme | null;
 }
 
 export const initialMaterialState: MaterialState = {
   status: CORE_PENDING_STATUS,
-  theme: ''
+  theme: null
 };
 
 export const materialReducer = createReducer(

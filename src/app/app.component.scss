@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: column nowrap;
   min-height: 100vh;
+  padding-top: 60px; // topnav height
 }
 
 .app__content { flex-grow: 1; }

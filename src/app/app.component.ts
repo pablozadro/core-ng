@@ -1,19 +1,18 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { RouterOutlet, RouterModule } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-
+import { CoreBtnComponent } from 'core-x';
 import { CoreFooterComponent } from '@/core/components/core-footer/core-footer.component';
-// import { MatTopnavComponent } from '@/material/components/mat-topnav/mat-topnav.component';
-// import { MatBtnComponent } from '@/material/components/mat-btn/mat-btn.component';
-
+import { CoreTopnavComponent } from '@/core/components/core-topnav/core-topnav.component';
+import { AuthUser } from '@/auth/types';
 import { AuthState } from '@/auth/state/auth.reducer';
 import { loginSuccess, logout } from '@/auth/state/auth.actions';
 import { AuthApiService } from '@/auth/services/auth-api.service';
 import { toggleTheme } from '@/material/state/material.actions';
 import { initTheme } from '@/material/state/material.actions';
-import { AuthUser } from '@/auth/types';
+
 
 @Component({
   selector: 'app-root',
@@ -21,15 +20,15 @@ import { AuthUser } from '@/auth/types';
   imports: [
     RouterModule,
     RouterOutlet,
-    // MatTopnavComponent,
-    // MatBtnComponent,
+    CoreBtnComponent,
+    CoreTopnavComponent,
     CoreFooterComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  // @ViewChild(MatTopnavComponent) matTopnav!:MatTopnavComponent;
+  @ViewChild(CoreTopnavComponent) topnav!:CoreTopnavComponent;
 
   pageTitle = 'Unknown Page';
   auth$!: Observable<AuthState>;
@@ -57,7 +56,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.matTopnav
+    console.log('-> ViewChild', this.topnav);
   }
 
   onLogout() {

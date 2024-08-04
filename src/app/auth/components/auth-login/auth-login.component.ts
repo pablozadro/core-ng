@@ -5,11 +5,15 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angula
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { 
+  CORE_INPROGRESS_STATUS,
+  CoreLoadingComponent,
+  CoreBtnComponent,
+  CoreControlComponent,
+  CoreMessageComponent
+} from 'core-x'
+
 import { login } from '@/auth/state/auth.actions';
-import { CORE_INPROGRESS_STATUS } from '@/core/config';
-import { MatLoadingComponent } from '@/material/components/mat-loading/mat-loading.component'; 
-import { MatBtnComponent } from '@/material/components/mat-btn/mat-btn.component';
-import { MatControlComponent } from '@/material/components/mat-control/mat-control.component';
 
 
 @Component({
@@ -18,9 +22,10 @@ import { MatControlComponent } from '@/material/components/mat-control/mat-contr
   imports: [
     NgIf,
     ReactiveFormsModule,
-    MatLoadingComponent,
-    MatBtnComponent,
-    MatControlComponent,
+    CoreLoadingComponent,
+    CoreBtnComponent,
+    CoreControlComponent,
+    CoreMessageComponent
   ],
   templateUrl: './auth-login.component.html',
   styleUrl: './auth-login.component.scss'

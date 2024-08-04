@@ -1,7 +1,6 @@
 import * as fromReducer from './auth.reducer';
 import * as actions from './auth.actions';
 import {
-  CORE_PENDING_STATUS,
   CORE_INPROGRESS_STATUS,
   CORE_DONE_STATUS
 } from '@/core/config';

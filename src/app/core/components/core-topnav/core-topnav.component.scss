@@ -1,15 +1,20 @@
 @use 'sass:color';
-@import 'abstracts/all';
+@import 'abstracts/vars';
+
+$topnav-height: 60px;
+$topnav-index: 1000;
+$topnav-breakpoint: 640px;
+
 
 .nav {
-  @include ThemeMix('flat');
+  @include ColorMix('flat');
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
   padding: 0 getBoxSize('rg');
-  height: getTopnavHeight();
-  position: absolute;
+  height: $topnav-height;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -68,13 +73,13 @@
   @media screen and (max-width: $topnav-breakpoint) {
     display: block;
     position: fixed;
-    top: getTopnavHeight();
+    top: $topnav-height;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: $topnav-index;
     padding: 0;
-    background-color: getThemeProp('flat', 'background-color-alpha');
+    background-color: getMix('flat', 'background-color-alpha');
   }
 }
 

@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { CoreBrowserTheme } from 'core-x';
 
 export const MATERIAL_INIT_THEME = '[Material] Init Theme';
 export const initTheme = createAction(
@@ -8,7 +9,7 @@ export const initTheme = createAction(
 export const MATERIAL_SET_THEME = '[Material] Set Theme';
 export const setTheme = createAction(
   MATERIAL_SET_THEME,
-  props<{ theme: string; }>()
+  props<{ theme: CoreBrowserTheme; }>()
 );
 
 export const MATERIAL_SET_THEME_SUCCESS = '[Material] Set Theme Success';
