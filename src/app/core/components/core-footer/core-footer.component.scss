@@ -1,7 +1,7 @@
 @import 'abstracts/vars';
 
 .footer {
-  @include ColorMix('flat');
   text-align: center;
   padding: getBoxSize('lg') 0 getBoxSize('xl' 0);
+  border-top: var(--co-box-border-solid-thin);
 }

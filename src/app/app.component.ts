@@ -64,5 +64,4 @@ export class AppComponent implements OnInit, AfterViewInit {
   onToggleTheme() {
     this.coreThemeService.toggleTheme();
   }
-
 }
