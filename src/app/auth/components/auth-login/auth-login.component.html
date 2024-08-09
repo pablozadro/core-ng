@@ -4,14 +4,14 @@
       <h1 class="title md">Login</h1>
     </header>
     <form>
-      <div class="box-mg-stack-rg">
+      <div class="box-mg-y-rg">
         <core-control [control]="email" id="email" type="email" label="Email" />
         <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-color">
           <div *ngIf="email.errors?.['required']">Email is required.</div>
           <div *ngIf="email.errors?.['email']">Email format wrong.</div>
         </div>
       </div>
-      <div class="box-mg-stack-rg">
+      <div class="box-mg-y-rg">
         <core-control [control]="password" [showHide]="true" id="password" type="password" label="Password"/>
         <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-color">
           <div *ngIf="password.errors?.['required']">Password is required.</div>
