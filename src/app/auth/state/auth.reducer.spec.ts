@@ -3,7 +3,7 @@ import * as actions from './auth.actions';
 import {
   CORE_INPROGRESS_STATUS,
   CORE_DONE_STATUS
-} from '@/core/config';
+} from 'core-x';
 
 
 describe('authReducer', () => {

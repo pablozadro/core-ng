@@ -1,6 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient, HttpClient } from '@angular/common/http';
 import { CoreApiService } from './core-api.service';
+import { environment } from '@root/environments/environment';
+
 
 describe('CoreApiService', () => {
   let service: CoreApiService;
@@ -30,7 +32,7 @@ describe('CoreApiService', () => {
       spyHandleResponse.and.callThrough();
       service.get('abc');
       expect(spyHandleResponse).toHaveBeenCalledTimes(1);
-      expect(spyRequest).toHaveBeenCalledOnceWith('get', 'abc');
+      expect(spyRequest).toHaveBeenCalledOnceWith('get', `${environment.coreApiBaseUrl}/abc`);
     });
   });
 
@@ -44,7 +46,7 @@ describe('CoreApiService', () => {
       spyHandleResponse.and.callThrough();
       service.post('abc', { id: 1 });
       expect(spyHandleResponse).toHaveBeenCalledTimes(1);
-      expect(spyRequest).toHaveBeenCalledOnceWith('post', 'abc', { body: { id: 1 } });
+      expect(spyRequest).toHaveBeenCalledOnceWith('post', `${environment.coreApiBaseUrl}/abc`, { body: { id: 1 } });
     });
   });
 });
