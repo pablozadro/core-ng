@@ -1,15 +1,6 @@
-@import 'themes/root';
-@import 'themes/light';
-@import 'themes/dark';
+// @import 'dist/core.min.css';
+@import '../node_modules/core-css/dist/core.min.css';
 @import 'abstracts/vars';
-@import 'core/normalize';
-@import 'core/typography';
-@import 'core/typography';
-@import 'elements/lists';
-@import 'elements/tables';
-@import 'layout/box';
-@import 'layout/flex';
-@import 'layout/grid';
 
 .section {
   margin-top: getBoxSize('lg');

@@ -37,7 +37,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "node_modules/core-x/sass"
+                "node_modules/core-css"
               ]
             },
             "scripts": []
@@ -108,7 +108,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "node_modules/core-x/sass"
+                "node_modules/core-css"
               ]
             },
             "scripts": []
