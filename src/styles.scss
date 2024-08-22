@@ -1,6 +1,6 @@
 // @import 'dist/core.min.css';
-@import '../node_modules/core-css/dist/core.min.css';
-@import 'abstracts/vars';
+@import '../node_modules/core-x/dist/css/core-x.min.css';
+@import 'abstracts/all';
 
 .section {
   margin-top: getBoxSize('lg');

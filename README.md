@@ -6,7 +6,7 @@ It ain't much, but it's honest work.
 
 ```bash
 npm install
-npm link core-css core-x
+npm run core:link
 
 ng serve
 ```

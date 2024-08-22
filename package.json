@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:coverage": "ng test --no-watch --code-coverage",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "core:link": "npm unlink core-x&&npm link core-x core-material"
   },
   "private": true,
   "dependencies": {

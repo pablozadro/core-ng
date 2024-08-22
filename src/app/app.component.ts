@@ -3,7 +3,7 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CoreBtnComponent, CoreThemeService, CoreTopnavComponent } from 'core-x';
+import { CoreBtnComponent, CoreThemeService, CoreTopnavComponent } from 'core-material';
 import { CoreFooterComponent } from '@/core/components/core-footer/core-footer.component';
 import { AuthUser } from '@/auth/types';
 import { AuthState } from '@/auth/state/auth.reducer';

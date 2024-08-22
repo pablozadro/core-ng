@@ -11,7 +11,7 @@ import {
   CoreBtnComponent,
   CoreControlComponent,
   CoreMessageComponent
-} from 'core-x'
+} from 'core-material'
 
 import { login } from '@/auth/state/auth.actions';
 

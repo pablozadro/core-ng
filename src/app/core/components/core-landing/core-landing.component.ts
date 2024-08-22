@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { CoreBrandComponent } from 'core-x';
+import { CoreBrandComponent } from 'core-material';
 
 
 @Component({
