@@ -6,8 +6,6 @@ It ain't much, but it's honest work.
 
 ```bash
 npm install
-npm run core:link
-
 ng serve
 ```
 

@@ -1,7 +1,7 @@
-@import 'abstracts/vars';
+@use 'material';
 
 .footer {
   text-align: center;
-  padding: getBoxSize('lg') 0 getBoxSize('xl' 0);
+  padding: material.getBoxSize('lg') 0 material.getBoxSize('xl') 0;
   border-top: var(--co-box-border-solid-thin);
 }

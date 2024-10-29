@@ -1,0 +1,22 @@
+<div 
+  class="co-control__wrapper" 
+  [class.floatlabel]="floatLabel">
+
+  @if (label) {
+    <label [for]="id" class="co-control__label">{{label}}</label>
+  }
+
+  <div class="co-control__input-wrapper">
+    <input 
+      class="co-control__input-{{controlStyle}} {{size}}" 
+      [class.block]="block"
+      [id]="id" 
+      [name]="id" 
+      [type]="type" 
+      [formControl]="control">
+      @if (showHide) {
+        <i class="material-icons co-control__input-icon" (click)="onShowHide()">{{showHideIcon}}</i>
+      }
+  </div>
+
+</div>

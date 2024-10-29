@@ -1,0 +1,41 @@
+@use 'material';
+
+.table {
+  text-align: left;
+  border-collapse: collapse;
+
+  &.block {
+    width: 100%;
+  }
+
+  thead {
+    & > tr {
+      background-color: material.getMix('flat', 'background-color');
+      border-bottom: var(--co-box-border-solid-regular);
+      & > th {
+        font-size: material.getFontSize('sm');
+        text-transform: uppercase;
+        font-weight: material.$co-type-font-weight-regular;
+        color: var(--co-type-title-color);
+        padding: 0.25rem material.getBoxSize('rg') 0.1rem 0.35rem;
+      }
+    }
+  }
+
+  tbody {
+    & > tr {
+      border-bottom: var(--co-box-border-solid-thin);
+      &:hover {
+        cursor: pointer;
+        background-color: material.getMix('flat', 'background-color-hover');
+        transition: all $co-transitions-time ease;
+      }
+
+
+      &:last-child { border-bottom: none; }
+      & > td {
+        padding: 0.25rem material.getBoxSize('rg') 0.1rem 0.35rem;
+      }
+    }
+  }
+}

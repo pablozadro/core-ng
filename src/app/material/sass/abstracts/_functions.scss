@@ -1,0 +1,33 @@
+@use './vars';
+
+@function getFontSize($size) {
+  @return map-get(vars.$co-type-font-sizes, $size);
+}
+
+@function getFontWeight($size) {
+  @return map-get(vars.$co-type-font-sizes, $size);
+}
+
+@function getIconSize($size) {
+  @return map-get(vars.$co-type-icon-sizes, $size);
+}
+
+@function getLineHeight($size) {
+  @return map-get(vars.$co-type-line-heights, $size);
+}
+
+@function getColor($color) {
+  @return map-get(vars.$co-colors, $color);
+}
+
+@function getMix($mix, $prop) {
+  @return map-get(map-get(vars.$co-color-mixins, $mix), $prop);
+}
+
+@function getBrandMix($mix) {
+  @return map-get(vars.$co-brand-mixins, $mix);
+}
+
+@function getBoxSize($size) {
+  @return map-get(vars.$co-box-sizes, $size);
+}

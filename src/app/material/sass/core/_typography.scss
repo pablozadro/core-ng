@@ -1,0 +1,93 @@
+@use 'material';
+
+body {
+  @include material.BodyType();
+  font-size: material.getFontSize('rg');
+  line-height: material.getLineHeight('rg');
+  background-color: var(--co-type-body-background-color);
+}
+
+
+// Txt & Title
+
+.txt,
+.title {
+  margin: 0 0 material.getBoxSize('rg') 0;
+}
+
+.title {
+  @include material.TitleType();
+}
+
+
+// Sizes
+
+@each $size, $value in material.$co-type-font-sizes {
+  .#{$size} {
+    font-size: material.getFontSize($size);
+    &.title {
+      line-height: material.getLineHeight($size);
+   }
+  }
+}
+
+
+// Icon Sizes
+
+@each $size, $value in material.$co-type-icon-sizes {
+  .#{$size}-icon {
+    font-size: material.getIconSize($size);
+  }
+}
+
+
+// Colors
+
+@each $color, $value in material.$co-colors {
+  .#{$color}-color { color: material.getColor($color); }
+  .#{$color}-bkg { background-color: material.getColor($color); }
+}
+
+.flat-color { color: var(--co-color-flat-color) }
+.flat-bkg { background-color: var(--co-color-flat-background-color) }
+
+
+// Colors Mixins
+
+@each $mix, $value in material.$co-color-mixins {
+  .#{$mix}-mix { 
+    @include material.ColorMix($mix);
+  }
+  .#{$mix}-mix-i { 
+    @include material.ColorMixInteractive($mix);
+  }
+}
+
+
+// Anchors
+
+.link {
+  color: var(--co-type-anchor-color);
+  text-decoration: none;
+  &:hover, &:focus { outline: none; }
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+
+// Utils
+
+.align-center { text-align: center; }
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+.lowercase { text-transform: lowercase; }
+.uppercase { text-transform: uppercase; }
+.capitalize { text-transform: capitalize; }
+.regular { font-weight: material.getFontWeight('regular'); }
+.bold { font-weight: material.getFontWeight('bold'); }
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

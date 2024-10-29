@@ -1,0 +1,40 @@
+@use './vars';
+@use './functions';
+
+@mixin BodyType {
+  font-family: 'Roboto', sans-serif;
+  color: var(--co-type-body-color);
+  font-weight: vars.$co-type-font-weight-regular;
+}
+
+@mixin TitleType() {
+  color: var(--co-type-title-color);
+  font-weight: vars.$co-type-font-weight-bold;
+}
+
+@mixin ColorMix($mix, $bordered: false) {
+  @if $bordered {
+    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color-hover');
+  } @else {
+    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color');
+  }
+  color: functions.getMix($mix, 'color');
+  background-color: functions.getMix($mix, 'background-color');
+}
+
+@mixin ColorMixInteractive($mix, $bordered: false) {
+  @include ColorMix($mix, $bordered);
+  &:hover,
+  &:focus {
+    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color-hover');
+    background-color: functions.getMix($mix, 'background-color-hover');
+    transition: all vars.$co-transitions-time ease;
+    outline: none;
+  }
+  &[disabled],
+  &.disabled {
+    opacity: 0.5;
+    background-color: functions.getMix($mix, 'background-color');
+    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color');
+  }
+}

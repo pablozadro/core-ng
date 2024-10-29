@@ -1,0 +1,163 @@
+@use 'sass:math';
+
+$co-x: 1rem;
+$co-gold: 1.618;
+$co-transitions-time: 250ms;
+
+
+// Box
+
+$co-box-height: 2em;
+$co-box-min-width: 6em;
+$co-box-border-width: 1px;
+$co-box-border-radius: 0.2em;
+
+$co-box-sizes: (
+  'sm': math.div($co-x, $co-gold), 
+  'rg': $co-x,
+  'md': $co-x * $co-gold,
+  'lg': $co-x * $co-gold * 2,
+  'xl': $co-x * $co-gold * 3,
+  'xxl': $co-x * $co-gold * 4,
+);
+
+
+// Type
+
+$co-type-font-size-sm: 0.8rem;
+$co-type-font-size-rg: 1rem;
+$co-type-font-size-md: 1.6rem;
+$co-type-font-size-lg: 2.2rem;
+$co-type-font-size-xl: 3.6rem;
+$co-type-font-size-xxl: 5rem;
+
+$co-type-font-sizes: (
+  'sm': $co-type-font-size-sm,
+  'rg': $co-type-font-size-rg,
+  'md': $co-type-font-size-md,
+  'lg': $co-type-font-size-lg,
+  'xl': $co-type-font-size-xl,
+  'xxl': $co-type-font-size-xxl
+);
+
+$co-type-line-height-sm: 1.6;
+$co-type-line-height-rg: 1.6;
+$co-type-line-height-md: 1.4;
+$co-type-line-height-lg: 1.2;
+$co-type-line-height-xl: 1;
+$co-type-line-height-xxl: 1;
+
+$co-type-line-heights: (
+  'sm': $co-type-line-height-sm,
+  'rg': $co-type-line-height-rg,
+  'md': $co-type-line-height-md,
+  'lg': $co-type-line-height-lg,
+  'xl': $co-type-line-height-xl,
+  'xxl': $co-type-line-height-xxl,
+);
+
+$co-type-font-weight-light: 300;
+$co-type-font-weight-regular: 400;
+$co-type-font-weight-bold: 700;
+$co-type-font-weights: (
+  'light': $co-type-font-weight-light,
+  'regular': $co-type-font-weight-regular,
+  'bold': $co-type-font-weight-bold
+);
+
+$co-type-icon-sizes: (
+  'sm': 18px,
+  'rg': 24px,
+  'md': 36px,
+  'lg': 48px,
+  'xl': 48px,
+  'xxl': 48px,
+);
+
+
+// Colors
+
+$co-colors: (
+  'primary': var(--co-color-primary-200),
+  'secondary': var(--co-color-secondary-200),
+  'warning': var(--co-color-warning-200),
+  'error': var(--co-color-error-200),
+  'success': var(--co-color-success-200),
+  'white': var(--co-color-white),
+  'grey-1': var(--co-color-grey-1),
+  'grey-2': var(--co-color-grey-2),
+  'grey-3': var(--co-color-grey-3),
+  'grey-4': var(--co-color-grey-4),
+  'grey-5': var(--co-color-grey-5),
+  'grey-6': var(--co-color-grey-6),
+  'grey-7': var(--co-color-grey-7),
+  'grey-8': var(--co-color-grey-8),
+  'grey-9': var(--co-color-grey-9),
+  'black': var(--co-color-black),
+);
+
+
+// Colors Mixins
+
+$co-color-mixins: (
+  'primary': (
+    'color': var(--co-color-white),
+    'background-color': var(--co-color-primary-200),
+    'background-color-hover': var(--co-color-primary-300),
+    'background-color-alpha': var(--co-color-primary-alpha),
+  ),
+  'secondary': (
+    'color': var(--co-color-white),
+    'background-color': var(--co-color-secondary-200),
+    'background-color-hover': var(--co-color-secondary-300),
+    'background-color-alpha': var(--co-color-secondary-alpha),
+  ),
+  'error': (
+    'color': var(--co-color-white),
+    'background-color': var(--co-color-error-200),
+    'background-color-hover': var(--co-color-error-300),
+    'background-color-alpha': var(--co-color-error-alpha),
+  ),
+  'success': (
+    'color': var(--co-color-white),
+    'background-color': var(--co-color-success-200),
+    'background-color-hover': var(--co-color-success-300),
+    'background-color-alpha': var(--co-color-success-alpha),
+  ),
+  'warning': (
+    'color': var(--co-color-black),
+    'background-color': var(--co-color-warning-200),
+    'background-color-hover': var(--co-color-warning-300),
+    'background-color-alpha': var(--co-color-warning-alpha),
+  ),
+  'flat': (
+    'color': var(--co-color-flat-color),
+    'background-color': var(--co-color-flat-background-color),
+    'background-color-hover': var(--co-color-flat-background-color-hover),
+    'background-color-alpha': var(--co-color-flat-background-color-alpha),
+  ),
+);
+
+
+// Brand
+
+$co-brand-mixins: (
+  'primary': var(--co-color-primary-200),
+  'secondary': var(--co-color-secondary-200),
+  'black': var(--co-color-black),
+  'white': var(--co-color-white),
+  'flat': var(--co-color-flat-brand-color),
+);
+
+
+// Topnav
+
+$co-topnav-breakpoint: 640px;
+
+
+// Layout
+
+$co-ly-topnav-height: 60px;
+$co-ly-topnav-index: 1000;
+$co-ly-modal-index: 10000;
+

@@ -1,0 +1,57 @@
+@use 'material';
+
+
+.co-control__wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+
+  &.floatlabel {
+    flex-flow: row nowrap;
+    align-items: center;
+
+    & > .co-control__label {
+      margin: 0 material.getBoxSize('rg') 0 0;
+    }
+  }
+}
+
+
+.co-control__label {
+  margin: 0 0 material.getBoxSize('rg') 0;
+}
+
+.co-control__input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.co-control__input-flat {
+  @include material.ColorMixInteractive('flat');
+  display: inline-block;
+  padding: material.getBoxSize('sm') material.getBoxSize('rg');
+  border-radius: material.$co-box-border-radius;
+  &.block {
+    width: 100%;
+  }
+}
+
+.co-control__input-invisible {
+  @include material.BodyType();
+  background-color: var(--co-type-body-background-color);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: var(--co-box-border-solid-thick);
+  max-width: 4rem;
+
+  &:hover,&:focus {
+    background-color: var(--co-type-body-background-color);
+    outline: none;
+  }
+}
+
+.co-control__input-icon {
+  margin-left: -2rem;
+  margin-right: 0.7rem;
+}

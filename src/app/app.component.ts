@@ -3,7 +3,9 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CoreBtnComponent, CoreThemeService, CoreTopnavComponent } from 'core-material';
+import { CoreBtnComponent } from '@/material/components/core-btn/core-btn.component';
+import { CoreTopnavComponent } from '@/material/components/core-topnav/core-topnav.component';
+import { CoreThemeService } from '@/material/services/core-theme.service';
 import { CoreFooterComponent } from '@/core/components/core-footer/core-footer.component';
 import { AuthUser } from '@/auth/types';
 import { AuthState } from '@/auth/state/auth.reducer';

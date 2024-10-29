@@ -5,13 +5,12 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angula
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { 
-  CORE_INPROGRESS_STATUS,
-  CoreLoadingComponent,
-  CoreBtnComponent,
-  CoreControlComponent,
-  CoreMessageComponent
-} from 'core-material'
+import { CORE_INPROGRESS_STATUS } from '@/material/types';
+
+import { CoreLoadingComponent } from '@/material/components/core-loading/core-loading.component';
+import { CoreBtnComponent } from '@/material/components/core-btn/core-btn.component';
+import { CoreControlComponent } from '@/material/components/core-control/core-control.component';
+import { CoreMessageComponent } from '@/material/components/core-message/core-message.component';
 
 import { login } from '@/auth/state/auth.actions';
 

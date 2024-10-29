@@ -6,7 +6,7 @@ import {
   CORE_PENDING_STATUS,
   CORE_INPROGRESS_STATUS,
   CORE_DONE_STATUS
-} from 'core-material';
+} from '@/material/types';
 
 
 export const AUTH_FEATURE_KEY = 'auth';

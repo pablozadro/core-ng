@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable, map, of } from 'rxjs';
 import * as jose from 'jose';
 
-import { CoreStorageService } from 'core-material';
+import { CoreStorageService } from '@/material/services/core-storage.service';
 import { CoreApiResponse, CoreApiService } from '@/core/services/core-api.service';
 import { AuthUser } from '@/auth/types';
 

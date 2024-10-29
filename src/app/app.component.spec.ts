@@ -5,7 +5,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
 import { initialAppState } from '@/app.reducer';
-import { CORE_DONE_STATUS, CoreThemeService } from 'core-material';
+import { CoreThemeService } from '@/material/services/core-theme.service';
+import { CORE_DONE_STATUS } from '@/material/types';
 import { logout } from '@/auth/state/auth.actions';
 import { AuthApiService } from '@/auth/services/auth-api.service';
 

@@ -1,0 +1,39 @@
+@use 'material';
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: material.$co-ly-modal-index;
+  background-color: rgba(0,0,0,0.8);
+  background-color: var(--co-modal-background-color);
+}
+
+.modal-wrapper {
+  margin: 10vh auto 0 auto;
+  width: 60vw;
+  color: var(--co-type-body-color);
+  background-color: var(--co-type-body-background-color);
+}
+
+.modal-top-panel {
+  & > .title { margin: 0; }
+}
+
+.modal-content {
+  padding: material.getBoxSize('rg');
+  border-top: 1px solid rgb(200,200,200);
+  border-bottom: 1px solid rgb(200,200,200);
+  min-height: 30vh;
+}
+
+.modal-bottom-panel {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: material.getBoxSize('rg');
+}

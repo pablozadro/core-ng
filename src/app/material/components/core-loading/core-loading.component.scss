@@ -1,0 +1,8 @@
+@use 'material';
+
+.co-loading {
+  @include material.ColorMix('flat');
+  display: inline-block;
+  padding: material.getBoxSize('sm') material.getBoxSize('rg');
+  border-radius: material.$co-box-border-radius;
+}
