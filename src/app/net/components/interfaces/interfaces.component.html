@@ -1,0 +1,27 @@
+<div class="container box-pd">
+  <section class="section">
+    <header>
+      <h1 class="title md">{{title}}</h1>
+    </header>
+    @if(parsedNets && parsedNets.length) {
+      @for (net of parsedNets; track net.name) {
+        <article class="box-mg-b-lg">
+          <header>
+            <h2 class="title rg">{{ net.name }}</h2>
+          </header>
+          @for (i of net.interfaces; track i.address) {
+            <ul class="box-mg-y-rg">
+              <li>Adress: {{i.address}}</li>
+              <li>Family: {{i.family}}</li>
+              <li>Internal: {{i.internal}}</li>
+            </ul>
+          }
+        </article>
+      } @empty {
+      <div>There are no items.</div>
+      }
+    } @else {
+      <div>No Nets</div>
+    }
+  </section>
+</div>

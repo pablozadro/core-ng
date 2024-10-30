@@ -13,6 +13,7 @@ export interface AuthLoginBody {
   password: string;
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +31,7 @@ export class AuthApiService {
   login(body: AuthLoginBody): Observable<string | null> {
     const storageToken = this.getToken();
     if(storageToken) return of(storageToken);
+
     return this.coreApiService
       .post(this.AUTH_LOGIN_URL, body)
       .pipe(
