@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -26,9 +26,7 @@ import { AuthApiService } from '@/auth/services/auth-api.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild(CoreTopnavComponent) topnav!:CoreTopnavComponent;
-
+export class AppComponent implements OnInit {
   pageTitle = 'Unknown Page';
   auth$!: Observable<AuthState>;
   token = '';
@@ -53,10 +51,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     if(token) {
       this.store.dispatch(loginSuccess({ token }));
     }
-  }
-
-  ngAfterViewInit() {
-    console.log('-> ViewChild', this.topnav);
   }
 
   onLogout() {
