@@ -3,5 +3,8 @@
     <header>
       <h1 class="title md">Profile</h1>
     </header>
+    <div *ngIf="user">
+      <span>Email: {{ user.email }}</span>
+    </div>
   </section>
 </div>

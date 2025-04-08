@@ -19,6 +19,7 @@ export const routes: Routes = [
   { 
     path: 'net/interfaces', 
     component: InterfacesComponent,
+    canActivate: [authTokenGuard],
     title: 'Interfaces',
     data: {
       title: 'Interfaces'
