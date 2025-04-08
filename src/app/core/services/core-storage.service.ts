@@ -8,7 +8,9 @@ export class CoreStorageService {
   getItem(key: string): any {
     if(!window) return;
     const item = window.localStorage.getItem(key);
-    return item ? JSON.parse(item):null;
+    if(!item) return null;
+    if(typeof item === 'string') return item;
+    return JSON.parse(item);
   }
 
   setItem(key: string, data: any) {

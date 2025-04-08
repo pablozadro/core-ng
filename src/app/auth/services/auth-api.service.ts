@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable, map, of } from 'rxjs';
 import * as jose from 'jose';
 
-import { CoreStorageService } from '@/material/services/core-storage.service';
+import { CoreStorageService } from '@root/app/core/services/core-storage.service';
 import { CoreApiResponse, CoreApiService } from '@/core/services/core-api.service';
 import { AuthUser } from '@/auth/types';
 
@@ -18,7 +18,7 @@ export interface AuthLoginBody {
   providedIn: 'root'
 })
 export class AuthApiService {
-  readonly AUTH_LOGIN_URL = 'auth/login';
+  readonly AUTH_LOGIN_URL = 'auth/v1/users/login';
   readonly AUTH_STORAGE_TOKEN = 'auth-user';
 
   constructor(

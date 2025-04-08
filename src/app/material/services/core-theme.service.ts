@@ -7,7 +7,7 @@ import {
   CORE_BROWSER_THEME_DARK
 } from '../types';
 
-import { CoreStorageService } from './core-storage.service';
+import { CoreStorageService } from '../../core/services/core-storage.service';
 
 
 @Injectable({
