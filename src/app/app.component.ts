@@ -11,6 +11,7 @@ import { AuthUser } from '@/auth/types';
 import { AuthState } from '@/auth/state/auth.reducer';
 import { loginSuccess, logout } from '@/auth/state/auth.actions';
 import { AuthApiService } from '@/auth/services/auth-api.service';
+import { RootState } from '@/app.reducer';
 
 
 @Component({
@@ -36,9 +37,9 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly coreThemeService: CoreThemeService,
     private readonly authApiService: AuthApiService,
-    private readonly store: Store<any>
+    private readonly store: Store<RootState>
   ) {
-    this.store.subscribe(state => {
+    this.store.subscribe((state: RootState) => {
       this.token = state.app.auth ? state.app.auth.token:'';
       this.user = this.authApiService.getUser();
     });
