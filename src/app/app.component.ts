@@ -47,7 +47,6 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.coreThemeService.initTheme();
     const token = this.authApiService.getToken();
-    
     if(token) {
       this.store.dispatch(loginSuccess({ token }));
     }
