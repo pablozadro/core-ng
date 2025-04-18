@@ -1,29 +1,23 @@
-import { Store } from '@ngrx/store';
 import { Component } from '@angular/core';
-import { AsyncPipe, NgIf } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { AuthUser } from '@/auth/types';
-import { AuthApiService } from '@/auth/services/auth-api.service';
+import { AsyncPipe } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppState } from '@/app.reducer';
+import { selectAuth, AuthState } from '@/auth/state/auth.reducer';
 
 @Component({
   selector: 'app-auth-profile',
   standalone: true,
-  imports: [AsyncPipe, NgIf],
+  imports: [
+    AsyncPipe
+  ],
   templateUrl: './auth-profile.component.html',
   styleUrl: './auth-profile.component.scss'
 })
 export class AuthProfileComponent {
-  title = '';
-  user: AuthUser | null = null;
+  authState$!: Observable<AuthState>;
 
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly authApiService: AuthApiService,
-    private readonly store: Store<any>
-  ) {
-    this.title = this.route.snapshot.data['title'];
-    this.store.subscribe(() => {
-      this.user = this.authApiService.getUser();
-    });
+  constructor(private store: Store<AppState>) {
+    this.authState$ = this.store.select(selectAuth);
   }
 }

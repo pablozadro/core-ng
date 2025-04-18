@@ -19,20 +19,22 @@
         </div>
       </div>
       <div class="box-mg-t-md">
-        <div class="flex-align-center flex-justify-start">
+        <div class="flex-align-center flex-justify-start box-mg-b-rg">
           <core-btn 
             theme="flat"
             class="box-mg-r-md" 
             label="Login" [disabled]="form.invalid" 
             (click)="onFormSubmit()"/>
-          @if(loading) {
+        </div>
+        @if(authState$ | async; as authState) {
+          @if(authState.status === CORE_INPROGRESS_STATUS) {
             <core-loading />
           }
-        </div>
-        @if(!loading && error) {
-          <div class="box-mg-t-rg error-color">
-            <core-message mix="error" [label]="error" />
-          </div>
+          @if(authState.status === CORE_DONE_STATUS && authState.error) {
+            <div class="box-mg-t-rg error-color">
+              <core-message mix="error" [label]="authState.error" />
+            </div>
+          }
         }
       </div>
     </form>

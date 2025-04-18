@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, map, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import * as jose from 'jose';
-
-import { CoreStorageService } from '@root/app/core/services/core-storage.service';
-import { CoreApiResponse, CoreApiService } from '@/core/services/core-api.service';
+import { CoreApiService } from '@/core/services/core-api.service';
+import config from '@/auth/config';
+import { CoreStorageService } from '@/core/services/core-storage.service';
 import { AuthUser } from '@/auth/types';
 
 
@@ -13,62 +12,66 @@ export interface AuthLoginBody {
   password: string;
 }
 
+export interface AuthLoginResponse {
+  token: string | null;
+  error: string | null;
+  user: AuthUser | null;
+}
+
+export interface GetLoggedUserResponse {
+  user: AuthUser;
+  token: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthApiService {
-  readonly AUTH_LOGIN_URL = 'auth/v1/users/login';
-  readonly AUTH_STORAGE_TOKEN = 'auth-user';
+export class AuthService {
+  readonly LOGIN_URL = config.loginApiUrl;
 
   constructor(
     private readonly coreApiService: CoreApiService,
-    private readonly coreStorageService: CoreStorageService,
-    private readonly router: Router,
+    private readonly coreStorageService: CoreStorageService
   ) { }
 
-
-  login(body: AuthLoginBody): Observable<string | null> {
-    const storageToken = this.getToken();
-    if(storageToken) return of(storageToken);
-
-    return this.coreApiService
-      .post(this.AUTH_LOGIN_URL, body)
-      .pipe(
-        map((res: CoreApiResponse) => {
-          if(res.error) return null;
-          const token = res.payload.token || null;
-          if(token) {
-            this.setToken(token);
-          } else {
-            this.removeToken();
-          }
-          return token;
-        })
-      )
+  private getToken(): string | null {
+    const authStorage = this.coreStorageService.getItem(config.authStorageKey);
+    const token = authStorage?.token || null;
+    return token;
   }
 
-  logout() {
-    this.removeToken();
-    this.router.navigate(['auth/login']);
+  private decodeUserFromToken(token: string): AuthUser {
+    return jose.decodeJwt(token);
   }
 
-  getUser(): AuthUser | null {
+  removeLoggedUser() {
+    this.coreStorageService.removeItem(config.authStorageKey);
+  }
+
+  getLoggedUser(): GetLoggedUserResponse | null {
     const token = this.getToken();
     if (!token) return null;
-    const user: AuthUser = jose.decodeJwt(token);
-    return user;
+    const user = this.decodeUserFromToken(token);
+    return { user, token };
   }
 
-  getToken(): string | null {
-    return this.coreStorageService.getItem(this.AUTH_STORAGE_TOKEN);
-  }
 
-  removeToken() {
-    return this.coreStorageService.removeItem(this.AUTH_STORAGE_TOKEN);
-  }
 
-  setToken(token: string) {
-    return this.coreStorageService.setItem(this.AUTH_STORAGE_TOKEN, token);
+  login(body: AuthLoginBody): Observable<AuthLoginResponse> {
+    return this.coreApiService
+      .post(this.LOGIN_URL, body)
+      .pipe(
+        map(res => {
+          let user = null;
+          let token = null;
+          if(res.payload?.token) {
+            token = res.payload.token;
+            user = this.decodeUserFromToken(token);
+          }
+          const error = res.error ? `${res.error.msg}: ${res.error.cause}` : null
+          return { token, user, error };
+        })
+      );
   }
 }

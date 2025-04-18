@@ -3,8 +3,10 @@
     <header>
       <h1 class="title md">Profile</h1>
     </header>
-    <div *ngIf="user">
-      <span>Email: {{ user.email }}</span>
-    </div>
+    @if(authState$ | async; as authState) {
+      @if(authState.user; as user) {
+        <div>{{user.email}}</div>
+      }
+    }
   </section>
 </div>

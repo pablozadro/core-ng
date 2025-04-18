@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgIf } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { CORE_INPROGRESS_STATUS } from '@/material/types';
+import { 
+  CORE_INPROGRESS_STATUS,
+  CORE_DONE_STATUS,
+} from '@/material/types';
 
 import { CoreLoadingComponent } from '@/material/components/core-loading/core-loading.component';
 import { CoreBtnComponent } from '@/material/components/core-btn/core-btn.component';
 import { CoreControlComponent } from '@/material/components/core-control/core-control.component';
 import { CoreMessageComponent } from '@/material/components/core-message/core-message.component';
-
+import config from '@/auth/config';
 import { login } from '@/auth/state/auth.actions';
+import { selectAuth, AuthState } from '@/auth/state/auth.reducer';
+import { AppState } from '@root/app/app.reducer';
 
 
 @Component({
@@ -20,6 +25,7 @@ import { login } from '@/auth/state/auth.actions';
   standalone: true,
   imports: [
     NgIf,
+    AsyncPipe,
     ReactiveFormsModule,
     CoreLoadingComponent,
     CoreBtnComponent,
@@ -30,13 +36,13 @@ import { login } from '@/auth/state/auth.actions';
   styleUrl: './auth-login.component.scss'
 })
 export class AuthLoginComponent {
-  PASSWORD_MIN_LEN = 6;
+  readonly CORE_INPROGRESS_STATUS = CORE_INPROGRESS_STATUS;
+  readonly CORE_DONE_STATUS = CORE_DONE_STATUS;
+  readonly PASSWORD_MIN_LEN = config.passwordMinLength;
+  
   title = '';
 
-  state$!: Observable<Store>;
-
-  loading = false;
-  error = '';
+  authState$!: Observable<AuthState>;
 
   email = new FormControl('', [
     Validators.required, 
@@ -55,14 +61,10 @@ export class AuthLoginComponent {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly store: Store<any>
+    private readonly store: Store<AppState>
   ) {
+    this.authState$ = this.store.select(selectAuth);
     this.title = this.route.snapshot.data['title'];
-
-    this.store.subscribe((state: any) => {
-      this.loading = state.app.auth.status === CORE_INPROGRESS_STATUS;
-      this.error = state.app.auth.error;
-    });
   }
 
   onFormSubmit() {

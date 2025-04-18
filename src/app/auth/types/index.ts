@@ -1,5 +1,7 @@
 export interface AuthUser {
+  _id: string;
+  username: string;
   email: string;
-  exp: number;
-  iat: number;
+  createdAt: string;
+  updatedAt: string;
 }

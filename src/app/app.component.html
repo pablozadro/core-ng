@@ -5,17 +5,21 @@
     </li>
   </ul>
   <ul secondary>
-    @if(token) {
-      <li>
-        <a class="link" routerLink="/auth/profile" data-id="profile-link">{{user?.email}}</a>
-      </li>
-      <li>
-        <core-btn mix="flat" (click)="onLogout()" label="Logout" data-id="logout-btn"/>
-      </li>
-    } @else {
-      <li>
-        <a class="link" routerLink="/auth/login" data-id="login-link">Login</a>
-      </li>
+    @if(authState$ | async; as authState) {
+      @if(authState.user) {
+        <li>
+          <a class="link" routerLink="/auth/profile" data-id="profile-link">
+            {{authState.user.email}}
+          </a>
+        </li>
+        <li>
+          <core-btn mix="flat" (click)="onLogout()" label="Logout" data-id="logout-btn"/>
+        </li>
+      } @else {
+        <li>
+          <a class="link" routerLink="/auth/login" data-id="login-link">Login</a>
+        </li>
+      }   
     }
     <li>
       <core-btn 

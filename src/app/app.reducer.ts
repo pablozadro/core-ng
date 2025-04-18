@@ -1,27 +1,17 @@
-import { combineReducers } from "@ngrx/store";
+import { isDevMode } from '@angular/core';
+import {
+  ActionReducerMap,
+  MetaReducer
+} from '@ngrx/store';
 
-import { 
-  authReducer, 
-  initialAuthState, 
-  AuthState 
-} from "@/auth/state/auth.reducer";
-
-
-export const APP_FEATURE_KEY = 'app';
-
+import { authReducer, AuthState } from '@/auth/state/auth.reducer';
 
 export interface AppState {
   auth: AuthState;
 }
 
-export interface RootState {
-  app: AppState;
-}
+export const reducers: ActionReducerMap<AppState> = {
+  'auth': authReducer
+};
 
-export const initialAppState: AppState = {
-  auth: initialAuthState,
-}
-
-export const appReducer = combineReducers({
-  auth: authReducer,
-});
+export const metaReducers: MetaReducer<AppState>[] = isDevMode() ? [] : [];

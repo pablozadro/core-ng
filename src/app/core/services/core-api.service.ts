@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable, catchError, of, map } from 'rxjs';
 import { environment } from '@root/environments/environment';
 
-export interface CoreApiResponse {
-  message: string;
+
+export interface LiteApiError {
+  status: number;
+  msg: string;
+  cause: any;
+}
+
+export interface LiteApiResponse {
+  msg: string;
   payload: any;
-  error: any;
+  error: LiteApiError | null;
 }
 
 
@@ -14,27 +21,27 @@ export interface CoreApiResponse {
   providedIn: 'root'
 })
 export class CoreApiService {
+  readonly BASE_URL = environment.liteApiBaseUrl;
 
   constructor(
     private readonly http: HttpClient
   ) { }
 
-  get(url: string): Observable<CoreApiResponse> {
+  post(url: string, body: any = {}): Observable<LiteApiResponse> {
+    const fullUrl = `${this.BASE_URL}/${url}`;
     return this.http
-      .request('get', `${environment.coreApiBaseUrl}/${url}`)
-      .pipe(this.handleResponse)
+      .request('post', fullUrl, { observe: 'response', body })
+      .pipe(this.handleResponse);
   }
 
-  post(url: string, body: any): Observable<CoreApiResponse> {
-    return this.http
-      .request('post', `${environment.coreApiBaseUrl}/${url}`, { body })
-      .pipe(this.handleResponse)
-  }
-
-  handleResponse(obs:Observable<any>): Observable<CoreApiResponse> {
+  handleResponse(obs:Observable<HttpResponse<any>>): Observable<LiteApiResponse> {
     return obs.pipe(
-      catchError(() => {
-        return of({ message: 'Error', payload: null, error: 'Request Error' })
+      map(res => {
+        return res.body;
+      }),
+      catchError(res => {
+        const { error } = res;
+        return of(error)
       })
     )
   }

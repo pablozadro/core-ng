@@ -1,16 +1,16 @@
 import { CanActivateFn } from '@angular/router';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
-
-import { AuthApiService } from '@/auth/services/auth-api.service';
+import config from '@/auth/config';
+import { AuthService } from '@/auth/services/auth-api.service';
 
 
 export const authTokenGuard: CanActivateFn = () => {
-  const authApiService = inject(AuthApiService);
+  const authService = inject(AuthService);
   const router = inject(Router);
-  const storageToken = authApiService.getToken();
-  if (!storageToken) {
-    router.navigate(['auth/login']);
+  const loggedUser = authService.getLoggedUser();
+  if (!loggedUser) {
+    router.navigate([config.loginUrl]);
     return false;
   }
   return true;

@@ -8,7 +8,7 @@ import { initialAppState } from '@/app.reducer';
 import { CoreThemeService } from '@/material/services/core-theme.service';
 import { CORE_DONE_STATUS } from '@/material/types';
 import { logout } from '@/auth/state/auth.actions';
-import { AuthApiService } from '@/auth/services/auth-api.service';
+import { AuthService } from '@/auth/services/auth-api.service';
 
 
 const CoreThemeServiceMock = {
@@ -21,7 +21,7 @@ describe('AppComponent', () => {
   let component: AppComponent;
   let el: HTMLElement;
   let store: MockStore<any>;
-  let authApiService: AuthApiService;
+  let authService: AuthService;
   let coreThemeService: CoreThemeService;
 
 
@@ -34,7 +34,7 @@ describe('AppComponent', () => {
         provideHttpClient(),
         provideMockStore({ initialState: initialAppState }),
         provideRouter([]),
-        AuthApiService,
+        AuthService,
         { provide: CoreThemeService, useValue: CoreThemeServiceMock }
       ],
     }).compileComponents();
@@ -43,7 +43,7 @@ describe('AppComponent', () => {
     component = fixture.componentInstance;
     el = fixture.debugElement.nativeElement;
     store = TestBed.inject(MockStore);
-    authApiService = TestBed.inject(AuthApiService);
+    authService = TestBed.inject(AuthService);
     coreThemeService = TestBed.inject(CoreThemeService);
     fixture.detectChanges();
   });
@@ -89,8 +89,8 @@ describe('AppComponent', () => {
     });
 
     xit('should render profile link', () => {
-      spyOn(authApiService, 'getToken').and.returnValue('abc123');
-      spyOn(authApiService, 'getUser').and.returnValue({
+      spyOn(authService, 'getToken').and.returnValue('abc123');
+      spyOn(authService, 'getUser').and.returnValue({
         email: 'foo@localhost.io',
         iat: 1,
         exp: 1,
