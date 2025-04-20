@@ -1,9 +1,8 @@
 import { Routes } from '@angular/router';
-
+import { authTokenGuard } from '@/auth/guards/auth-token.guard';
 import { CoreLandingComponent } from '@/core/components/core-landing/core-landing.component';
 import { AuthProfileComponent } from '@/auth/components/auth-profile/auth-profile.component';
 import { AuthLoginComponent } from '@/auth/components/auth-login/auth-login.component';
-import { authTokenGuard } from '@/auth/guards/auth-token.guard';
 
 
 export const routes: Routes = [
