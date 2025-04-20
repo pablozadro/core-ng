@@ -12,12 +12,12 @@ export interface CoreConfig {
 
 const defaultCoreConfig: CoreConfig = {
   size: {
-    sm: types.CORE_SIZE_SM,
-    rg: types.CORE_SIZE_RG,
-    md: types.CORE_SIZE_MD,
-    lg: types.CORE_SIZE_LG,
-    xl: types.CORE_SIZE_XL,
     xxl: types.CORE_SIZE_XXL,
+    xl: types.CORE_SIZE_XL,
+    lg: types.CORE_SIZE_LG,
+    md: types.CORE_SIZE_MD,
+    rg: types.CORE_SIZE_RG,
+    sm: types.CORE_SIZE_SM,
   },
   mixins: {
     primary: types.CORE_COLOR_MIX_PRIMARY,

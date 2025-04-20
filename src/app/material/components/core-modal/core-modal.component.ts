@@ -20,7 +20,7 @@ export class CoreModalComponent {
     private element: ElementRef
   ) {}
 
-  onClose(e: Event) {
+  onClose() {
     this.coreModalService.close();
   }
 

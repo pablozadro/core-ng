@@ -1,16 +1,16 @@
 <article #modal class="modal">
   <div class="modal-wrapper">
 
-    <header class="flex-align-center flex-justify-between pd-y-sm pd-x">
-      <h2 class="title rg mg-r">Modal</h2>
-      <core-btn icon="close" [squared]="true" (click)="onClose($event)" theme="flat"/>
+    <header class="flex-align-center flex-justify-between box-pd-y-sm box-pd-x-rg">
+      <h2 class="title rg box-mg-r-rg">Modal</h2>
+      <core-btn icon="close" [squared]="true" (click)="onClose()" theme="flat"/>
     </header>
 
-    <div class="modal-content pd-x">
+    <div class="modal-content box-pd-x-rg">
       Hello
     </div>
 
-    <div class="flex-align-center flex-justify-end pd-y-sm pd-x">
+    <div class="flex-align-center flex-justify-end box-pd-y-sm box-pd-x-rg">
       <core-btn label="Ok" />
     </div>
   </div>

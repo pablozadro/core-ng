@@ -28,7 +28,7 @@
       &:hover {
         cursor: pointer;
         background-color: material.getMix('flat', 'background-color-hover');
-        transition: all $co-transitions-time ease;
+        transition: all material.$co-transitions-time ease;
       }
 
 

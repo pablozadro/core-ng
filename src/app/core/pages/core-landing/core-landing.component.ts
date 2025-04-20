@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { CoreBrandComponent } from '@/material/components/core-brand/core-brand.component';
 import { CoreModalService } from '@/material/services/core-modal.service';
-import { CoreInfoComponent } from '../core-info/core-info.component';
+import { CoreInfoComponent } from './core-info/core-info.component';
 
 @Component({
   selector: 'app-core-landing',

@@ -12,7 +12,9 @@ import {
 import { CoreModalComponent } from '@/material/components/core-modal/core-modal.component';
 
 
-interface Options {}
+interface Options {
+  title: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +23,9 @@ export class CoreModalService {
   // Create a reference to our modal component
   newModalComponent!: ComponentRef<CoreModalComponent>;
   options!: Options;
+  defaultOptions: Options = {
+    title: 'Modal Title'
+  }
 
   constructor(
     private appRef: ApplicationRef,
@@ -46,11 +51,11 @@ export class CoreModalService {
     if (vcrOrComponent instanceof ViewContainerRef) {
       // For the first approach, we know that the second param will be of type TemplateRef, so we have to cast it  
       this.openWithTemplate(vcrOrComponent, param2 as TemplateRef<Element>);
-      this.options = options || {};
+      this.options = options || this.defaultOptions;
     } else {
       this.openWithComponent(vcrOrComponent);
       // Same story here : for the second approach, the second param will be of type Options or undefined, since optional 
-      this.options = param2 as Options | {};
+      this.options = param2 as Options || this.defaultOptions;
     }
   }
 
