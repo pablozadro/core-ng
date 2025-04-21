@@ -38,3 +38,19 @@
     border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color');
   }
 }
+
+@mixin ColorMixOnlyInteractive($mix, $bordered: false) {
+  &:hover,
+  &:focus {
+    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color-hover');
+    background-color: functions.getMix($mix, 'background-color-hover');
+    transition: all vars.$co-transitions-time ease;
+    outline: none;
+  }
+  &[disabled],
+  &.disabled {
+    opacity: 0.5;
+    background-color: functions.getMix($mix, 'background-color');
+    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color');
+  }
+}

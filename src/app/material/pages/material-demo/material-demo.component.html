@@ -1,6 +1,6 @@
 <div class="container box-pd">
   <section class="section">
-    <header class="box-mg-b-xl">
+    <header class="section__header box-mg-b-xl">
       <h1 class="title lg">{{title}}</h1>
     </header>
 
@@ -11,7 +11,11 @@
       </header>
       @for (size of sizes; track size) {
         <div class="swatch">
-          <div class="title {{size}}" style="line-height: 1.2; margin-bottom: 0;">The Quick Brown Fox</div>
+          <div class="swatch__item">
+            <div class="title {{size}} box-inline" style="line-height: 1.2; margin-bottom: 0;">
+              The Quick Brown Fox
+            </div>
+          </div>
           <div class="swatch__label">{{size}}</div>
         </div>
       }
@@ -26,7 +30,7 @@
         @for (mix of mixins; track mix) {  
           <div class="swatch-flex__item">
             <div class="{{mix}}-mix" style="border-radius: 100%; width: 3rem;height: 3rem;text-align: center;line-height: 3rem; vertical-align: middle;">Y</div>
-            <div class="swatch__label">{{mix}}</div>
+            <div class="swatch-flex__label">{{mix}}</div>
           </div>
         }
       </div>
@@ -38,21 +42,6 @@
         <h2 class="title md">Buttons</h2>
       </header>
 
-      <!-- Buttons / Mixins -->
-      <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
-          <h2 class="title rg">Mixins</h2>
-        </header>
-        <div class="swatch-flex">
-          @for (mix of mixins; track mix) {
-            <div class="swatch-flex__item">
-              <core-btn [label]="mix" [mix]="mix" />
-              <div class="swatch__label">{{mix}}</div>
-            </div>
-          }
-        </div>
-      </article>
-
       <!-- Buttons / Disabled -->
       <article class="demo-subarticle">
         <header class="demo-subarticle__header">
@@ -62,7 +51,7 @@
           @for (mix of mixins; track mix) {
             <div class="swatch-flex__item">
               <core-btn [label]="mix" [mix]="mix" [disabled]="true"/>
-              <div class="swatch__label">{{mix}}</div>
+              <div class="swatch-flex__label">{{mix}}</div>
             </div>
           }
         </div>
@@ -77,7 +66,7 @@
           @for (mix of mixins; track mix) {
             <div class="swatch-flex__item">
               <core-btn [label]="mix" [mix]="mix" icon="settings"/>
-              <div class="swatch__label">{{mix}}</div>
+              <div class="swatch-flex__label">{{mix}}</div>
             </div>
           }
         </div>
@@ -92,7 +81,7 @@
           @for (mix of mixins; track mix) {
             <div class="swatch-flex__item">
               <core-btn [mix]="mix" icon="settings" [squared]="true"/>
-              <div class="swatch__label">{{mix}}</div>
+              <div class="swatch-flex__label">{{mix}}</div>
             </div>
           }
         </div>
@@ -107,7 +96,7 @@
           @for (size of sizes; track size) {
             <div class="swatch-flex__item">
               <core-btn mix="flat" icon="settings" [squared]="true" [size]="size"/>
-              <div class="swatch__label">{{size}}</div>
+              <div class="swatch-flex__label">{{size}}</div>
             </div>
           }
         </div>
@@ -129,7 +118,7 @@
           @for (mix of brandMixins; track mix) {
             <div class="swatch-flex__item">
               <core-brand [mix]="mix"/>
-              <div class="swatch__label">{{mix}}</div>
+              <div class="swatch-flex__label">{{mix}}</div>
             </div>
           }
         </div>
@@ -144,7 +133,7 @@
           @for (size of sizes; track size) {
             <div class="swatch-flex__item">
               <core-brand mix="flat" [size]="size"/>
-              <div class="swatch__label">{{size}}</div>
+              <div class="swatch-flex__label">{{size}}</div>
             </div>
           }
         </div>
@@ -162,18 +151,15 @@
         <header class="demo-subarticle__header">
           <h2 class="title rg">Labels</h2>
         </header>
-          <div class="swatch">
-            <core-control id="control1" [control]="control1" />
-            <div class="swatch__label">No Label</div>
-          </div>
-          <div class="swatch">
-            <core-control id="control1" [control]="control1" label="Some Label"/>
-            <div class="swatch__label">Label</div>
-          </div>
-          <div class="swatch">
-            <core-control id="control1" [control]="control1" label="Some Label" [floatLabel]="true" />
-            <div class="swatch__label">float Label</div>
-          </div>
+        <div class="box-mg-b-rg">
+          <core-control id="control1" [control]="control1" placeholder="No Label"/>
+        </div>
+        <div class="box-mg-b-rg">
+          <core-control id="control1" [control]="control1" label="Some Label"/>
+        </div>
+        <div class="box-mg-b-rg">
+          <core-control id="control1" [control]="control1" label="Float Label" [floatLabel]="true" />
+        </div>
       </article>
 
       <!-- Controls / Sizes -->
@@ -183,7 +169,9 @@
         </header>
         @for (size of sizes; track size) {
           <div class="swatch">
-            <core-control id="control1" [control]="control1" [size]="size"/>
+            <div class="swatch__item">
+              <core-control id="control1" [control]="control1" [size]="size"/>
+            </div>
             <div class="swatch__label">{{size}}</div>
           </div>
         }
@@ -192,37 +180,23 @@
       <!-- Controls / Icons -->
       <article class="demo-subarticle">
         <header class="demo-subarticle__header">
-          <h2 class="title rg">Icons</h2>
+          <h2 class="title rg">Show/Hide password</h2>
         </header>
         <div class="swatch">
-          <core-control id="control2" type="password" [control]="control2" [showHide]="true" />
+          <div class="swatch__item">
+            <core-control id="control2" type="password" [control]="control2" [showHide]="true" />
+          </div>
           <div class="swatch__label">Show/Hide password</div>
-        </div>
-      </article>
-
-      <!-- Controls / Block -->
-      <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
-          <h2 class="title rg">Block</h2>
-        </header>
-        <div class="swatch">
-          <core-control id="control1" [control]="control1" [block]="true" />
-          <div class="swatch__label">Block</div>
         </div>
       </article>
 
       <!-- Controls / Style -->
       <article class="demo-subarticle">
         <header class="demo-subarticle__header">
-          <h2 class="title rg">Style</h2>
+          <h2 class="title rg">Invisble</h2>
         </header>
-        <div class="swatch">
-          <core-control id="control1" [control]="control1" controlStyle="flat" />
-          <div class="swatch__label">Flat</div>
-        </div>
-        <div class="swatch">
+        <div>
           <core-control id="control3" [control]="control3" controlStyle="invisible" />
-          <div class="swatch__label">Invisble</div>
         </div>
       </article>
     </article>
@@ -232,7 +206,9 @@
       <header class="demo-article__header">
         <h2 class="title md">Loading</h2>
       </header>
-      <core-loading />
+      <div>
+        <core-loading />
+      </div>
     </article>
 
     <!-- Message -->
@@ -240,7 +216,9 @@
       <header class="demo-article__header">
         <h2 class="title md">Messages</h2>
       </header>
-      <core-message mix="warning" size="xl" label="warning" />
+      <div>
+        <core-message mix="warning" label="warning" />
+      </div>
     </article>
 
     <!-- Table -->
@@ -280,7 +258,9 @@
       <header class="demo-article__header">
         <h2 class="title md">Open Modal</h2>
       </header>
-      <core-btn label="open modal" (click)="onOpenModal()"/>
+      <div>
+        <core-btn label="open modal" (click)="onOpenModal()"/>
+      </div>
     </article>
   </section>
 </div>

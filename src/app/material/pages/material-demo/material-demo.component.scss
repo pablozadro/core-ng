@@ -1,9 +1,13 @@
 @use 'material';
 
+
+
+
 .demo-article {
   margin-bottom: material.getBoxSize('xxl');
 
   &__header {
+    display: inline-block;
     border-bottom: var(--co-box-border-solid-tick);
     margin-bottom: material.getBoxSize('md');
 
@@ -22,19 +26,29 @@
   }
 }
 
+%SwatchLabel {
+    font-size: material.$co-type-font-size-sm;
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+
 .swatch {
   margin-bottom: material.getBoxSize('md');
 
+  &__item {
+    display: inline-block;
+    border-bottom: var(--co-box-border-dotted);
+    padding-bottom: material.getBoxSize('sm');
+  }
+
   &__label {
-    font-size: material.$co-type-font-size-sm;
-    text-transform: uppercase;
-    border-top: var(--co-box-border-dotted);
-    margin-top: material.getBoxSize('sm');
-    opacity: 0.5;
+    @extend %SwatchLabel;
   }
 }
 
+
 .swatch-flex {
+  margin-bottom: material.getBoxSize('md');
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-end;
@@ -43,5 +57,12 @@
   &__item {
     margin-right: material.getBoxSize('md');
     margin-bottom: material.getBoxSize('sm');
+  }
+
+  &__label {
+    @extend %SwatchLabel;
+    margin-top: material.getBoxSize('sm');
+    border-top: var(--co-box-border-dotted);
+    width: 100%;
   }
 }
