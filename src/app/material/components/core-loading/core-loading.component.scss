@@ -1,8 +1,30 @@
 @use 'material';
 
-.co-loading {
-  @include material.ColorMix('flat');
+.loading {
   display: inline-block;
-  padding: material.getBoxSize('sm') material.getBoxSize('rg');
-  border-radius: material.$co-box-border-radius;
+  text-align: center;
+
+  &__spinner {
+    width: 48px;
+    height: 48px;
+    border: material.getBoxSize('sm') solid material.getColor('primary');
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+
+  &__label {
+    
+  }
 }
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 

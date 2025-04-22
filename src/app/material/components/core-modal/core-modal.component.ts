@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 import { CoreModalService } from '@/material/services/core-modal.service';
 import { CoreBtnComponent } from '@/material/components/core-btn/core-btn.component';
 
@@ -14,6 +14,7 @@ import { CoreBtnComponent } from '@/material/components/core-btn/core-btn.compon
 })
 export class CoreModalComponent {
   @ViewChild('modal') modal!: ElementRef<HTMLDivElement>;
+  @Input() title!: string;
 
   constructor(
     private readonly coreModalService: CoreModalService,

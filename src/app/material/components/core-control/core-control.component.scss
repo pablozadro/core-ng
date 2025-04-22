@@ -37,18 +37,9 @@
 }
 
 .co-control__input-invisible {
-  @include material.BodyType();
+  @include material.ColorMixInvisibleInteractive();
   padding: material.getBoxSize('sm') material.getBoxSize('rg') material.getBoxSize('sm') material.getBoxSize('sm');
-  background-color: var(--co-type-body-background-color);
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-bottom: var(--co-box-border-solid-thick);
-
-  &:hover, &:focus {
-    @include material.ColorMixOnlyInteractive('flat');
-    outline: none;
-  }
+  border-radius: material.$co-box-border-radius;
 }
 
 .co-control__input-icon {

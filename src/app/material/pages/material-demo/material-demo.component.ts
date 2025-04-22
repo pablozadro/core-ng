@@ -69,8 +69,8 @@ export class MaterialDemoComponent {
 
   onOpenModal() {
     console.log('-> opening modal...');
-    this.coreModalService.open(
-      ModalInnerComponent
-    );
+    this.coreModalService.open(ModalInnerComponent, {
+      title: 'Demo Modal'
+    });
   }
 }

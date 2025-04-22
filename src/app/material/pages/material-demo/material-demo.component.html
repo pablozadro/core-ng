@@ -206,9 +206,26 @@
       <header class="demo-article__header">
         <h2 class="title md">Loading</h2>
       </header>
-      <div>
-        <core-loading />
-      </div>
+
+      <!-- Loading / Default -->
+      <article class="demo-subarticle">
+        <header class="demo-subarticle__header">
+          <h2 class="title rg">Default</h2>
+        </header>
+        <div>
+            <core-loading />
+        </div>
+      </article>
+
+      <!-- Loading / Label -->
+      <article class="demo-subarticle">
+        <header class="demo-subarticle__header">
+          <h2 class="title rg">Label</h2>
+        </header>
+        <div>
+          <core-loading label="please wait..."/>
+        </div>
+      </article>
     </article>
 
     <!-- Message -->
@@ -216,9 +233,65 @@
       <header class="demo-article__header">
         <h2 class="title md">Messages</h2>
       </header>
-      <div>
-        <core-message mix="warning" label="warning" />
-      </div>
+
+      <!-- Message / Mixins -->
+      <article class="demo-subarticle">
+        <header class="demo-subarticle__header">
+          <h2 class="title rg">Mixins</h2>
+        </header>
+        <div>
+          <div class="swatch-flex">
+            @for (mix of mixins; track mix) {  
+              <div class="swatch-flex__item">
+                <core-message [mix]="mix" label="Some message" />
+                <div class="swatch-flex__label">{{mix}}</div>
+              </div>
+            }
+          </div>
+        </div>
+      </article>
+
+      <!-- Message / Icons -->
+      <article class="demo-subarticle">
+        <header class="demo-subarticle__header">
+          <h2 class="title rg">Icons</h2>
+        </header>
+        <div>
+          <div class="swatch-flex box-mg-b-md">
+            @for (mix of mixins; track mix) {  
+              <div class="swatch-flex__item">
+                <core-message [mix]="mix" label="One line message" icon="settings"/>
+                <div class="swatch-flex__label">{{mix}}</div>
+              </div>
+            }
+          </div>
+          <div class="swatch-flex">
+            @for (mix of mixins; track mix) {  
+              <div class="swatch-flex__item">
+                <core-message [mix]="mix" label="One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin." icon="settings"/>
+                <div class="swatch-flex__label">{{mix}}</div>
+              </div>
+            }
+          </div>
+        </div>
+      </article>
+
+      <!-- Message / Sizes -->
+      <article class="demo-subarticle">
+        <header class="demo-subarticle__header">
+          <h2 class="title rg">Sizes</h2>
+        </header>
+        <div>
+            @for (size of sizes; track size) {  
+            <div class="swatch">
+              <div class="swatch__item">
+                <core-message [size]="size" mix="warning" label="Some message" icon="warning" />
+              </div>
+              <div class="swatch__label">{{size}}</div>
+            </div>
+            }
+        </div>
+      </article>
     </article>
 
     <!-- Table -->
@@ -256,7 +329,7 @@
     <!-- Modal -->
     <article class="demo-article">
       <header class="demo-article__header">
-        <h2 class="title md">Open Modal</h2>
+        <h2 class="title md">Modal</h2>
       </header>
       <div>
         <core-btn label="open modal" (click)="onOpenModal()"/>

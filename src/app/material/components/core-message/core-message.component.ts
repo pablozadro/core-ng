@@ -19,4 +19,5 @@ export class CoreMessageComponent {
   @Input() mix: CoreColorMix = CORE_COLOR_MIX_SUCCESS;
   @Input() size: CoreSize = CORE_SIZE_SM;
   @Input() label = '-';
+  @Input() icon!: string;
 }

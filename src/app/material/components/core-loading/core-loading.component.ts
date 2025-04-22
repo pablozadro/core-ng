@@ -15,5 +15,5 @@ import {
 })
 export class CoreLoadingComponent {
   @Input() size: CoreSize = CORE_SIZE_SM;
-  @Input() label = 'loading...';
+  @Input() label!: string;
 }

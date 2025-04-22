@@ -1,8 +1,8 @@
 <article #modal class="modal">
   <div class="modal-wrapper">
 
-    <header class="flex-align-center flex-justify-between box-pd-y-sm box-pd-x-rg">
-      <h2 class="title rg box-mg-r-rg">Modal</h2>
+    <header class="flex-align-center flex-justify-between box-pd-sm">
+      <h2 class="title rg box-mg-r-rg">{{title}}</h2>
       <core-btn icon="close" [squared]="true" (click)="onClose()" theme="flat"/>
     </header>
 
@@ -10,7 +10,7 @@
       Hello
     </div>
 
-    <div class="flex-align-center flex-justify-end box-pd-y-sm box-pd-x-rg">
+    <div class="flex-align-center flex-justify-end box-pd-sm">
       <core-btn label="Ok" />
     </div>
   </div>

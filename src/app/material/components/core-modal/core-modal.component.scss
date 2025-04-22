@@ -25,8 +25,8 @@
 
 .modal-content {
   padding: material.getBoxSize('rg');
-  border-top: 1px solid rgb(200,200,200);
-  border-bottom: 1px solid rgb(200,200,200);
+  border-top: var(--co-box-border-solid-thin);
+  border-bottom: var(--co-box-border-solid-thin);
   min-height: 30vh;
 }
 

@@ -39,6 +39,30 @@
   }
 }
 
+@mixin ColorMixInvisible() {
+  border: vars.$co-box-border-width solid var(--co-type-body-background-color);
+  color: functions.getMix('flat', 'color');
+  background-color: var(--co-type-body-background-color);
+}
+
+
+@mixin ColorMixInvisibleInteractive() {
+  @include ColorMixInvisible();
+  &:hover,
+  &:focus {
+    border: vars.$co-box-border-width solid var(--co-type-body-background-color);
+    background-color: functions.getMix('flat', 'background-color-hover');
+    transition: all vars.$co-transitions-time ease;
+    outline: none;
+  }
+  &[disabled],
+  &.disabled {
+    opacity: 0.5;
+    background-color: functions.getMix('flat', 'background-color');
+    border: vars.$co-box-border-width solid functions.getMix('flat', 'background-color');
+  }
+}
+
 @mixin ColorMixOnlyInteractive($mix, $bordered: false) {
   &:hover,
   &:focus {

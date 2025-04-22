@@ -1,7 +1,15 @@
 @use 'material';
 
-.co-message {
-  display: inline-block;
-  padding: material.getBoxSize('sm') material.getBoxSize('rg');
+.message {
+  display: inline-flex;
+  padding: material.getBoxSize('sm');
   border-radius: material.$co-box-border-radius;
+
+  &__icon {
+    margin-right: material.getBoxSize('sm');
+  }
+
+  &__label {
+    margin-bottom: 0;
+  }
 }
