@@ -1,4 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { 
+  CoreSize,
+  CORE_SIZE_RG
+} from '../../types';
 
 interface CoreTableColumn {
   field: string;
@@ -18,6 +22,7 @@ export class CoreTableComponent {
   @Input() data: any;
   @Input() columns!: CoreTableColumn[];
   @Input() block = false;
+  @Input() size:CoreSize = CORE_SIZE_RG;
 
   onRowClicked(row: any) {
     this.rowClicked.emit(row);

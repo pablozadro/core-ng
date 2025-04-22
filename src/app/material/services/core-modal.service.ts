@@ -7,11 +7,17 @@ import {
   createComponent
 } from '@angular/core'
 
-import { CoreModalComponent } from '@/material/components/core-modal/core-modal.component';
+import { 
+  CoreModalComponent, 
+  PrimaryBtn, 
+  SecondaryBtn 
+} from '@/material/components/core-modal/core-modal.component';
 
 
 interface Options {
   title: string;
+  primaryBtn: PrimaryBtn;
+  secondaryBtn: SecondaryBtn;
 }
 
 @Injectable({
@@ -43,6 +49,8 @@ export class CoreModalService {
     });
 
     this.newModalComponent.instance.title = this.options.title;
+    this.newModalComponent.instance.primaryBtn = this.options.primaryBtn;
+    this.newModalComponent.instance.secondaryBtn = this.options.secondaryBtn;
 
     document.body.appendChild(this.newModalComponent.location.nativeElement);
 

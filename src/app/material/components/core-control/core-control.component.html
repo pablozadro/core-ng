@@ -14,7 +14,7 @@
       [name]="id" 
       [type]="type" 
       [formControl]="control"
-      [placeholder]="placeholder">
+      [attr.placeholder]="placeholder || null">
       @if (showHide) {
         <i class="material-icons co-control__input-icon" (click)="onShowHide()">{{showHideIcon}}</i>
       }

@@ -4,7 +4,7 @@ import {
   CoreColorMix,
   CORE_COLOR_MIX_SUCCESS,
   CoreSize,
-  CORE_SIZE_SM
+  CORE_SIZE_RG
 } from '../../types';
 
 
@@ -17,7 +17,7 @@ import {
 })
 export class CoreMessageComponent {
   @Input() mix: CoreColorMix = CORE_COLOR_MIX_SUCCESS;
-  @Input() size: CoreSize = CORE_SIZE_SM;
+  @Input() size: CoreSize = CORE_SIZE_RG;
   @Input() label = '-';
   @Input() icon!: string;
 }

@@ -12,6 +12,13 @@
   background-color: var(--co-modal-background-color);
 }
 
+.modal__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  & > .title { margin: 0 material.getBoxSize('rg') 0 0; }
+}
+
 .modal-wrapper {
   margin: 10vh auto 0 auto;
   width: 60vw;

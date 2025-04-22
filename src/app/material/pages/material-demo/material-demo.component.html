@@ -206,26 +206,9 @@
       <header class="demo-article__header">
         <h2 class="title md">Loading</h2>
       </header>
-
-      <!-- Loading / Default -->
-      <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
-          <h2 class="title rg">Default</h2>
-        </header>
-        <div>
-            <core-loading />
-        </div>
-      </article>
-
-      <!-- Loading / Label -->
-      <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
-          <h2 class="title rg">Label</h2>
-        </header>
-        <div>
-          <core-loading label="please wait..."/>
-        </div>
-      </article>
+      <div>
+        <core-loading label="loading..." />
+      </div>
     </article>
 
     <!-- Message -->
@@ -299,11 +282,35 @@
       <header class="demo-article__header">
         <h2 class="title md">Table</h2>
       </header>
-      <core-table 
-        [headers]="tableHeaders"
-        [data]="tableData"
-        [columns]="tableColumns"
-        (rowClicked)="onRowClicked($event)"/>
+      <div class="swatch-flex">
+        <div class="swatch-flex__item">
+          <core-table 
+            [headers]="tableHeaders"
+            [data]="tableData"
+            [columns]="tableColumns"
+            size="sm"
+            (rowClicked)="onRowClicked($event)"/>
+          <div class="swatch-flex__label">sm</div>
+        </div>
+        <div class="swatch-flex__item">
+          <core-table 
+            [headers]="tableHeaders"
+            [data]="tableData"
+            [columns]="tableColumns"
+            size="rg"
+            (rowClicked)="onRowClicked($event)"/>
+          <div class="swatch-flex__label">rg</div>
+        </div>
+        <div class="swatch-flex__item">
+          <core-table 
+            [headers]="tableHeaders"
+            [data]="tableData"
+            [columns]="tableColumns"
+            size="md"
+            (rowClicked)="onRowClicked($event)"/>
+          <div class="swatch-flex__label">md</div>
+        </div>
+      </div>
     </article>
 
     <!-- grid -->

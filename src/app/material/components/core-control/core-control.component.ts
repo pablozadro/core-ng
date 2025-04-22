@@ -18,7 +18,7 @@ export class CoreControlComponent implements OnInit {
   @Input() type: 'text' | 'email' | 'password' = 'text';
   @Input() control!: FormControl;
   @Input() label!: string;
-  @Input() placeholder = '-';
+  @Input() placeholder!: string;
   @Input() id!: string;
   @Input() size: CoreSize = CORE_SIZE_RG;
   @Input() floatLabel = false;

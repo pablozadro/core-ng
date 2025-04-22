@@ -67,10 +67,22 @@ export class MaterialDemoComponent {
     console.log('-> onRowClicked', data);
   }
 
+  onModalPrimaryAction() {
+    console.log('-> modal primary action')
+  }
+
   onOpenModal() {
     console.log('-> opening modal...');
     this.coreModalService.open(ModalInnerComponent, {
-      title: 'Demo Modal'
+      title: 'Demo Modal',
+      primaryBtn: {
+        label: 'Save',
+        action: () => this.onModalPrimaryAction()
+      },
+      secondaryBtn: {
+        label: 'Cancel',
+        action: () => this.coreModalService.close()
+      }
     });
   }
 }

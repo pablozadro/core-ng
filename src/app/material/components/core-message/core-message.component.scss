@@ -2,6 +2,7 @@
 
 .message {
   display: inline-flex;
+  align-items: center;
   padding: material.getBoxSize('sm');
   border-radius: material.$co-box-border-radius;
 
@@ -11,5 +12,7 @@
 
   &__label {
     margin-bottom: 0;
+    min-width: 8em;
+    max-width: 18em;
   }
 }

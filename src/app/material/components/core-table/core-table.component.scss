@@ -17,7 +17,7 @@
         text-transform: uppercase;
         font-weight: material.$co-type-font-weight-regular;
         color: var(--co-type-title-color);
-        padding: 0.25rem material.getBoxSize('rg') 0.1rem 0.35rem;
+        padding: 0.5em 1em 0.25em 0.75em;
       }
     }
   }
@@ -34,7 +34,7 @@
 
       &:last-child { border-bottom: none; }
       & > td {
-        padding: 0.25rem material.getBoxSize('rg') 0.1rem 0.35rem;
+        padding: 0.5em 1em 0.25em 0.75em;
       }
     }
   }

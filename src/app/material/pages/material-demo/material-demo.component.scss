@@ -50,7 +50,7 @@
 .swatch-flex {
   margin-bottom: material.getBoxSize('md');
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   align-items: flex-end;
   justify-content: flex-start;
 
