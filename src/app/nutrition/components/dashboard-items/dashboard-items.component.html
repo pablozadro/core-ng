@@ -1,8 +1,11 @@
 <article class="box-mg-b-rg">
   @if(items) {
-    @for(item of items; track item._id) {
-      <div>{{item.title}} | {{item.category}}</div>
-    }
+    <core-table 
+      [headers]="tableHeaders"
+      [data]="items"
+      [columns]="tableColumns"
+      [block]="true"
+      (rowClicked)="onRowClicked($event)"/>
   } @else {
     <div>No Items to display</div>
   }

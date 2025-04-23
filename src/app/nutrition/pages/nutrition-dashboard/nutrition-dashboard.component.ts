@@ -45,7 +45,11 @@ export class NutritionDashboardComponent implements OnInit {
     })
   }
 
-  onCategoryChange(categoryId: string) {
-    console.log({ categoryId });
+  onCategoryChange(category: string) {
+    this.loading = true;
+    this.nutritionApiService.getItems({ category }).subscribe(items => {
+      this.loading = false;
+      this.items = items;
+    })
   }
 }

@@ -5,6 +5,7 @@
     @if(categories) {
       <div class="filter__content">
         <select [formControl]="selectedCategory">
+          <option disabled value="">Select Category</option>
           @for(category of categoriesOptions; track category.value) {
             <option [value]="category.value">{{category.label}}</option>
           }
