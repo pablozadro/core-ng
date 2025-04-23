@@ -1,0 +1,9 @@
+<article class="box-mg-b-rg">
+  @if(items) {
+    @for(item of items; track item._id) {
+      <div>{{item.title}} | {{item.category}}</div>
+    }
+  } @else {
+    <div>No Items to display</div>
+  }
+</article>

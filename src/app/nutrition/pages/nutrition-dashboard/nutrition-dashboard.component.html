@@ -8,8 +8,9 @@
         <core-loading />
       </div>
     }
-    @if(!loading && categories) {
-      <app-dashboard-filter [categories]="categories"/>
+    @if(!loading) {
+      <app-dashboard-filter [categories]="categories" (categoryChange)="onCategoryChange($event)"/>
+      <app-dashboard-items [items]="items"/>
     }
   </section>
 </div>

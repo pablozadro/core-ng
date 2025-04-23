@@ -7,8 +7,11 @@ export function authTokenInterceptor(req: HttpRequest<unknown>, next: HttpHandle
   const authService = inject(AuthService);
   const loggedUser = authService.getLoggedUser();
   const token = loggedUser ? loggedUser.token : null;
-  console.log(req.url);
-  console.log({token});
+
+  if(req.url.includes('login') || req.url.includes('register')) {
+    return next(req);
+  }
+
   if(!token) {
     return next(req);
   }
