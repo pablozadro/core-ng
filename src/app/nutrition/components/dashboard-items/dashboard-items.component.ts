@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NutritionItem } from '@/nutrition/types';
+import { CoreModalService } from '@/material/services/core-modal.service';
 import { CoreTableComponent } from '@/material/components/core-table/core-table.component';
+import { NutritionItem } from '@/nutrition/types';
+import { DashboardItemModalComponent } from '@/nutrition/components/dashboard-item-modal/dashboard-item-modal.component';
+
 
 @Component({
   selector: 'app-dashboard-items',
@@ -19,11 +22,30 @@ export class DashboardItemsComponent implements OnInit {
   ];
   tableData = this.items;
 
+  constructor(
+    private readonly coreModalService: CoreModalService
+  ) {}
+
   ngOnInit(): void {
     if(!this.items) return;
   }
 
   onRowClicked(item: NutritionItem) {
-    console.log(item);
+    this.coreModalService.open(DashboardItemModalComponent, {
+      title: `${item.title}`,
+      data: { item },
+      primaryBtn: {
+        label: 'Save',
+        action: () => this.onItemModalSaveAction()
+      },
+      secondaryBtn: {
+        label: 'Cancel',
+        action: () => this.coreModalService.close()
+      }
+    });
+  }
+
+  onItemModalSaveAction() {
+    console.log('-> onItemModalSaveAction')
   }
 }

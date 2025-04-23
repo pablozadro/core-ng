@@ -16,6 +16,7 @@ import {
 
 interface Options {
   title: string;
+  data: any;
   primaryBtn: PrimaryBtn;
   secondaryBtn: SecondaryBtn;
 }
@@ -49,6 +50,7 @@ export class CoreModalService {
     });
 
     this.newModalComponent.instance.title = this.options.title;
+    this.newModalComponent.instance.data = this.options.data;
     this.newModalComponent.instance.primaryBtn = this.options.primaryBtn;
     this.newModalComponent.instance.secondaryBtn = this.options.secondaryBtn;
 

@@ -16,7 +16,7 @@ import { CoreTableComponent } from '@/material/components/core-table/core-table.
   standalone: true,
   imports: [],
   template: `
-    <div>Hello</div>
+    <div>Demo Modal Inner Component</div>
   `,
 })
 export class ModalInnerComponent {}
@@ -75,6 +75,7 @@ export class MaterialDemoComponent {
     console.log('-> opening modal...');
     this.coreModalService.open(ModalInnerComponent, {
       title: 'Demo Modal',
+      data: {},
       primaryBtn: {
         label: 'Save',
         action: () => this.onModalPrimaryAction()
