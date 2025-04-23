@@ -1,0 +1,15 @@
+<div class="container box-pd-rg">
+  <section class="section">
+    <header class="section__header">
+      <h1 class="title lg">{{title}}</h1>
+    </header>
+    @if(loading) {
+      <div class="align-center">
+        <core-loading />
+      </div>
+    }
+    @if(!loading && categories) {
+      <app-dashboard-filter [categories]="categories"/>
+    }
+  </section>
+</div>

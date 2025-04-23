@@ -4,6 +4,7 @@ import { CoreLandingComponent } from '@/core/pages/core-landing/core-landing.com
 import { AuthProfileComponent } from '@/auth/pages/auth-profile/auth-profile.component';
 import { AuthLoginComponent } from '@/auth/pages/auth-login/auth-login.component';
 import { MaterialDemoComponent } from '@/material/pages/material-demo/material-demo.component';
+import { NutritionDashboardComponent } from '@/nutrition/pages/nutrition-dashboard/nutrition-dashboard.component';
 
 
 export const routes: Routes = [
@@ -38,6 +39,14 @@ export const routes: Routes = [
     title: 'Material',
     data: {
       title: 'Material'
+    }
+  },
+  { 
+    path: 'nutrition', 
+    component: NutritionDashboardComponent,
+    title: 'Nutrition',
+    data: {
+      title: 'Nutrition'
     }
   }
 ];

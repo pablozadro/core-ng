@@ -24,13 +24,20 @@ export class CoreApiService {
   readonly BASE_URL = environment.liteApiBaseUrl;
 
   constructor(
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
   ) { }
 
   post(url: string, body: any = {}): Observable<LiteApiResponse> {
     const fullUrl = `${this.BASE_URL}/${url}`;
     return this.http
       .request('post', fullUrl, { observe: 'response', body })
+      .pipe(this.handleResponse);
+  }
+
+  get(url: string): Observable<LiteApiResponse> {
+    const fullUrl = `${this.BASE_URL}/${url}`;
+    return this.http
+      .request('get', fullUrl, { observe: 'response' })
       .pipe(this.handleResponse);
   }
 
