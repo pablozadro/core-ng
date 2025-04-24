@@ -1,16 +1,16 @@
-<div class="container box-pd-rg">
+<div class="container pd-rg">
   <section class="section">
-    <header class="section__header">
+    <header>
       <h1 class="title lg">{{title}}</h1>
     </header>
-    @if(loading) {
-      <div class="align-center">
-        <core-loading />
+    <dashboard-filters />
+    <div class="row">
+      <div class="col-4">
+        <dashboard-items />
       </div>
-    }
-    @if(!loading) {
-      <app-dashboard-filter [categories]="categories" (categoryChange)="onCategoryChange($event)"/>
-      <app-dashboard-items [items]="items"/>
-    }
+      <div class="col-8">
+        <dashboard-calculator />
+      </div>
+    </div>
   </section>
 </div>

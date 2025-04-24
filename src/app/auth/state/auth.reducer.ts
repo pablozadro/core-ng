@@ -2,12 +2,12 @@ import { createReducer, createSelector, on } from '@ngrx/store';
 import { AppState } from '@/app.reducer';
 import { AuthUser } from '@/auth/types';
 import * as actions from '@/auth/state/auth.actions';
+import { CoreStatusType } from '@/core/types';
 import {
-  CoreStatusType,
   CORE_PENDING_STATUS,
   CORE_INPROGRESS_STATUS,
   CORE_DONE_STATUS
-} from '@/material/types';
+} from '@/core/config';
 
 
 export const AUTH_FEATURE_KEY = 'auth';

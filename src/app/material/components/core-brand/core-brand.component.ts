@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 
+import { MatBrandMix, MatSize } from '@/material/types';
 import { 
-  CoreBrandMix,
-  CORE_BRAND_MIX_PRIMARY,
-  CoreSize,
-  CORE_SIZE_MD
-} from '../../types';
+  MAT_BRAND_MIX_PRIMARY,
+  MAT_SIZE_MD
+} from '@/material/config';
 
 
 @Component({
@@ -16,6 +15,6 @@ import {
   styleUrl: './core-brand.component.scss'
 })
 export class CoreBrandComponent {
-  @Input() mix: CoreBrandMix = CORE_BRAND_MIX_PRIMARY;
-  @Input() size: CoreSize = CORE_SIZE_MD;
+  @Input() mix: MatBrandMix = MAT_BRAND_MIX_PRIMARY;
+  @Input() size: MatSize = MAT_SIZE_MD;
 }

@@ -9,23 +9,21 @@ import {
 
 import { 
   CoreModalComponent, 
-  PrimaryBtn, 
-  SecondaryBtn 
+  CoreModalBtn, 
 } from '@/material/components/core-modal/core-modal.component';
 
 
 interface Options {
   title: string;
   data: any;
-  primaryBtn: PrimaryBtn;
-  secondaryBtn: SecondaryBtn;
+  primaryBtn?: CoreModalBtn;
+  secondaryBtn?: CoreModalBtn;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoreModalService {
-  // Create a reference to our modal component
   newModalComponent!: ComponentRef<CoreModalComponent>;
   options!: Options;
 
@@ -36,10 +34,7 @@ export class CoreModalService {
 
   open<C>(component: Type<C>, options: Options) {
     this.options = options;
-    this.openWithComponent(component);
-  }
 
-  private openWithComponent(component: Type<unknown>) {
     const newComponent = createComponent(component, {
       environmentInjector: this.injector,
     });
@@ -51,8 +46,11 @@ export class CoreModalService {
 
     this.newModalComponent.instance.title = this.options.title;
     this.newModalComponent.instance.data = this.options.data;
-    this.newModalComponent.instance.primaryBtn = this.options.primaryBtn;
-    this.newModalComponent.instance.secondaryBtn = this.options.secondaryBtn;
+    this.newModalComponent.instance.primaryBtn = this.options.primaryBtn || null;
+    this.newModalComponent.instance.secondaryBtn = this.options.secondaryBtn || {
+      label: 'Cancel',
+      action: () => this.close()
+    };
 
     document.body.appendChild(this.newModalComponent.location.nativeElement);
 
@@ -62,5 +60,9 @@ export class CoreModalService {
 
   close() {
     this.newModalComponent.instance.close();
+  }
+
+  getData() {
+    return this.options.data;
   }
 }

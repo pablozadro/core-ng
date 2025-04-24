@@ -34,6 +34,20 @@ export class CoreApiService {
       .pipe(this.handleResponse);
   }
 
+  put(url: string, body: any = {}): Observable<LiteApiResponse> {
+    const fullUrl = `${this.BASE_URL}/${url}`;
+    return this.http
+      .request('put', fullUrl, { observe: 'response', body })
+      .pipe(this.handleResponse);
+  }
+
+  delete(url: string): Observable<LiteApiResponse> {
+    const fullUrl = `${this.BASE_URL}/${url}`;
+    return this.http
+      .request('delete', fullUrl, { observe: 'response' })
+      .pipe(this.handleResponse);
+  }
+
   get(url: string): Observable<LiteApiResponse> {
     const fullUrl = `${this.BASE_URL}/${url}`;
     return this.http
@@ -47,8 +61,7 @@ export class CoreApiService {
         return res.body;
       }),
       catchError(res => {
-        const { error } = res;
-        return of(error)
+        return of(res.error)
       })
     )
   }

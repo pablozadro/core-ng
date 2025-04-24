@@ -1,18 +1,30 @@
-<table class="table {{size}}" [class.block]="block">
-  <thead>
-    <tr>
-      @for (header of headers; track header) {
-        <th>{{header}}</th>
-      }
-    </tr>
-  </thead>
-  <tbody>
-  @for (row of data; track row) {
-    <tr (click)="onRowClicked(row)">
-      @for (column of columns; track column) {
-        <td>{{ row[column['field']] }}</td>
-      }
-    </tr>
-  }
-  </tbody>
-</table>
+@if(data) {
+  <table class="table {{size}}" [class.tableBlock]="block">
+    <thead>
+      <tr>
+        @for (header of headers; track header) {
+          <th>{{header}}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+    @for (row of data; track row) {
+      <tr (click)="onRowClicked(row)">
+        @for (column of columns; track column) {
+          @if(column['field'].includes('.')){
+            <td>{{ row[column['field'].split('.')[0]][column['field'].split('.')[1]] }}</td>
+          } @else {
+            @if(column['format']) {
+              <td>{{ column['format'](row[column['field']]) }}</td>
+            } @else {
+              <td>{{ row[column['field']] }}</td>
+            }
+          }
+        }
+      </tr>
+    }
+    </tbody>
+  </table>
+} @else {
+  <div class="align-center">No data to display</div>
+}

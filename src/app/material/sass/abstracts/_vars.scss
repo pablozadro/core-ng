@@ -1,163 +1,215 @@
 @use 'sass:math';
 
-$co-x: 1rem;
-$co-gold: 1.618;
-$co-transitions-time: 250ms;
+$x: 4px;
+$gold: 1.618;
 
-
-// Box
-
-$co-box-height: 2em;
-$co-box-min-width: 6em;
-$co-box-border-width: 1px;
-$co-box-border-radius: 0.2em;
-
-$co-box-sizes: (
-  'sm': math.div($co-x, $co-gold), 
-  'rg': $co-x,
-  'md': $co-x * $co-gold,
-  'lg': $co-x * $co-gold * 2,
-  'xl': $co-x * $co-gold * 3,
-  'xxl': $co-x * $co-gold * 4,
+$sizes: (
+  xs: $x, 
+  sm: $x * $gold, 
+  rg: $x * $gold * 2,
+  md: $x * $gold * 3,
+  lg: $x * $gold * 4,
+  xl: $x * $gold * 5,
+  xxl: $x * $gold * 6,
 );
 
 
-// Type
 
-$co-type-font-size-sm: 0.8rem;
-$co-type-font-size-rg: 1rem;
-$co-type-font-size-md: 1.6rem;
-$co-type-font-size-lg: 2.2rem;
-$co-type-font-size-xl: 3.6rem;
-$co-type-font-size-xxl: 5rem;
+/**
+ * ----------------------------------------------------------------------------------------------- *
+ * Box
+ * ----------------------------------------------------------------------------------------------- *
+ */
 
-$co-type-font-sizes: (
-  'sm': $co-type-font-size-sm,
-  'rg': $co-type-font-size-rg,
-  'md': $co-type-font-size-md,
-  'lg': $co-type-font-size-lg,
-  'xl': $co-type-font-size-xl,
-  'xxl': $co-type-font-size-xxl
+$box-min-width: 6em;
+$box-max-width: 12em;
+$box-border-radius: 0.2em;
+$box-transitions-time: 250ms;
+
+
+
+/**
+ * ----------------------------------------------------------------------------------------------- *
+ * Type
+ * ----------------------------------------------------------------------------------------------- *
+ */
+
+$font-size-xs: 0.7rem;
+$font-size-sm: 0.85rem;
+$font-size-rg: 1rem;
+$font-size-md: 1.6rem;
+$font-size-lg: 2.2rem;
+$font-size-xl: 3.6rem;
+$font-size-xxl: 5rem;
+
+$font-sizes: (
+  xs: $font-size-xs,
+  sm: $font-size-sm,
+  rg: $font-size-rg,
+  md: $font-size-md,
+  lg: $font-size-lg,
+  xl: $font-size-xl,
+  xxl: $font-size-xxl
 );
 
-$co-type-line-height-sm: 1.6;
-$co-type-line-height-rg: 1.6;
-$co-type-line-height-md: 1.4;
-$co-type-line-height-lg: 1.2;
-$co-type-line-height-xl: 1;
-$co-type-line-height-xxl: 1;
+$line-height-xs: 1.6;
+$line-height-sm: 1.6;
+$line-height-rg: 1.6;
+$line-height-md: 1.4;
+$line-height-lg: 1.2;
+$line-height-xl: 1;
+$line-height-xxl: 1;
 
-$co-type-line-heights: (
-  'sm': $co-type-line-height-sm,
-  'rg': $co-type-line-height-rg,
-  'md': $co-type-line-height-md,
-  'lg': $co-type-line-height-lg,
-  'xl': $co-type-line-height-xl,
-  'xxl': $co-type-line-height-xxl,
+$line-heights: (
+  xs: $line-height-xs,
+  sm: $line-height-sm,
+  rg: $line-height-rg,
+  md: $line-height-md,
+  lg: $line-height-lg,
+  xl: $line-height-xl,
+  xxl: $line-height-xxl,
 );
 
-$co-type-font-weight-light: 300;
-$co-type-font-weight-regular: 400;
-$co-type-font-weight-bold: 700;
-$co-type-font-weights: (
-  'light': $co-type-font-weight-light,
-  'regular': $co-type-font-weight-regular,
-  'bold': $co-type-font-weight-bold
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-bold: 700;
+
+$font-weights: (
+  light: $font-weight-light,
+  regular: $font-weight-regular,
+  bold: $font-weight-bold
 );
 
-$co-type-icon-sizes: (
-  'sm': 18px,
-  'rg': 24px,
-  'md': 36px,
-  'lg': 48px,
-  'xl': 48px,
-  'xxl': 48px,
-);
-
-
-// Colors
-
-$co-colors: (
-  'primary': var(--co-color-primary-200),
-  'secondary': var(--co-color-secondary-200),
-  'warning': var(--co-color-warning-200),
-  'error': var(--co-color-error-200),
-  'success': var(--co-color-success-200),
-  'white': var(--co-color-white),
-  'grey-1': var(--co-color-grey-1),
-  'grey-2': var(--co-color-grey-2),
-  'grey-3': var(--co-color-grey-3),
-  'grey-4': var(--co-color-grey-4),
-  'grey-5': var(--co-color-grey-5),
-  'grey-6': var(--co-color-grey-6),
-  'grey-7': var(--co-color-grey-7),
-  'grey-8': var(--co-color-grey-8),
-  'grey-9': var(--co-color-grey-9),
-  'black': var(--co-color-black),
+$icon-sizes: (
+  xs: 18px,
+  sm: 18px,
+  rg: 24px,
+  md: 36px,
+  lg: 48px,
+  xl: 48px,
+  xxl: 48px,
 );
 
 
-// Colors Mixins
 
-$co-color-mixins: (
-  'primary': (
-    'color': var(--co-color-white),
-    'background-color': var(--co-color-primary-200),
-    'background-color-hover': var(--co-color-primary-300),
-    'background-color-alpha': var(--co-color-primary-alpha),
+/**
+ * ----------------------------------------------------------------------------------------------- *
+ * Colors
+ * ----------------------------------------------------------------------------------------------- *
+ */
+
+$color-white: rgb(250,250,250);
+$color-white-alpha: rgba(250,250,250,0.85);
+$color-grey-1: rgb(230,230,230);
+$color-grey-2: rgb(210,210,210);
+$color-grey-3: rgb(190,190,190);
+$color-grey-4: rgb(170,170,170);
+$color-grey-5: rgb(150,150,150);
+$color-grey-6: rgb(110,110,110);
+$color-grey-7: rgb(70,70,70);
+$color-grey-8: rgb(50,50,50);
+$color-grey-9: rgb(30,30,30);
+$color-black: rgb(10,10,10);
+$color-black-alpha: rgba(10,10,10,0.85);
+$color-primary-100: rgb(159, 205, 195);
+$color-primary-200: rgb(85, 181, 160);
+$color-primary-300: rgb(64, 143, 126);
+$color-primary-alpha: rgb(85, 181, 160,0.9);
+$color-secondary-100: rgb(187, 152, 197);
+$color-secondary-200: rgb(166, 91, 189);
+$color-secondary-300: rgb(130, 75, 147);
+$color-secondary-alpha: rgb(166, 91, 189,0.9);
+$color-warning-100: rgb(239, 225, 146);
+$color-warning-200: rgb(247, 221, 76);
+$color-warning-300: rgb(224, 193, 12);
+$color-warning-alpha: rgb(247, 221, 76,0.9);
+$color-error-100: rgb(249, 135, 135);
+$color-error-200:rgb(227, 55, 55);
+$color-error-300: rgb(202, 5, 5);
+$color-error-alpha:rgb(227, 55, 55,0.9);
+$color-success-100: rgb(141, 199, 136);
+$color-success-200: rgb(75, 166, 67);
+$color-success-300: rgb(31, 145, 21);
+$color-success-alpha: rgb(75, 166, 67, 0.9);
+
+$colors: (
+  primary: $color-primary-200,
+  secondary: $color-secondary-200,
+  warning: $color-warning-200,
+  error: $color-error-200,
+  success: $color-success-200,
+  "white": $color-white,
+  grey-1: $color-grey-1,
+  grey-2: $color-grey-2,
+  grey-3: $color-grey-3,
+  grey-4: $color-grey-4,
+  grey-5: $color-grey-5,
+  grey-6: $color-grey-6,
+  grey-7: $color-grey-7,
+  grey-8: $color-grey-8,
+  grey-9: $color-grey-9,
+  "black": $color-black,
+);
+
+$colors-mixins: (
+  primary: (
+    color: $color-white,
+    background-color: $color-primary-200,
+    background-color-hover: $color-primary-300,
+    background-color-alpha: $color-primary-alpha,
   ),
-  'secondary': (
-    'color': var(--co-color-white),
-    'background-color': var(--co-color-secondary-200),
-    'background-color-hover': var(--co-color-secondary-300),
-    'background-color-alpha': var(--co-color-secondary-alpha),
+  secondary: (
+    color: $color-white,
+    background-color: $color-secondary-200,
+    background-color-hover: $color-secondary-300,
+    background-color-alpha: $color-secondary-alpha,
   ),
-  'error': (
-    'color': var(--co-color-white),
-    'background-color': var(--co-color-error-200),
-    'background-color-hover': var(--co-color-error-300),
-    'background-color-alpha': var(--co-color-error-alpha),
+  error: (
+    color: $color-white,
+    background-color: $color-error-200,
+    background-color-hover: $color-error-300,
+    background-color-alpha: $color-error-alpha,
   ),
-  'success': (
-    'color': var(--co-color-white),
-    'background-color': var(--co-color-success-200),
-    'background-color-hover': var(--co-color-success-300),
-    'background-color-alpha': var(--co-color-success-alpha),
+  success: (
+    color: $color-white,
+    background-color: $color-success-200,
+    background-color-hover: $color-success-300,
+    background-color-alpha: $color-success-alpha,
   ),
-  'warning': (
-    'color': var(--co-color-black),
-    'background-color': var(--co-color-warning-200),
-    'background-color-hover': var(--co-color-warning-300),
-    'background-color-alpha': var(--co-color-warning-alpha),
+  warning: (
+    color: $color-black,
+    background-color: $color-warning-200,
+    background-color-hover: $color-warning-300,
+    background-color-alpha: $color-warning-alpha,
   ),
-  'flat': (
-    'color': var(--co-color-flat-color),
-    'background-color': var(--co-color-flat-background-color),
-    'background-color-hover': var(--co-color-flat-background-color-hover),
-    'background-color-alpha': var(--co-color-flat-background-color-alpha),
+  flat: (
+    color: var(--flat-mix-color),
+    background-color: var(--flat-mix-background-color),
+    background-color-hover: var(--flat-mix-background-color-hover),
+    background-color-alpha: var(--flat-mix-background-color-alpha),
   ),
 );
 
 
 // Brand
 
-$co-brand-mixins: (
-  'primary': var(--co-color-primary-200),
-  'secondary': var(--co-color-secondary-200),
-  'black': var(--co-color-black),
-  'white': var(--co-color-white),
-  'flat': var(--co-color-flat-brand-color),
+$brand-mixins: (
+  primary: $color-primary-200,
+  secondary: $color-secondary-200,
+  "black": $color-black,
+  "white": $color-white,
+  flat: var(--flat-mix-brand-color),
 );
 
 
 // Topnav
 
-$co-topnav-breakpoint: 640px;
+$topnav-breakpoint: 640px;
 
 
 // Layout
 
-$co-ly-topnav-height: 60px;
-$co-ly-topnav-index: 1000;
-$co-ly-modal-index: 10000;
+$ly-topnav-height: 60px;
+$ly-topnav-index: 1000;
+$ly-modal-index: 10000;
 

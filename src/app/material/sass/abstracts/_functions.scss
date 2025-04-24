@@ -1,33 +1,38 @@
 @use './vars';
 
+@function getSize($size, $multiplier: 1) {
+  $size: map-get(vars.$sizes, $size);
+  @if($multiplier > 1) {
+    @return $size*$multiplier*vars.$gold;
+  } @else {
+    @return $size;
+  }
+}
+
 @function getFontSize($size) {
-  @return map-get(vars.$co-type-font-sizes, $size);
-}
-
-@function getFontWeight($size) {
-  @return map-get(vars.$co-type-font-sizes, $size);
-}
-
-@function getIconSize($size) {
-  @return map-get(vars.$co-type-icon-sizes, $size);
+  @return map-get(vars.$font-sizes, $size);
 }
 
 @function getLineHeight($size) {
-  @return map-get(vars.$co-type-line-heights, $size);
+  @return map-get(vars.$line-heights, $size);
+}
+
+@function getFontWeight($weight) {
+  @return map-get(vars.$font-weights, $weight);
+}
+
+@function getIconSize($size) {
+  @return map-get(vars.$icon-sizes, $size);
 }
 
 @function getColor($color) {
-  @return map-get(vars.$co-colors, $color);
+  @return map-get(vars.$colors, $color);
 }
 
-@function getMix($mix, $prop) {
-  @return map-get(map-get(vars.$co-color-mixins, $mix), $prop);
+@function getMixProp($mix, $prop) {
+  @return map-get(map-get(vars.$colors-mixins, $mix), $prop);
 }
 
 @function getBrandMix($mix) {
-  @return map-get(vars.$co-brand-mixins, $mix);
-}
-
-@function getBoxSize($size) {
-  @return map-get(vars.$co-box-sizes, $size);
+  @return map-get(vars.$brand-mixins, $mix);
 }

@@ -3,13 +3,5 @@
 @use 'core';
 
 .section {
-  margin-top: 8vh;
-
-  &__header {
-    display: inline-block;
-    border-bottom: var(--co-box-border-solid-tick);
-    margin-bottom: material.getBoxSize('md');
-
-    & > .title { margin-bottom: 0; }
-  }
+  margin-top: material.getSize('xxl');
 }

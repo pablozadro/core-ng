@@ -1,0 +1,28 @@
+<article class="filters__wrapper">
+  <div class="filters">
+      <div class="filters__main">
+        <div class="mg-r-rg">
+          <core-control 
+            id="title" 
+            [control]="titleControl" 
+            placeholder="Filter by title..."/>
+        </div>
+      </div>
+      <div class="filters__secondary">
+        <div class="mg-l-rg">
+          <core-select 
+            id="orderBy" 
+            [control]="orderByControl" 
+            [options]="orderByOptions" />
+        </div>
+        <div class="mg-l-rg">
+          <core-select 
+            id="category" 
+            [control]="categoryControl" 
+            [options]="categoriesOptions"/>
+        </div>
+      </div>
+  </div>
+</article>
+
+

@@ -1,12 +1,25 @@
-<article class="box-mg-b-rg">
-  @if(items) {
+@if(items$ | async; as items) {
+<article class="items-wrapper">
+
+  @if(items.status === CORE_INPROGRESS_STATUS) {
+    <div class="align-center">
+      <core-loading size="rg"/>
+    </div>
+  }
+
+  @if(items.status === CORE_DONE_STATUS && !items.payload.length) {
+    <div class="align-center">
+      <core-message mix="warning" label="No items to display" />
+    </div>
+  }
+
+  @if(items.status === CORE_DONE_STATUS && !items.error && items.payload) {
+    <p>{{items.payload.length}} <span class="xs">items</span></p>
     <core-table 
       [headers]="tableHeaders"
-      [data]="items"
+      [data]="tableData"
       [columns]="tableColumns"
-      [block]="true"
       (rowClicked)="onRowClicked($event)"/>
-  } @else {
-    <div>No Items to display</div>
   }
 </article>
+}

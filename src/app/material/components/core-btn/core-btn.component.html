@@ -1,12 +1,12 @@
 <button 
   [type]="type"
-  class="co-btn {{mix}} {{size}}"
+  class="btn {{mix}} {{size}}"
   [class.disabled]="disabled"
   [class.squared]="squared">
   @if (label) {
-    <span class="co-btn__label">{{label}}</span>
+    <span class="btn__label">{{label}}</span>
   }
   @if (icon) {
-    <span class="co-btn__icon material-icons {{size}}-icon">{{icon}}</span>
+    <span class="btn__icon material-icons {{size}}-icon">{{icon}}</span>
   }
 </button>

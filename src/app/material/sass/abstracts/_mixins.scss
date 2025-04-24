@@ -3,46 +3,45 @@
 
 @mixin BodyType {
   font-family: 'Roboto', sans-serif;
-  color: var(--co-type-body-color);
-  font-weight: vars.$co-type-font-weight-regular;
+  color: var(--body-color);
+  font-weight: functions.getFontWeight('regular');
 }
 
 @mixin TitleType() {
-  color: var(--co-type-title-color);
-  font-weight: vars.$co-type-font-weight-bold;
+  color: var(--title-color);
+  font-weight: functions.getFontWeight('bold');
 }
 
-@mixin ColorMix($mix, $bordered: false) {
-  @if $bordered {
-    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color-hover');
-  } @else {
-    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color');
-  }
-  color: functions.getMix($mix, 'color');
-  background-color: functions.getMix($mix, 'background-color');
+@mixin ColorMix($mix) {
+  border: none;
+  color: functions.getMixProp($mix, 'color');
+  background-color: functions.getMixProp($mix, 'background-color');
 }
 
-@mixin ColorMixInteractive($mix, $bordered: false) {
-  @include ColorMix($mix, $bordered);
+@mixin ColorMixInteractive($mix) {
+  @include ColorMix($mix);
   &:hover,
   &:focus {
-    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color-hover');
-    background-color: functions.getMix($mix, 'background-color-hover');
-    transition: all vars.$co-transitions-time ease;
+    border: none;
+    background-color: functions.getMixProp($mix, 'background-color-hover');
+    transition: all vars.$box-transitions-time ease;
     outline: none;
   }
   &[disabled],
   &.disabled {
+    border: none;
     opacity: 0.5;
-    background-color: functions.getMix($mix, 'background-color');
-    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color');
+    background-color: functions.getMixProp($mix, 'background-color');
   }
 }
 
 @mixin ColorMixInvisible() {
-  border: vars.$co-box-border-width solid var(--co-type-body-background-color);
-  color: functions.getMix('flat', 'color');
-  background-color: var(--co-type-body-background-color);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: var(--border-solid-thin);
+  color: functions.getMixProp('flat', 'color');
+  background-color: var(--body-background-color);
 }
 
 
@@ -50,31 +49,33 @@
   @include ColorMixInvisible();
   &:hover,
   &:focus {
-    border: vars.$co-box-border-width solid var(--co-type-body-background-color);
-    background-color: functions.getMix('flat', 'background-color-hover');
-    transition: all vars.$co-transitions-time ease;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: var(--border-solid-thin);
+    background-color: functions.getMixProp('flat', 'background-color-hover');
+    transition: all vars.$box-transitions-time ease;
     outline: none;
   }
   &[disabled],
   &.disabled {
     opacity: 0.5;
-    background-color: functions.getMix('flat', 'background-color');
-    border: vars.$co-box-border-width solid functions.getMix('flat', 'background-color');
+    background-color: functions.getMixProp('flat', 'background-color');
   }
 }
 
-@mixin ColorMixOnlyInteractive($mix, $bordered: false) {
+@mixin ColorMixOnlyInteractive($mix) {
   &:hover,
   &:focus {
-    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color-hover');
+    border: none;
     background-color: functions.getMix($mix, 'background-color-hover');
-    transition: all vars.$co-transitions-time ease;
+    transition: all vars.$box-transitions-time ease;
     outline: none;
   }
   &[disabled],
   &.disabled {
+    border: none;
     opacity: 0.5;
-    background-color: functions.getMix($mix, 'background-color');
-    border: vars.$co-box-border-width solid functions.getMix($mix, 'background-color');
+    background-color: functions.getMixProp($mix, 'background-color');
   }
 }

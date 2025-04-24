@@ -44,6 +44,7 @@ export const routes: Routes = [
   { 
     path: 'nutrition', 
     component: NutritionDashboardComponent,
+    canActivate: [authTokenGuard],
     title: 'Nutrition',
     data: {
       title: 'Nutrition'

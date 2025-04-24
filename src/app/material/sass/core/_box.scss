@@ -1,72 +1,42 @@
 @use 'material';
 
 
-@each $size, $value in material.$co-box-sizes {
-
-  .box-mg-b-#{$size} { margin-bottom: $value; }
-  .box-mg-t-#{$size} { margin-top: $value; }
-  .box-mg-l-#{$size} { margin-left: $value; }
-  .box-mg-r-#{$size} { margin-right: $value; }
-
-  .box-mg-y-#{$size} {
-    @extend .box-mg-t-#{$size};
-    @extend .box-mg-b-#{$size};
+@each $size, $value in material.$sizes {
+  .mg-b-#{$size} { margin-bottom: $value; }
+  .mg-t-#{$size} { margin-top: $value; }
+  .mg-l-#{$size} { margin-left: $value; }
+  .mg-r-#{$size} { margin-right: $value; }
+  .mg-y-#{$size} {
+    @extend .mg-t-#{$size};
+    @extend .mg-b-#{$size};
+  }
+  .mg-x-#{$size} {
+    @extend .mg-l-#{$size};
+    @extend .mg-r-#{$size};
+  }
+  .mg-#{$size} {
+    @extend .mg-y-#{$size};
+    @extend .mg-x-#{$size};
   }
 
-  .box-mg-x-#{$size} {
-    @extend .box-mg-l-#{$size};
-    @extend .box-mg-r-#{$size};
+  .pd-b-#{$size} { padding-bottom: $value; }
+  .pd-t-#{$size} { padding-top: $value; }
+  .pd-l-#{$size} { padding-left: $value; }
+  .pd-r-#{$size} { padding-right: $value; }
+  .pd-y-#{$size} {
+    @extend .pd-t-#{$size};
+    @extend .pd-b-#{$size};
   }
-
-  .box-mg-#{$size} {
-    @extend .box-mg-y-#{$size};
-    @extend .box-mg-x-#{$size};
+  .pd-x-#{$size} {
+    @extend .pd-l-#{$size};
+    @extend .pd-r-#{$size};
   }
-
-
-  .box-pd-b-#{$size} { padding-bottom: $value; }
-  .box-pd-t-#{$size} { padding-top: $value; }
-  .box-pd-l-#{$size} { padding-left: $value; }
-  .box-pd-r-#{$size} { padding-right: $value; }
-
-  .box-pd-y-#{$size} {
-    @extend .box-pd-t-#{$size};
-    @extend .box-pd-b-#{$size};
-  }
-
-  .box-pd-x-#{$size} {
-    @extend .box-pd-l-#{$size};
-    @extend .box-pd-r-#{$size};
-  }
-
-  .box-pd-#{$size} {
-    @extend .box-pd-y-#{$size};
-    @extend .box-pd-x-#{$size};
+  .pd-#{$size} {
+    @extend .pd-y-#{$size};
+    @extend .pd-x-#{$size};
   }
 }
 
-.box-mg-t { @extend .box-mg-t-rg; }
-.box-mg-b { @extend .box-mg-b-rg; }
-.box-mg-l { @extend .box-mg-l-rg; }
-.box-mg-r { @extend .box-mg-r-rg; }
-.box-mg-y { @extend .box-mg-y-rg; }
-.box-mg-x { @extend .box-mg-x-rg; }
-.box-mg { @extend .box-mg-rg; }
-
-.box-pd-t { @extend .box-pd-t-rg; }
-.box-pd-b { @extend .box-pd-b-rg; }
-.box-pd-l { @extend .box-pd-l-rg; }
-.box-pd-r { @extend .box-pd-r-rg; }
-.box-pd-y { @extend .box-pd-y-rg; }
-.box-pd-x { @extend .box-pd-x-rg; }
-.box-pd { @extend .box-pd-rg; }
-
-
-.box-rounded { border-radius: material.$co-box-border-radius; }
-.box-block { display: block; }
-.box-inline { display: inline-block; }
-
-.box-border-bottom-solid-thin { border-bottom: var(--co-box-border-solid-thin); }
-.box-border-bottom-solid-regular { border-bottom: var(--co-box-border-solid-regular); }
-.box-border-bottom-solid-tick { border-bottom: var(--co-box-border-solid-tick); }
-.box-border-bottom-dotted { border-bottom: var(--co-box-border-dotted); }
+.rounded { border-radius: material.$box-border-radius; }
+.block { display: block; }
+.inline { display: inline-block; }

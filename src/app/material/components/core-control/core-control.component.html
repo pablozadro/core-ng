@@ -1,14 +1,14 @@
 <div 
-  class="co-control__wrapper" 
+  class="control__wrapper" 
   [class.floatlabel]="floatLabel">
 
   @if (label) {
-    <label [for]="id" class="co-control__label">{{label}}</label>
+    <label [for]="id" class="control__label">{{label}}</label>
   }
 
-  <div class="co-control__input-wrapper">
+  <div class="control__input-wrapper">
     <input 
-      class="co-control__input-{{controlStyle}} {{size}}" 
+      class="control__input-{{controlStyle}} {{size}}" 
       [class.block]="block"
       [id]="id" 
       [name]="id" 
@@ -16,8 +16,25 @@
       [formControl]="control"
       [attr.placeholder]="placeholder || null">
       @if (showHide) {
-        <i class="material-icons co-control__input-icon" (click)="onShowHide()">{{showHideIcon}}</i>
+        <i class="material-icons control__input-icon" (click)="onShowHide()">{{showHideIcon}}</i>
       }
   </div>
 
 </div>
+
+@if(control.invalid &&(control.dirty || control.touched)) {
+  <div class="error-color sm mg-t-sm">
+    @if(control.errors?.['required']) {
+      <div class="box-mg-b-sm">{{messages['required']}}</div>
+    }
+    @if(control.errors?.['email']) {
+      <div class="box-mg-b-sm">{{messages['email']}}</div>
+    }
+    @if(control.errors?.['minlength']) {
+      <div class="box-mg-b-sm">{{messages['minlength']}}</div>
+    }
+    @if(control.errors?.['maxlength']) {
+      <div class="box-mg-b-sm">{{messages['maxlength']}}</div>
+    }
+  </div>
+}

@@ -1,7 +1,7 @@
 @use 'material';
 
 
-.co-control__wrapper {
+.control__wrapper {
   display: flex;
   flex-flow: column nowrap;
 
@@ -9,40 +9,48 @@
     flex-flow: row nowrap;
     align-items: center;
 
-    & > .co-control__label {
-      margin: 0 material.getBoxSize('rg') 0 0;
+    & > .control__label {
+      margin: 0 material.getSize('rg') 0 0;
     }
   }
 }
 
 
-.co-control__label {
-  margin: 0 0 material.getBoxSize('sm') 0;
+.control__label {
+  margin: 0 0 material.getSize('sm') 0;
 }
 
-.co-control__input-wrapper {
+.control__input-wrapper {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-.co-control__input-flat {
-  @include material.ColorMixInteractive('flat');
+%ControlInput {
   display: inline-block;
-  padding: material.getBoxSize('sm') material.getBoxSize('rg');
-  border-radius: material.$co-box-border-radius;
+  width: 100%;
+  min-width: material.$box-min-width;
+  max-width: material.$box-max-width;
+  padding: material.getSize('sm') material.getSize('rg');
+  border-radius: material.$box-border-radius;
+}
+
+.control__input-flat {
+  @extend %ControlInput;
+  @include material.ColorMixInteractive('flat');
   &.block {
+    min-width: unset;
+    max-width: unset;
     width: 100%;
   }
 }
 
-.co-control__input-invisible {
+.control__input-invisible {
+  @extend %ControlInput;
   @include material.ColorMixInvisibleInteractive();
-  padding: material.getBoxSize('sm') material.getBoxSize('rg') material.getBoxSize('sm') material.getBoxSize('sm');
-  border-radius: material.$co-box-border-radius;
 }
 
-.co-control__input-icon {
+.control__input-icon {
   margin-left: -2rem;
   margin-right: 0.7rem;
 }

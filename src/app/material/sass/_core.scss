@@ -1,5 +1,5 @@
-@use './core/normalize';
-@use './core/typography';
-@use './core/box';
-@use './core/flex';
-@use './core/grid';
+@forward './core/normalize';
+@forward './core/typography';
+@forward './core/box';
+@forward './core/flex';
+@forward './core/grid';

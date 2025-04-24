@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 
-import { 
-  CoreSize,
-  CORE_SIZE_SM
-} from '../../types';
+import { MatSize } from '@/material/types';
+import { MAT_SIZE_SM } from '@/material/config';
+
 
 
 @Component({
@@ -14,6 +13,6 @@ import {
   styleUrl: './core-loading.component.scss'
 })
 export class CoreLoadingComponent {
-  @Input() size: CoreSize = CORE_SIZE_SM;
+  @Input() size: MatSize = MAT_SIZE_SM;
   @Input() label!: string;
 }

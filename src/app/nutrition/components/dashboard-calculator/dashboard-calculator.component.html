@@ -1,0 +1,43 @@
+@if(calculate$ | async; as calculate) {
+
+<article class="summary">
+  <div class="summary__col">
+    <span class="summary__amount">{{totalCalories | number: '1.2' }}</span>
+    <span class="summary__label">Calories</span>
+  </div>
+  <div class="summary__col">
+    <span class="summary__amount">{{totalProteins | number: '1.2' }}</span>
+    <span class="summary__label">Proteins</span>
+  </div>
+  <div class="summary__col">
+    <span class="summary__amount">{{items.length}}</span>
+    <span class="summary__label">items</span>
+  </div>
+</article>
+
+@if(calculated.length) {
+  <ul class="list">
+    @for (c of calculated; track c.item._id) {
+    <li>
+      <div class="list__main">
+        <span>{{c.item.title}}</span>
+        <span>
+          <core-control 
+            id="ctrl-{{c.item._id}}" 
+            [control]="c.control" />
+        </span>
+        <span>{{c.calories | number: '1.2'}} c</span>
+        <span>{{c.proteins | number: '1.2'}} p</span>
+      </div>
+      <div class="list__secondary">
+        <core-btn 
+          mix="flat" 
+          [squared]="true" 
+          icon="close" 
+          (click)="onRemoveItem(c.item)"/>
+      </div>
+    </li>
+    }
+  </ul>
+}
+}

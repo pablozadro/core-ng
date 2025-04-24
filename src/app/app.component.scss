@@ -1,12 +1,15 @@
-@import 'abstracts/vars';
+@use 'material';
 
 .app {
   display: flex;
   flex-flow: column nowrap;
   min-height: 100vh;
-  padding-top: $co-ly-topnav-height;
+  padding-top: material.$ly-topnav-height;
 }
 
-.app__content { flex-grow: 1; }
+.app__content { 
+  position: relative;
+  flex-grow: 1; 
+}
 
 

@@ -8,15 +8,15 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: material.$co-ly-topnav-index;
+  z-index: material.$ly-topnav-index;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0 material.getBoxSize('rg');
-  height: material.$co-ly-topnav-height;
-  background-color: var(--co-topnav-background-color);
-  border-bottom: var(--co-box-border-solid-thin);
+  padding: 0 material.getSize('rg');
+  height: material.$ly-topnav-height;
+  background-color: var(--topnav-background-color);
+  border-bottom: var(--border-solid-thin);
 }
 
 
@@ -26,9 +26,9 @@
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-between;
-  padding-left: material.getBoxSize('rg');
+  padding-left: material.getSize('rg');
 
-  @media screen and (max-width: material.$co-topnav-breakpoint) {
+  @media screen and (max-width: material.$topnav-breakpoint) {
     display: none;
   }
 }
@@ -47,7 +47,7 @@
   justify-content: flex-start;
 
   & > li {
-    margin-right: material.getBoxSize('rg');
+    margin-right: material.getSize('rg');
   }
 }
 
@@ -55,40 +55,40 @@
   justify-content: flex-end;
 
   & > li {
-    margin-left: material.getBoxSize('rg');
+    margin-left: material.getSize('rg');
   }
 }
 
 .nav__toggle {
   display: none;
-  @media screen and (max-width: material.$co-topnav-breakpoint) {
+  @media screen and (max-width: material.$topnav-breakpoint) {
     display: block;
   }
 }
 
 
 .nav__content.active {
-  @media screen and (max-width: material.$co-topnav-breakpoint) {
+  @media screen and (max-width: material.$topnav-breakpoint) {
     display: block;
     position: fixed;
-    top: material.$co-ly-topnav-height;
+    top: material.$ly-topnav-height;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: material.$co-ly-topnav-index;
+    z-index: material.$ly-topnav-index;
     padding: 0;
-    background-color: material.getMix('flat', 'background-color-alpha');
+    background-color: material.getMixProp('flat', 'background-color-alpha');
   }
 }
 
 :host ::ng-deep .nav__content.active ul {
-  @media screen and (max-width: material.$co-topnav-breakpoint) {
+  @media screen and (max-width: material.$topnav-breakpoint) {
     display: block;
   }
 }
 :host ::ng-deep .nav__content.active ul > li {
-  @media screen and (max-width: material.$co-topnav-breakpoint) {
-    padding: 0 material.getBoxSize('rg');
-    margin: material.getBoxSize('rg') 0;
+  @media screen and (max-width: material.$topnav-breakpoint) {
+    padding: 0 material.getSize('rg');
+    margin: material.getSize('rg') 0;
   }
 }

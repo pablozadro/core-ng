@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
+import { MatColorMix, MatSize } from '@/material/types';
+
 import { 
-  CoreColorMix,
-  CORE_COLOR_MIX_PRIMARY,
-  CoreSize,
-  CORE_SIZE_RG
-} from '../../types';
+  MAT_COLOR_MIX_PRIMARY,
+  MAT_SIZE_RG
+} from '@/material/config';
 
 
 @Component({
@@ -16,8 +16,8 @@ import {
   styleUrl: './core-btn.component.scss'
 })
 export class CoreBtnComponent {
-  @Input() mix: CoreColorMix = CORE_COLOR_MIX_PRIMARY;
-  @Input() size: CoreSize = CORE_SIZE_RG;
+  @Input() mix: MatColorMix = MAT_COLOR_MIX_PRIMARY;
+  @Input() size: MatSize = MAT_SIZE_RG;
   @Input() label: string | null = null;
   @Input() icon: string | null = null;
   @Input() squared = false;

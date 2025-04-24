@@ -1,14 +1,17 @@
 import { Component, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { CORE_CONFIG, CoreConfig } from '@/material/config';
 import { CoreModalService } from '@/material/services/core-modal.service';
-import { CoreBtnComponent } from '@/material/components/core-btn/core-btn.component';
-import { CoreBrandComponent } from '@/material/components/core-brand/core-brand.component';
-import { CoreControlComponent } from '@/material/components/core-control/core-control.component';
-import { CoreLoadingComponent } from '@/material/components/core-loading/core-loading.component';
-import { CoreMessageComponent } from '@/material/components/core-message/core-message.component';
-import { CoreTableComponent } from '@/material/components/core-table/core-table.component';
+import { 
+  CoreBrandComponent,
+  CoreBtnComponent,
+  CoreControlComponent,
+  CoreSelectComponent,
+  CoreLoadingComponent,
+  CoreMessageComponent,
+  CoreTableComponent,
+} from '@/material/components';
 
 
 @Component({
@@ -16,10 +19,17 @@ import { CoreTableComponent } from '@/material/components/core-table/core-table.
   standalone: true,
   imports: [],
   template: `
-    <div>Demo Modal Inner Component</div>
+    <div>Hello {{data.title}}!</div>
   `,
 })
-export class ModalInnerComponent {}
+export class ModalInnerComponent {
+  data: any;
+  constructor(
+    private readonly coreModalService: CoreModalService
+  ) {
+    this.data = this.coreModalService.getData();
+  }
+}
 
 
 @Component({
@@ -32,18 +42,35 @@ export class ModalInnerComponent {}
     CoreLoadingComponent,
     CoreMessageComponent,
     CoreTableComponent,
+    CoreSelectComponent
   ],
   templateUrl: './material-demo.component.html',
   styleUrl: './material-demo.component.scss'
 })
 export class MaterialDemoComponent {
   title = '';
-  sizes = Object.entries(this.config.size).map(entry => entry[1]);
-  mixins = Object.entries(this.config.mixins).map(entry => entry[1]);
-  brandMixins = Object.entries(this.config.brandMixins).map(entry => entry[1]);
-  control1 = new FormControl();
-  control2 = new FormControl('abc123');
-  control3 = new FormControl('admin@localhost.io');
+  sizes = this.config.sizes;
+  mixins = this.config.mixins;
+  brandMixins = this.config.brandMixins;
+
+  selectOptions = [
+    { value: '', label: 'Select a category' },
+    { value: 1, label: 'Category A' },
+    { value: 2, label: 'Category B' },
+    { value: 4, label: 'Category C' },
+  ];
+  selectControlRequired = new FormControl(this.selectOptions[0].value, [Validators.required]);
+  selectControlNotRequired = new FormControl(this.selectOptions[0].value);
+
+  control1 = new FormControl('');
+  control2 = new FormControl('');
+  controlRequired = new FormControl('',[Validators.required])
+  controlEmail = new FormControl('',[Validators.email])
+  controlPassword = new FormControl('',[Validators.minLength(6), Validators.maxLength(8)])
+  controlDisabled = new FormControl({ value:'admin@localhost.io', disabled: true })
+  controlSize = new FormControl('');
+  controlInvisible = new FormControl('');
+
   tableHeaders = ['id', 'email'];
   tableColumns = [
     { field: 'id' }, 
@@ -67,18 +94,15 @@ export class MaterialDemoComponent {
     console.log('-> onRowClicked', data);
   }
 
-  onModalPrimaryAction() {
-    console.log('-> modal primary action')
-  }
-
   onOpenModal() {
-    console.log('-> opening modal...');
     this.coreModalService.open(ModalInnerComponent, {
       title: 'Demo Modal',
-      data: {},
+      data: { title: 'Foo' },
       primaryBtn: {
         label: 'Save',
-        action: () => this.onModalPrimaryAction()
+        action: () => {
+          console.log('-> modal primary action')
+        }
       },
       secondaryBtn: {
         label: 'Cancel',

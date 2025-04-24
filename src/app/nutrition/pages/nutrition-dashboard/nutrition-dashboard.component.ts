@@ -1,55 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { forkJoin } from 'rxjs';
-import { NutritionCategory, NutritionItem } from '@/nutrition/types';
-import { NutritionApiService } from '@/nutrition/services/nutrition-api.service';
-import { CoreLoadingComponent } from '@/material/components/core-loading/core-loading.component';
-import { DashboardFilterComponent } from '@/nutrition/components/dashboard-filter/dashboard-filter.component';
+import { Store } from '@ngrx/store';
+
+import { ParseItemsQueryService } from '@/nutrition/services/parse-items-query.service';
+
+import { DashboardFiltersComponent } from '@/nutrition/components/dashboard-filters/dashboard-filters.component';
 import { DashboardItemsComponent } from '@/nutrition/components/dashboard-items/dashboard-items.component';
+import { DashboardCalculatorComponent } from '@/nutrition/components/dashboard-calculator/dashboard-calculator.component';
+
+import { AppState } from '@/app.reducer';
+
+import { 
+  getItems, 
+  getCategories,
+  setQuery
+} from '@/nutrition/state/nutrition.actions';
 
 
 @Component({
   selector: 'app-nutrition-dashboard',
   standalone: true,
   imports: [
-    CoreLoadingComponent,
-    DashboardFilterComponent,
-    DashboardItemsComponent
+    DashboardFiltersComponent,
+    DashboardItemsComponent,
+    DashboardCalculatorComponent,
   ],
   templateUrl: './nutrition-dashboard.component.html',
   styleUrl: './nutrition-dashboard.component.scss'
 })
 export class NutritionDashboardComponent implements OnInit {
   title = '';
-  loading = false;
-  categories: NutritionCategory[] | null = null;
-  items: NutritionItem[] | null = null;
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly nutritionApiService: NutritionApiService
+    private readonly store: Store<AppState>,
+    private readonly parseItemsQueryService: ParseItemsQueryService
   ) {
     this.title = this.route.snapshot.data['title'];
+    this.store.dispatch(getCategories());
   }
 
-  ngOnInit(): void {
-    this.loading = true;
-    forkJoin({
-      categories: this.nutritionApiService.getCategories(),
-      items: this.nutritionApiService.getItems(),
-    })
-    .subscribe((res: any) => {
-      this.categories = res.categories;
-      this.items = res.items;
-      this.loading = false;
-    })
-  }
-
-  onCategoryChange(category: string) {
-    this.loading = true;
-    this.nutritionApiService.getItems({ category }).subscribe(items => {
-      this.loading = false;
-      this.items = items;
-    })
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const query = this.parseItemsQueryService.getQueryFromParams(params);
+      this.store.dispatch(setQuery({ query }));
+    });
   }
 }

@@ -2,6 +2,6 @@
 
 .footer {
   text-align: center;
-  padding: material.getBoxSize('lg') 0 material.getBoxSize('xl') 0;
-  border-top: var(--co-box-border-solid-thin);
+  padding: material.getSize('lg') 0 material.getSize('xl') 0;
+  border-top: var(--border-solid-thin);
 }

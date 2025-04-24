@@ -1,13 +1,8 @@
-import { Component, ViewChild, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 import { CoreModalService } from '@/material/services/core-modal.service';
 import { CoreBtnComponent } from '@/material/components/core-btn/core-btn.component';
 
-export interface PrimaryBtn {
-  label: string;
-  action: any;
-}
-
-export interface SecondaryBtn {
+export interface CoreModalBtn {
   label: string;
   action: any;
 }
@@ -21,21 +16,18 @@ export interface SecondaryBtn {
   templateUrl: './core-modal.component.html',
   styleUrl: './core-modal.component.scss'
 })
-export class CoreModalComponent implements OnInit {
+export class CoreModalComponent {
   @ViewChild('modal') modal!: ElementRef<HTMLDivElement>;
+  @Input() data!: unknown;
   @Input() title!: string;
-  @Input() primaryBtn!: PrimaryBtn;
-  @Input() secondaryBtn!: SecondaryBtn;
-  @Input() data!: any;
+  @Input() primaryBtn!: CoreModalBtn | null;
+  @Input() secondaryBtn!: CoreModalBtn;
 
   constructor(
+    private element: ElementRef,
     private readonly coreModalService: CoreModalService,
-    private element: ElementRef
   ) {}
 
-  ngOnInit(): void {
-    console.log(this.element);
-  }
   onClose() {
     this.coreModalService.close();
   }

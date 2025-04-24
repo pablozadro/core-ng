@@ -3,7 +3,7 @@
 
 $grid-containers-min-width: 340px;
 $grid-breakpoint: 980px;
-$grid-gutter: material.getBoxSize('rg');
+$grid-gutter: material.getSize('rg');
 $grid-container-width: 1240px;
 $grid-fluid-container-width: 80%;
 $grid-size: 12;

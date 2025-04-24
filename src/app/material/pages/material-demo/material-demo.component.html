@@ -1,35 +1,40 @@
-<div class="container box-pd">
+<div class="container pd-rg">
+
   <section class="section">
-    <header class="section__header box-mg-b-xl">
+    <header>
       <h1 class="title lg">{{title}}</h1>
     </header>
 
     <!-- Titles -->
     <article class="demo-article">
-      <header class="demo-article__header">
+      <header>
         <h2 class="title md">Titles</h2>
       </header>
-      @for (size of sizes; track size) {
-        <div class="swatch">
-          <div class="swatch__item">
-            <div class="title {{size}} box-inline" style="line-height: 1.2; margin-bottom: 0;">
-              The Quick Brown Fox
+      <div class="swatch">
+        @for (size of sizes; track size) {
+          <div class="swatch__container">
+            <div class="swatch__item">
+              <div class="title {{size}} box-inline" style="line-height: 1.2; margin-bottom: 0;">
+                The Quick Brown Fox
+              </div>
             </div>
+            <div class="swatch__label">{{size}}</div>
           </div>
-          <div class="swatch__label">{{size}}</div>
-        </div>
-      }
+        }
+      </div>
     </article>
 
     <!-- Mixin -->
     <article class="demo-article">
-      <header class="demo-article__header">
+      <header>
         <h2 class="title md">Mixins</h2>
       </header>
       <div class="swatch-flex">
-        @for (mix of mixins; track mix) {  
-          <div class="swatch-flex__item">
-            <div class="{{mix}}-mix" style="border-radius: 100%; width: 3rem;height: 3rem;text-align: center;line-height: 3rem; vertical-align: middle;">Y</div>
+        @for (mix of mixins; track mix) {
+          <div class="swatch-flex__container">
+            <div class="swatch-flex__item">
+              <div class="{{mix}}-mix demo-box"></div>
+            </div>
             <div class="swatch-flex__label">{{mix}}</div>
           </div>
         }
@@ -38,19 +43,38 @@
 
     <!-- Buttons -->
     <article class="demo-article">
-      <header class="demo-article__header">
+      <header>
         <h2 class="title md">Buttons</h2>
       </header>
 
+      <!-- Buttons / Mixins -->
+      <article class="demo-subarticle">
+        <header>
+          <h2 class="title rg">Mixins</h2>
+        </header>
+        <div class="swatch-flex">
+          @for (mix of mixins; track mix) {
+            <div class="swatch-flex__container">
+              <div class="swatch-flex__item">
+                <core-btn [label]="mix" [mix]="mix" />
+              </div>
+              <div class="swatch-flex__label">{{mix}}</div>
+            </div>
+          }
+        </div>
+      </article>
+
       <!-- Buttons / Disabled -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
+        <header>
           <h2 class="title rg">Disabled</h2>
         </header>
         <div class="swatch-flex">
           @for (mix of mixins; track mix) {
-            <div class="swatch-flex__item">
-              <core-btn [label]="mix" [mix]="mix" [disabled]="true"/>
+            <div class="swatch-flex__container">
+              <div class="swatch-flex__item">
+                <core-btn [label]="mix" [mix]="mix" [disabled]="true"/>
+              </div>
               <div class="swatch-flex__label">{{mix}}</div>
             </div>
           }
@@ -59,13 +83,15 @@
 
       <!-- Buttons / Icons -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
+        <header>
           <h2 class="title rg">Icons</h2>
         </header>
         <div class="swatch-flex">
           @for (mix of mixins; track mix) {
-            <div class="swatch-flex__item">
-              <core-btn [label]="mix" [mix]="mix" icon="settings"/>
+            <div class="swatch-flex__container">
+              <div class="swatch-flex__item">
+                <core-btn [label]="mix" [mix]="mix" icon="settings"/>
+              </div>
               <div class="swatch-flex__label">{{mix}}</div>
             </div>
           }
@@ -74,13 +100,15 @@
 
       <!-- Buttons / Squared -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
+        <header>
           <h2 class="title rg">Squared</h2>
         </header>
         <div class="swatch-flex">
           @for (mix of mixins; track mix) {
-            <div class="swatch-flex__item">
-              <core-btn [mix]="mix" icon="settings" [squared]="true"/>
+            <div class="swatch-flex__container">
+              <div class="swatch-flex__item">
+                <core-btn [mix]="mix" icon="settings" [squared]="true"/>
+              </div>
               <div class="swatch-flex__label">{{mix}}</div>
             </div>
           }
@@ -89,13 +117,15 @@
 
       <!-- Buttons / Sizes -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
+        <header>
           <h2 class="title rg">Sizes</h2>
         </header>
         <div class="swatch-flex">
           @for (size of sizes; track size) {
-            <div class="swatch-flex__item">
-              <core-btn mix="flat" icon="settings" [squared]="true" [size]="size"/>
+            <div class="swatch-flex__container">
+              <div class="swatch-flex__item">
+                <core-btn mix="flat" icon="settings" [squared]="true" [size]="size"/>
+              </div>
               <div class="swatch-flex__label">{{size}}</div>
             </div>
           }
@@ -105,19 +135,21 @@
 
     <!-- Brand -->
     <article class="demo-article">
-      <header class="demo-article__header">
+      <header>
         <h2 class="title md">Brand</h2>
       </header>
 
       <!-- Brand / Mixins -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
+        <header>
           <h2 class="title rg">Mixins</h2>
         </header>
         <div class="swatch-flex">
           @for (mix of brandMixins; track mix) {
-            <div class="swatch-flex__item">
-              <core-brand [mix]="mix"/>
+            <div class="swatch-flex__container">
+              <div class="swatch-flex__item">
+                <core-brand [mix]="mix"/>
+              </div>
               <div class="swatch-flex__label">{{mix}}</div>
             </div>
           }
@@ -126,13 +158,15 @@
 
       <!-- Brand / Sizes -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
+        <header>
           <h2 class="title rg">Sizes</h2>
         </header>
         <div class="swatch-flex">
           @for (size of sizes; track size) {
-            <div class="swatch-flex__item">
-              <core-brand mix="flat" [size]="size"/>
+            <div class="swatch-flex__container">
+              <div class="swatch-flex__item">
+                <core-brand mix="flat" [size]="size"/>
+              </div>
               <div class="swatch-flex__label">{{size}}</div>
             </div>
           }
@@ -140,70 +174,161 @@
       </article>
     </article>
 
+    <!-- Select -->
+    <article class="demo-article">
+      <header>
+        <h2 class="title md">Select</h2>
+      </header>
+
+      <!-- Select / Required -->
+      <article class="demo-subarticle">
+        <header>
+          <h2 class="title rg">Required / Label</h2>
+        </header>
+        <core-select 
+          id="select-control"
+          label="Categories"
+          [control]="selectControlRequired" 
+          [options]="selectOptions" 
+          [validationMessages]="{
+            required: 'Please select a category'
+          }"
+        />
+      </article>
+
+      <!-- Select / Not Required -->
+      <article class="demo-subarticle">
+        <header>
+          <h2 class="title rg">Not Required / Float Label</h2>
+        </header>
+        <core-select 
+          id="select-control"
+          label="Categories"
+          [floatLabel]="true"
+          [control]="selectControlNotRequired" 
+          [options]="selectOptions"
+        />
+      </article>
+    </article>
+
     <!-- Controls -->
     <article class="demo-article">
-      <header class="demo-article__header">
+      <header>
         <h2 class="title md">Controls</h2>
       </header>
 
-      <!-- Controls / Labels -->
+      <!-- Controls / Labels & Placeholders -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
-          <h2 class="title rg">Labels</h2>
+        <header>
+          <h2 class="title rg">Labels & Placeholders</h2>
         </header>
-        <div class="box-mg-b-rg">
-          <core-control id="control1" [control]="control1" placeholder="No Label"/>
+        <div class="mg-b-rg">
+          <core-control 
+            id="control1" 
+            label="control1"
+            [control]="control1" 
+            placeholder="Control 1"/>
         </div>
-        <div class="box-mg-b-rg">
-          <core-control id="control1" [control]="control1" label="Some Label"/>
-        </div>
-        <div class="box-mg-b-rg">
-          <core-control id="control1" [control]="control1" label="Float Label" [floatLabel]="true" />
+        <div class="mg-b-rg">
+          <core-control 
+            id="control2" 
+            label="control2"
+            [floatLabel]="true"
+            [control]="control2" 
+            placeholder="Control 2"/>
         </div>
       </article>
 
+      <!-- Controls / Validations -->
+      <article class="demo-subarticle">
+        <header>
+          <h2 class="title rg">Validations</h2>
+        </header>
+        <div class="mg-b-rg">
+          <core-control 
+            id="control-required" 
+            label="Required"
+            [control]="controlRequired" 
+            placeholder="Control required"
+            [validationMessages]="{ required: 'This field is required'}"/>
+        </div>
+        <div class="mg-b-rg">
+          <core-control 
+            id="control-email" 
+            label="Email"
+            type="email"
+            [control]="controlEmail" 
+            placeholder="Control email"
+            [validationMessages]="{ email: 'The email format is invalid'}"/>
+        </div>
+        <div class="mg-b-rg">
+          <core-control 
+            id="control-password" 
+            label="Password"
+            type="password"
+            [showHide]="true"
+            [control]="controlPassword" 
+            placeholder="Control email"
+            [validationMessages]="{ 
+              minlength: 'The password should have mora than 6 characters',
+              maxlength: 'The password should have less than 8 characters',
+            }"/>
+        </div>
+      </article>
+
+
+      <!-- Controls / Disabled -->
+      <article class="demo-subarticle">
+        <header>
+          <h2 class="title rg">Disabled</h2>
+        </header>
+        <div class="mg-b-rg">
+          <core-control 
+            id="control-disabled" 
+            type="email"
+            label="Control disabled"
+            [control]="controlDisabled" 
+            placeholder="Control disabled"/>
+        </div>
+      </article>
+
+
+
+
+
       <!-- Controls / Sizes -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
+        <header>
           <h2 class="title rg">Sizes</h2>
         </header>
-        @for (size of sizes; track size) {
+        @for (size of sizes.slice(0,3); track size) {
           <div class="swatch">
             <div class="swatch__item">
-              <core-control id="control1" [control]="control1" [size]="size"/>
+              <core-control id="control-{{size}}" [control]="controlSize" [size]="size"/>
             </div>
             <div class="swatch__label">{{size}}</div>
           </div>
         }
       </article>
 
-      <!-- Controls / Icons -->
-      <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
-          <h2 class="title rg">Show/Hide password</h2>
-        </header>
-        <div class="swatch">
-          <div class="swatch__item">
-            <core-control id="control2" type="password" [control]="control2" [showHide]="true" />
-          </div>
-          <div class="swatch__label">Show/Hide password</div>
-        </div>
-      </article>
-
       <!-- Controls / Style -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
+        <header>
           <h2 class="title rg">Invisble</h2>
         </header>
         <div>
-          <core-control id="control3" [control]="control3" controlStyle="invisible" />
+          <core-control 
+            id="control-invisible" 
+            [control]="controlInvisible" 
+            controlStyle="invisible" 
+            placeholder="Invisible"/>
         </div>
       </article>
     </article>
 
     <!-- Loading -->
     <article class="demo-article">
-      <header class="demo-article__header">
+      <header>
         <h2 class="title md">Loading</h2>
       </header>
       <div>
@@ -213,20 +338,22 @@
 
     <!-- Message -->
     <article class="demo-article">
-      <header class="demo-article__header">
+      <header>
         <h2 class="title md">Messages</h2>
       </header>
 
       <!-- Message / Mixins -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
+        <header>
           <h2 class="title rg">Mixins</h2>
         </header>
         <div>
           <div class="swatch-flex">
             @for (mix of mixins; track mix) {  
-              <div class="swatch-flex__item">
-                <core-message [mix]="mix" label="Some message" />
+              <div class="swatch-flex__container">
+                <div class="swatch-flex__item">
+                  <core-message [mix]="mix" label="Some message" />
+                </div>
                 <div class="swatch-flex__label">{{mix}}</div>
               </div>
             }
@@ -236,111 +363,85 @@
 
       <!-- Message / Icons -->
       <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
+        <header>
           <h2 class="title rg">Icons</h2>
         </header>
         <div>
-          <div class="swatch-flex box-mg-b-md">
+          <div class="swatch-flex mg-b-md">
             @for (mix of mixins; track mix) {  
-              <div class="swatch-flex__item">
-                <core-message [mix]="mix" label="One line message" icon="settings"/>
+              <div class="swatch-flex__container">
+                <div class="swatch-flex__item">
+                  <core-message [mix]="mix" label="One line message" icon="settings"/>
+                </div>
                 <div class="swatch-flex__label">{{mix}}</div>
               </div>
             }
           </div>
           <div class="swatch-flex">
-            @for (mix of mixins; track mix) {  
-              <div class="swatch-flex__item">
-                <core-message [mix]="mix" label="One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin." icon="settings"/>
+            @for (mix of mixins; track mix) {
+              <div class="swatch-flex__container">
+                <div class="swatch-flex__item">
+                  <core-message [mix]="mix" label="One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin." icon="settings"/>
+                </div>
                 <div class="swatch-flex__label">{{mix}}</div>
               </div>
             }
           </div>
-        </div>
-      </article>
-
-      <!-- Message / Sizes -->
-      <article class="demo-subarticle">
-        <header class="demo-subarticle__header">
-          <h2 class="title rg">Sizes</h2>
-        </header>
-        <div>
-            @for (size of sizes; track size) {  
-            <div class="swatch">
-              <div class="swatch__item">
-                <core-message [size]="size" mix="warning" label="Some message" icon="warning" />
-              </div>
-              <div class="swatch__label">{{size}}</div>
-            </div>
-            }
         </div>
       </article>
     </article>
 
     <!-- Table -->
     <article class="demo-article">
-      <header class="demo-article__header">
+      <header>
         <h2 class="title md">Table</h2>
       </header>
       <div class="swatch-flex">
-        <div class="swatch-flex__item">
-          <core-table 
-            [headers]="tableHeaders"
-            [data]="tableData"
-            [columns]="tableColumns"
-            size="sm"
-            (rowClicked)="onRowClicked($event)"/>
-          <div class="swatch-flex__label">sm</div>
-        </div>
-        <div class="swatch-flex__item">
-          <core-table 
-            [headers]="tableHeaders"
-            [data]="tableData"
-            [columns]="tableColumns"
-            size="rg"
-            (rowClicked)="onRowClicked($event)"/>
-          <div class="swatch-flex__label">rg</div>
-        </div>
-        <div class="swatch-flex__item">
-          <core-table 
-            [headers]="tableHeaders"
-            [data]="tableData"
-            [columns]="tableColumns"
-            size="md"
-            (rowClicked)="onRowClicked($event)"/>
-          <div class="swatch-flex__label">md</div>
-        </div>
+        @for (size of sizes.slice(3,7); track size) {
+          <div class="swatch-flex__container">
+          <div class="swatch-flex__item">
+            <core-table 
+              [headers]="tableHeaders"
+              [data]="tableData"
+              [columns]="tableColumns"
+              [size]="size"
+              (rowClicked)="onRowClicked($event)"/>
+          </div>
+          <div class="swatch-flex__label">{{size}}</div>
+          </div>
+        }
       </div>
     </article>
 
     <!-- grid -->
     <article class="demo-article">
-      <header class="demo-article__header">
+      <header>
         <h2 class="title md">Grid</h2>
       </header>
-      <div class="row box-mg-b-rg">
-        <div class="col-4"><div class="flat-mix box-rounded box-pd-sm">col-4</div></div>
-        <div class="col-4"><div class="flat-mix box-rounded box-pd-sm">col-4</div></div>
-        <div class="col-4"><div class="flat-mix box-rounded box-pd-sm">col-4</div></div>
+      <div class="row mg-b-rg">
+        <div class="col-4"><div class="flat-mix rounded pd-sm">col-4</div></div>
+        <div class="col-4"><div class="flat-mix rounded pd-sm">col-4</div></div>
+        <div class="col-4"><div class="flat-mix rounded pd-sm">col-4</div></div>
       </div>
-      <div class="row box-mg-b-rg">
-        <div class="col-4"><div class="flat-mix box-rounded box-pd-sm">col-4</div></div>
-        <div class="col-4 col-offset-4"><div class="flat-mix box-rounded box-pd-sm">col-offset-4</div></div>
+      <div class="row mg-b-rg">
+        <div class="col-4"><div class="flat-mix rounded pd-sm">col-4</div></div>
+        <div class="col-4 col-offset-4"><div class="flat-mix rounded pd-sm">col-offset-4</div></div>
       </div>
-      <div class="reverse-row box-mg-b-rg">
-        <div class="col-4"><div class="flat-mix box-rounded box-pd-sm">col-4 reverse row</div></div>
-        <div class="col-8"><div class="flat-mix box-rounded box-pd-sm">col-8 reverse row</div></div>
+      <div class="reverse-row mg-b-rg">
+        <div class="col-4"><div class="flat-mix rounded pd-sm">col-4 reverse row</div></div>
+        <div class="col-8"><div class="flat-mix rounded pd-sm">col-8 reverse row</div></div>
       </div>
     </article>
 
     <!-- Modal -->
     <article class="demo-article">
-      <header class="demo-article__header">
+      <header>
         <h2 class="title md">Modal</h2>
       </header>
       <div>
         <core-btn label="open modal" (click)="onOpenModal()"/>
       </div>
     </article>
+
   </section>
 </div>

@@ -1,11 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
+import { MatBrowserTheme } from '@/material/types';
+
 import { 
-  CoreBrowserTheme, 
-  CORE_BROWSER_THEME_LIGHT,
-  CORE_BROWSER_THEME_DARK
-} from '../types';
+  MAT_BROWSER_THEME_LIGHT,
+  MAT_BROWSER_THEME_DARK
+} from '@/material/config';
 
 import { CoreStorageService } from '../../core/services/core-storage.service';
 
@@ -24,7 +25,7 @@ export class CoreThemeService {
     this.html = this.document.querySelector('html');
   }
 
-  setTheme(theme: CoreBrowserTheme) {
+  setTheme(theme: MatBrowserTheme) {
     if (!this.html) return;
     this.html.dataset[this.THEME_STORAGE_KEY] = theme;
     this.coreStorageService.setItem(this.THEME_STORAGE_KEY, theme);
@@ -41,22 +42,22 @@ export class CoreThemeService {
     if (theme) {
       this.html.dataset[this.THEME_STORAGE_KEY] = theme;
     } else {
-      this.setTheme(CORE_BROWSER_THEME_LIGHT);
+      this.setTheme(MAT_BROWSER_THEME_LIGHT);
     };
   }
 
-  toggleTheme(): CoreBrowserTheme {
+  toggleTheme(): MatBrowserTheme {
     const currentTheme = this.coreStorageService.getItem(this.THEME_STORAGE_KEY);
-    let newTheme: CoreBrowserTheme;
+    let newTheme: MatBrowserTheme;
     switch(currentTheme) {
-      case CORE_BROWSER_THEME_DARK:
-        newTheme = CORE_BROWSER_THEME_LIGHT;
+      case MAT_BROWSER_THEME_DARK:
+        newTheme = MAT_BROWSER_THEME_LIGHT;
         break;
-      case CORE_BROWSER_THEME_LIGHT:
-        newTheme = CORE_BROWSER_THEME_DARK;
+      case MAT_BROWSER_THEME_LIGHT:
+        newTheme = MAT_BROWSER_THEME_DARK;
         break;
       default:
-        newTheme = CORE_BROWSER_THEME_LIGHT;
+        newTheme = MAT_BROWSER_THEME_LIGHT;
     }
     this.setTheme(newTheme);
     return newTheme;

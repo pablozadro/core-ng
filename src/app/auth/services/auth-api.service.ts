@@ -56,8 +56,6 @@ export class AuthService {
     return { user, token };
   }
 
-
-
   login(body: AuthLoginBody): Observable<AuthLoginResponse> {
     return this.coreApiService
       .post(this.LOGIN_URL, body)

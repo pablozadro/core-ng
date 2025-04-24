@@ -3,11 +3,11 @@
 .message {
   display: inline-flex;
   align-items: center;
-  padding: material.getBoxSize('sm');
-  border-radius: material.$co-box-border-radius;
+  padding: material.getSize('sm');
+  border-radius: material.$box-border-radius;
 
   &__icon {
-    margin-right: material.getBoxSize('sm');
+    margin-right: material.getSize('sm');
   }
 
   &__label {

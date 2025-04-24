@@ -1,0 +1,50 @@
+@use 'material';
+
+
+.select__wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+
+  &.floatlabel {
+    flex-flow: row nowrap;
+    align-items: center;
+
+    & > .select__label {
+      margin: 0 material.getSize('rg') 0 0;
+    }
+  }
+}
+
+
+.select__label {
+  margin: 0 0 material.getSize('sm') 0;
+}
+
+
+.select__input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+%ControlInput {
+  display: inline-block;
+  width: 100%;
+  min-width: material.$box-min-width;
+  max-width: material.$box-max-width;
+  padding: material.getSize('sm') material.getSize('rg');
+  border-radius: material.$box-border-radius;
+  &.block {
+    width: 100%;
+  }
+}
+
+.select__input-flat {
+  @extend %ControlInput;
+  @include material.ColorMixInteractive('flat');
+}
+
+.select__input-invisible {
+  @extend %ControlInput;
+  @include material.ColorMixInvisibleInteractive();
+}

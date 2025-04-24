@@ -1,0 +1,57 @@
+@use 'material';
+
+.summary {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  border-bottom: var(--border-solid-thin);
+
+  &__col {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    margin-right: material.getSize('xl');
+  }
+
+  &__amount,
+  &__label { line-height: 1; }
+
+  &__amount {
+    font-size: material.getFontSize('xl');
+    margin-right: material.getSize('rg');
+  }
+
+  &__label {
+    font-size: material.getFontSize('xs');
+    text-transform: uppercase;
+  }
+}
+
+.list {
+  padding: 0;
+
+  & > li {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: material.getSize('sm');
+  }
+
+  &__main {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    & > span {
+      margin-right: material.getSize('rg');
+    }
+
+    & > .list__main-control {
+      width: 4rem;
+    }
+  }
+
+}
