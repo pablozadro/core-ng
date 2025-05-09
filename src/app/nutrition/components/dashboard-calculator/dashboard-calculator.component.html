@@ -2,39 +2,74 @@
 
 <article class="summary">
   <div class="summary__col">
-    <span class="summary__amount">{{totalCalories | number: '1.2' }}</span>
+    <span class="summary__amount">{{totals.calories | number: '1.2' }}</span>
     <span class="summary__label">Calories</span>
+    <div class="summary__target-bar">
+      <div
+        class="summary__target-bar-active" 
+        [ngStyle]="{
+          'width': targets.calories.value +'%', 
+          'background-color': targets.calories.bkg 
+        }">
+      </div>
+    </div>
   </div>
   <div class="summary__col">
-    <span class="summary__amount">{{totalProteins | number: '1.2' }}</span>
+    <span class="summary__amount">{{totals.proteins | number: '1.2' }}</span>
     <span class="summary__label">Proteins</span>
+    <div class="summary__target-bar">
+      <div
+        class="summary__target-bar-active" 
+        [ngStyle]="{
+          'width': targets.proteins.value +'%', 
+          'background-color': targets.proteins.bkg 
+        }">
+      </div>
+    </div>
   </div>
   <div class="summary__col">
-    <span class="summary__amount">{{items.length}}</span>
+    <span class="summary__amount">{{calculated.length}}</span>
     <span class="summary__label">items</span>
   </div>
 </article>
 
-@if(items.length) {
+<article class="target">
+  <div class="target__col">
+    <core-control 
+      id="target-calories" 
+      [control]="targetCalories" 
+      label="Target Calories"
+      [floatLabel]="true" />
+  </div>
+  <div class="target__col">
+    <core-control 
+      id="target-proteins" 
+      [control]="targetProteins" 
+      label="Target Proteins"
+      [floatLabel]="true" />
+  </div>
+</article>
+
+@if(calculated.length) {
   <ul class="list">
-    @for (item of items; track item._id) {
+    @for (c of calculated; track c.item._id) {
     <li>
       <div class="list__main">
-        <span>{{item.title}}</span>
+        <span>{{c.item.title}}</span>
         <span>
-          <!-- <core-control 
-            id="ctrl-{{item._id}}" 
-            [control]="c.control" /> -->
+          <core-control 
+            id="ctrl-{{c.item._id}}" 
+            [control]="c.control" />
         </span>
-        <span>{{item.fact.calories | number: '1.2'}} c</span>
-        <span>{{item.fact.protein | number: '1.2'}} p</span>
+        <span>{{c.calories | number: '1.2'}} c</span>
+        <span>{{c.proteins | number: '1.2'}} p</span>
       </div>
       <div class="list__secondary">
         <core-btn 
           mix="flat" 
           [squared]="true" 
           icon="close" 
-          (click)="onRemoveItem(item)"/>
+          (click)="onRemoveItem(c.item)"/>
       </div>
     </li>
     }

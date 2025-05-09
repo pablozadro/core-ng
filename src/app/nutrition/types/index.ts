@@ -41,3 +41,7 @@ export interface GetItemsQuery {
   category?: string;
   orderBy?: string;
 }
+
+export interface GetItemsFilter {
+  title?: string;
+}

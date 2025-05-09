@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { NutritionCategory, NutritionItem } from '@/nutrition/types';
-import { GetItemsQuery } from '@/nutrition/types';
+import { GetItemsQuery, GetItemsFilter } from '@/nutrition/types';
 
 
 /**
@@ -61,6 +61,17 @@ export const SET_QUERY = '[Nutrition] Set Query';
 export const setQuery = createAction(
   SET_QUERY,
   props<{ query: GetItemsQuery; }>()
+);
+
+
+/**
+ * Filter
+ */
+
+export const SET_FILTER = '[Nutrition] Set Filter';
+export const setFilter = createAction(
+  SET_FILTER,
+  props<{ filter: GetItemsFilter; }>()
 );
 
 

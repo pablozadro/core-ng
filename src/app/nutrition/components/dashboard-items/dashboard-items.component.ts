@@ -16,8 +16,8 @@ import {
 } from '@/material/components';
 
 import { AppState } from '@/app.reducer';
-import { ItemsState, selectNutritionItems } from '@/nutrition/state/nutrition.reducer';
-import { NutritionItem } from '@/nutrition/types';
+import { ItemsState, selectNutritionItems, selectNutritionFilter } from '@/nutrition/state/nutrition.reducer';
+import { NutritionItem, GetItemsFilter } from '@/nutrition/types';
 import { addToCalculate } from '@/nutrition/state/nutrition.actions';
 
 @Component({
@@ -40,6 +40,12 @@ export class DashboardItemsComponent implements OnInit, OnDestroy {
   items$!: Observable<ItemsState>;
   itemsSub!: Subscription;
 
+  filter$!: Observable<GetItemsFilter>;
+  filterSub!: Subscription;
+
+  items: NutritionItem[] = []
+  filteredItems: NutritionItem[] = []
+
   tableHeaders = ['title', 'calories','proteins'];
   tableData: NutritionItem[] = [];
   tableColumns = [
@@ -52,12 +58,28 @@ export class DashboardItemsComponent implements OnInit, OnDestroy {
     private readonly store: Store<AppState>
   ) {
     this.items$ = this.store.select(selectNutritionItems);
+    this.filter$ = this.store.select(selectNutritionFilter);
   }
 
   ngOnInit(): void {
     this.itemsSub = this.items$.subscribe(items => {
-      this.tableData = items.payload;
+      this.items = [...items.payload];
+      this.filteredItems = [...items.payload];
+      this.tableData = this.filteredItems;
     })
+
+    this.filterSub = this.filter$.subscribe(filter => {
+      this.filterItems(filter);
+    })
+  }
+
+  filterItems(filter: GetItemsFilter) {
+    if(!filter || !filter.title) {
+      this.tableData = this.items;
+      return;
+    }
+    const title = filter.title || '';
+    this.tableData = this.items.filter(item => item.title.includes(title))
   }
 
   onRowClicked(data: NutritionItem) {

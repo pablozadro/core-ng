@@ -6,7 +6,7 @@ import {
   CORE_DONE_STATUS
 } from '@/core/config';
 import { AppState } from '@/app.reducer';
-import { GetItemsQuery, NutritionCategory, NutritionItem } from '@/nutrition/types';
+import { GetItemsQuery, GetItemsFilter, NutritionCategory, NutritionItem } from '@/nutrition/types';
 import * as actions from '@/nutrition/state/nutrition.actions';
 
 
@@ -32,6 +32,7 @@ export interface NutritionState {
   items: ItemsState;
   categories: CategoriesState;
   query: GetItemsQuery;
+  filter: GetItemsFilter;
   calculatate: CalculatateState;
 }
 
@@ -49,7 +50,10 @@ export const initialNutritionState: NutritionState = {
   },
   query: {
     category: '',
-    orderBy: 'PROTEIN-ASC'
+    orderBy: 'PROTEIN-ASC',
+  },
+  filter: {
+    title: ''
   },
   calculatate: {
     items: [],
@@ -71,6 +75,11 @@ export const selectNutritionItems = createSelector(
 export const selectNutritionQuery = createSelector(
   selectNutrition,
   (state: NutritionState) => state.query
+);
+
+export const selectNutritionFilter = createSelector(
+  selectNutrition,
+  (state: NutritionState) => state.filter
 );
 
 export const selectNutritionCalculate = createSelector(
@@ -166,6 +175,12 @@ export const nutritionReducer = createReducer(
         ...state.calculatate,
         items: state.calculatate.items.filter(_item => _item._id !== item._id ),
       }
+    };
+  }),
+  on(actions.setFilter, (state, { filter }) => {
+    return {
+      ...state,
+      filter
     };
   }),
 );

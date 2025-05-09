@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription, debounce, interval } from 'rxjs';
@@ -11,7 +10,6 @@ import {
 } from '@/core/config';
 
 import { 
-  CoreLoadingComponent,
   CoreSelectComponent,
   CoreSelectOption,
   CoreControlComponent
@@ -26,6 +24,7 @@ import {
 
 import { NutritionCategory, GetItemsQuery } from '@/nutrition/types';
 import {
+  setFilter,
   setQuery
 } from '@/nutrition/state/nutrition.actions';
 
@@ -34,8 +33,6 @@ import {
   selector: 'dashboard-filters',
   standalone: true,
   imports: [
-    AsyncPipe,
-    CoreLoadingComponent,
     CoreSelectComponent,
     CoreControlComponent
   ],
@@ -113,7 +110,7 @@ export class DashboardFiltersComponent implements OnInit, OnDestroy {
     this.titleControlSub = this.titleControl.valueChanges
       .pipe(debounce(() => interval(500)))
       .subscribe(title => {
-        console.log('-> Title: ', title)
+        this.store.dispatch(setFilter({ filter: { title: title || '' }}))
       });
   }
 
