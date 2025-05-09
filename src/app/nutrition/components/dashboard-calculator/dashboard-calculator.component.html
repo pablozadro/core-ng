@@ -15,26 +15,26 @@
   </div>
 </article>
 
-@if(calculated.length) {
+@if(items.length) {
   <ul class="list">
-    @for (c of calculated; track c.item._id) {
+    @for (item of items; track item._id) {
     <li>
       <div class="list__main">
-        <span>{{c.item.title}}</span>
+        <span>{{item.title}}</span>
         <span>
-          <core-control 
-            id="ctrl-{{c.item._id}}" 
-            [control]="c.control" />
+          <!-- <core-control 
+            id="ctrl-{{item._id}}" 
+            [control]="c.control" /> -->
         </span>
-        <span>{{c.calories | number: '1.2'}} c</span>
-        <span>{{c.proteins | number: '1.2'}} p</span>
+        <span>{{item.fact.calories | number: '1.2'}} c</span>
+        <span>{{item.fact.protein | number: '1.2'}} p</span>
       </div>
       <div class="list__secondary">
         <core-btn 
           mix="flat" 
           [squared]="true" 
           icon="close" 
-          (click)="onRemoveItem(c.item)"/>
+          (click)="onRemoveItem(item)"/>
       </div>
     </li>
     }

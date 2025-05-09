@@ -34,13 +34,9 @@ export class DashboardCalculatorComponent implements OnInit, OnDestroy {
   calculateSub!: Subscription;
 
   items: NutritionItem[] = [];
-  itemsMap: any = {};
-  controls: any= {};
-  controlsSub: any= {};
 
   totalCalories = 0;
   totalProteins = 0;
-  calculated: CalculatedItem[] = [];
 
   constructor(
     private readonly store: Store<AppState>
@@ -54,54 +50,16 @@ export class DashboardCalculatorComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.calculateSub = this.calculate$.subscribe(state => {
-      this.calculate(state.items);
+      this.totalCalories = 0;
+      this.totalProteins = 0;
+      this.items = [...state.items];
+      this.items.forEach(item => {
+        this.totalCalories = this.totalCalories + item.fact.calories;
+        this.totalProteins = this.totalProteins + item.fact.protein;
+      });
     });
   }
 
-  calculate(items: NutritionItem[]) {
-    this.totalCalories = 0;
-    this.totalProteins = 0;
-    this.calculated = [];
-
-    items.forEach(item => {
-      const control = new FormControl(100);
-      this.controls[item._id] = control;
-      this.controlsSub = control.valueChanges.subscribe((value) => {
-        this.update(item, value || 0)
-      });
-      this.calculated.push({
-        item,
-        control,
-        calories: item.fact.calories,
-        proteins: item.fact.protein,
-      });
-      this.totalCalories = this.totalCalories + item.fact.calories;
-      this.totalProteins = this.totalProteins + item.fact.protein;
-    })
-  }
-
-  update(item: NutritionItem, value: any) {
-    let amount;
-
-    if(!value) {
-      amount = 0;
-    } else if(typeof value === 'string') {
-      amount = parseFloat(value);
-    }
-
-    this.calculated = this.calculated.map(c => {
-      if(c.item._id !== item._id) return c;
-      const calories = (c.control.value * c.item.fact.calories)/100;
-      const proteins = (c.control.value * c.item.fact.protein)/100;
-      this.totalCalories = (this.totalCalories - item.fact.calories) + calories;
-      this.totalProteins = (this.totalProteins - item.fact.protein) + proteins;
-      return {
-        ...c,
-        calories,
-        proteins,
-      }
-    });
-  }
 
   ngOnDestroy(): void {
     this.calculateSub.unsubscribe();
