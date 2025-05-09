@@ -6,11 +6,8 @@
     <span class="summary__label">Calories</span>
     <div class="summary__target-bar">
       <div
-        class="summary__target-bar-active" 
-        [ngStyle]="{
-          'width': targets.calories.value +'%', 
-          'background-color': targets.calories.bkg 
-        }">
+        class="summary__target-bar-active {{targets.calories.bkg}}" 
+        [ngStyle]="{ 'width': targets.calories.value +'%' }">
       </div>
     </div>
   </div>
@@ -19,11 +16,8 @@
     <span class="summary__label">Proteins</span>
     <div class="summary__target-bar">
       <div
-        class="summary__target-bar-active" 
-        [ngStyle]="{
-          'width': targets.proteins.value +'%', 
-          'background-color': targets.proteins.bkg 
-        }">
+        class="summary__target-bar-active {{targets.proteins.bkg}}" 
+        [ngStyle]="{ 'width': targets.proteins.value +'%' }">
       </div>
     </div>
   </div>

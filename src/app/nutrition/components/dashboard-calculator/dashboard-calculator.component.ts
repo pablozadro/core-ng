@@ -22,6 +22,17 @@ interface CalculateTotals {
   proteins: number;
 }
 
+interface CalculateTargets {
+  calories: {
+    value: number;
+    bkg: string;
+  }
+  proteins: {
+    value: number;
+    bkg: string;
+  }
+}
+
 @Component({
   selector: 'dashboard-calculator',
   standalone: true,
@@ -36,9 +47,9 @@ interface CalculateTotals {
   styleUrl: './dashboard-calculator.component.scss'
 })
 export class DashboardCalculatorComponent implements OnInit, OnDestroy {
-  readonly redColor = 'rgb(206, 32, 32)';
-  readonly yellowColor = 'rgb(202, 236, 9)';
-  readonly greenColor = 'rgb(0, 255, 21)';
+  readonly badCSSClass = 'error-bkg';
+  readonly goodCSSClass = 'warning-bkg';
+  readonly excelentCSSClass = 'success-bkg';
   calculate$: Observable<CalculatateState>;
   calculateSub!: Subscription;
   
@@ -51,15 +62,16 @@ export class DashboardCalculatorComponent implements OnInit, OnDestroy {
   controls: any = {};
 
   targetCalories = new FormControl(2000);
-  targetProteins = new FormControl(133);
-  targets = {
+  targetProteins = new FormControl(89*1.5);
+
+  targets: CalculateTargets = {
     calories: {
       value: 0,
-      bkg: 'rgb(255,0,0)'
+      bkg: this.badCSSClass
     },
     proteins: {
       value: 0,
-      bkg: 'rgb(255,0,0)'
+      bkg: this.badCSSClass
     }
   }
 
@@ -77,50 +89,56 @@ export class DashboardCalculatorComponent implements OnInit, OnDestroy {
     this.calculateSub = this.calculate$.subscribe(state => {
       this.calculated = this.getCalculated(state.items);
       this.totals = this.getTotals(this.calculated);
-      this.targets = this.getTargets();
+      this.targets = this.getTargets(this.totals);
     });
     this.targetCalories.valueChanges.subscribe(value => {
-      this.targets = this.getTargets();
+      this.targets = this.getTargets(this.totals);
     })
     this.targetProteins.valueChanges.subscribe(value => {
-      this.targets = this.getTargets();
-    })
+      this.targets = this.getTargets(this.totals);
+    });
   }
 
-  getTargets() {
+  getTargets(totals: CalculateTotals) {
     let caloriesValue = 0;
     let proteinsValue = 0;
     if(this.targetCalories.value) {
-      caloriesValue = this.totals.calories*100 / this.targetCalories.value;
-      if(caloriesValue>100) {
-        caloriesValue = 100;
-      }
+      caloriesValue = totals.calories*100 / this.targetCalories.value;
+      caloriesValue = caloriesValue > 100 ? 100:caloriesValue;
     }
     if(this.targetProteins.value) {
-      proteinsValue = this.totals.proteins*100 / this.targetProteins.value;
-      if(proteinsValue>100) {
-        proteinsValue = 100;
-      }
+      proteinsValue = totals.proteins*100 / this.targetProteins.value;
+      proteinsValue = proteinsValue > 100 ? 100:proteinsValue;
     }
-    const caloriesBkg = this.getTargetBkg(caloriesValue);
-    const proteinsBkg = this.getTargetBkg(proteinsValue);
+
     return { 
       calories: { 
         value: caloriesValue, 
-        bkg: caloriesBkg
+        bkg: this.getTargetBkg(caloriesValue)
       },
       proteins: {
         value: proteinsValue, 
-        bkg: proteinsBkg
+        bkg: this.getTargetBkg(proteinsValue)
       }
     }
   }
 
   getTargetBkg(value: number): string {
-    if(value === 0) { return this.redColor };
-    if(value > 0 && value <= 50) { return this.redColor };
-    if(value > 50 && value <= 80) { return this.yellowColor };
-    return this.greenColor;
+    console.log(value);
+    if(value === 0) { 
+      console.log(this.badCSSClass);
+      return this.badCSSClass;
+    };
+    if(value > 0 && value <= 50) { 
+      console.log(this.badCSSClass);
+      return this.badCSSClass;
+    };
+    if(value > 50 && value <= 80) { 
+      console.log(this.goodCSSClass);
+      return this.goodCSSClass;
+    };
+    console.log(this.excelentCSSClass)
+    return this.excelentCSSClass;
   }
 
   getCalculated(items: NutritionItem[]): CalculatedItem[] {
@@ -128,7 +146,7 @@ export class DashboardCalculatorComponent implements OnInit, OnDestroy {
       const control = new FormControl(100);
       this.controls[item._id] = control;
       control.valueChanges.subscribe(value => {
-        this.update(item, value)
+        this.update(item._id)
       });
       return {
         item,
@@ -139,10 +157,9 @@ export class DashboardCalculatorComponent implements OnInit, OnDestroy {
     });
   }
 
-  update(item: NutritionItem, value: any) {
-    const amount = parseFloat(value || 0);
+  update(itemId: string) {
     this.calculated = this.calculated.map(c => {
-      if(c.item._id !==item._id) return c;
+      if(c.item._id !==itemId) return c;
       const calories = c.control.value * c.item.fact.calories / 100;
       const proteins = c.control.value * c.item.fact.protein / 100;
       return {
@@ -152,8 +169,7 @@ export class DashboardCalculatorComponent implements OnInit, OnDestroy {
       }
     })
     this.totals = this.getTotals(this.calculated);
-    this.targets = this.getTargets();
-    console.log(this.targets)
+    this.targets = this.getTargets(this.totals);
   }
 
   getTotals(calculated: CalculatedItem[]): CalculateTotals {
