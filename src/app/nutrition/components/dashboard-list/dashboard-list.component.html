@@ -1,0 +1,30 @@
+@if(items$ | async; as items) {
+
+  @if(items.status === config.statusMap['inprogress']) {
+    <div class="mg-y-xl align-center">
+      <core-loading size="rg"/>
+    </div>
+  }
+
+  @if(items.status === config.statusMap['done'] && items.error) {
+    <div class="mg-y-xl">
+      <core-message mix="warning" label="Error Getting Items" />
+    </div>
+  }
+
+  @if(items.status === config.statusMap['done'] && !items.error && !items.payload.length) {
+    <div class="mg-y-xl align-center">
+      <core-message mix="flat" label="No items to display" />
+    </div>
+  }
+
+  @if(items.status === config.statusMap['done'] && !items.error && items.payload.length) {
+    <p class="sm">{{tableData.length}} of {{items.payload.length}} items</p>
+    <core-table 
+      [headers]="tableHeaders"
+      [data]="tableData"
+      [columns]="tableColumns"
+      (rowClicked)="onRowClicked($event)" />
+  }
+
+}

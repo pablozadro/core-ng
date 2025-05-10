@@ -2,28 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { ParseItemsQueryService } from '@/nutrition/services/parse-items-query.service';
-
-import { DashboardFiltersComponent } from '@/nutrition/components/dashboard-filters/dashboard-filters.component';
-import { DashboardItemsComponent } from '@/nutrition/components/dashboard-items/dashboard-items.component';
-import { DashboardCalculatorComponent } from '@/nutrition/components/dashboard-calculator/dashboard-calculator.component';
-
 import { AppState } from '@/app.reducer';
+import { getItems, getCategories } from '@/nutrition/state/nutrition.actions';
 
-import { 
-  getItems, 
-  getCategories,
-  setQuery
-} from '@/nutrition/state/nutrition.actions';
-
+import { DashboardListComponent } from '@/nutrition/components/dashboard-list/dashboard-list.component';
+import { DashboardFilterComponent } from '@/nutrition/components/dashboard-filter/dashboard-filter.component';
+import { DashboardSummaryComponent } from '@/nutrition/components/dashboard-summary/dashboard-summary.component';
 
 @Component({
   selector: 'app-nutrition-dashboard',
   standalone: true,
   imports: [
-    DashboardFiltersComponent,
-    DashboardItemsComponent,
-    DashboardCalculatorComponent,
+    DashboardListComponent,
+    DashboardFilterComponent,
+    DashboardSummaryComponent
   ],
   templateUrl: './nutrition-dashboard.component.html',
   styleUrl: './nutrition-dashboard.component.scss'
@@ -33,17 +25,16 @@ export class NutritionDashboardComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly store: Store<AppState>,
-    private readonly parseItemsQueryService: ParseItemsQueryService
+    private readonly store: Store<AppState>
   ) {
     this.title = this.route.snapshot.data['title'];
-    this.store.dispatch(getCategories());
+    this.store.dispatch(getItems());
+    this.store.dispatch(getCategories())
   }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const query = this.parseItemsQueryService.getQueryFromParams(params);
-      this.store.dispatch(setQuery({ query }));
+      console.log({ params })
     });
   }
 }

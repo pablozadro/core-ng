@@ -61,7 +61,15 @@ export class CoreApiService {
         return res.body;
       }),
       catchError(res => {
-        return of(res.error)
+        return of({
+          msg: res.message,
+          payload: null,
+          error: {
+            status: res.status,
+            msg: res.error.message,
+            cause: null,
+          }
+        })
       })
     )
   }

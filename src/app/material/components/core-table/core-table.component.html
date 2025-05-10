@@ -12,7 +12,11 @@
       <tr (click)="onRowClicked(row)">
         @for (column of columns; track column) {
           @if(column['field'].includes('.')){
-            <td>{{ row[column['field'].split('.')[0]][column['field'].split('.')[1]] }}</td>
+            @if(column['format']) {
+              <td>{{ column['format'](row[column['field'].split('.')[0]][column['field'].split('.')[1]]) }}</td>
+            } @else {
+              <td>{{ row[column['field'].split('.')[0]][column['field'].split('.')[1]] }}</td>
+            }
           } @else {
             @if(column['format']) {
               <td>{{ column['format'](row[column['field']]) }}</td>

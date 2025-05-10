@@ -1,0 +1,33 @@
+@use 'material';
+
+.filters {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  border-bottom: var(--border-solid-thin);
+  margin: material.getSize('xxl') 0;
+  padding: material.getSize('sm') 0;
+}
+
+.filters__main,
+.filters__secondary {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.filters__main {
+  justify-content: flex-start;
+
+  & > .filters__col {
+    margin-right: material.getSize('rg');
+  }
+}
+
+.filters__secondary {
+  justify-content: flex-end;
+
+  & > .filters__col {
+    margin-left: material.getSize('rg');
+  }
+}
