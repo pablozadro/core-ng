@@ -67,7 +67,52 @@ export class DashboardFilterComponent implements OnInit {
   ngOnInit(): void {
     this.categories$.subscribe(categories => {
       this.categoryControlOptions = this.getCategoryControlOptions(categories.payload);
+      if(this.queryState && this.queryState.category) {
+        if(this.queryState.category === this.categoryControl.value) return;
+        this.categoryControl.setValue(this.queryState.category);
+      }
     });
+
+    this.query$.subscribe(query => {
+      this.queryState = query;
+      console.log(this.queryState)
+      if(this.queryState.orderBy && !this.queryState.orderDir) {
+        const current = this.orderControl.value;
+        if(!current) {
+          this.orderControl.setValue(`${this.queryState.orderBy} 1`)
+        } else {
+          this.orderControl.setValue(`${this.queryState.orderBy} ${current[1]}`)
+        }
+      }
+      if(!this.queryState.orderBy && this.queryState.orderDir) {
+        const current = this.orderControl.value;
+        if(!current) {
+          this.orderControl.setValue(`fact.protein ${this.queryState.orderDir}`)
+        } else {
+          this.orderControl.setValue(`${current[0]} ${this.queryState.orderDir}`)
+        }
+      }
+      if(this.queryState.orderBy && this.queryState.orderDir) {
+        this.orderControl.setValue(`${this.queryState.orderBy} ${this.queryState.orderDir}`)
+      }
+    });
+
+    this.categoryControl.valueChanges.subscribe(category => {
+      if(category === this.queryState.category) return;
+      this.store.dispatch(setQuery({ query: { category }}))
+      this.store.dispatch(getItems());
+    });
+
+    this.orderControl.valueChanges.subscribe(order => {
+      if(!order) return;
+      const split = order.split(' ');
+      const orderBy = split[0];
+      const orderDir = parseInt(split[1]);
+      if(order === `${this.queryState.orderBy} ${this.queryState.orderDir}`) return;
+      this.store.dispatch(setQuery({ query: { orderBy, orderDir }}))
+      this.store.dispatch(getItems());
+    })
+
 
     this.titleControl.valueChanges
       .pipe(debounce(() => interval(500)))
@@ -75,43 +120,6 @@ export class DashboardFilterComponent implements OnInit {
         const filter = { title };
         this.store.dispatch(setFilter({ filter }))
       });
-
-    this.query$.subscribe(query => {
-      this.queryState = query;
-      if(query.category) {
-        console.log(query.category);
-        this.categoryControlOptions.forEach(o => console.log(o.value))
-        this.categoryControl.setValue(query.category);
-      }
-      if(query.orderBy && query.orderDir) {
-        this.orderControl.setValue(`${query.orderBy} ${query.orderDir}`);
-      }
-    });
-
-    // this.orderControl.valueChanges.subscribe(value => {
-    //   if(!value) return;
-    //   this.store.dispatch(setQuery({ query: {
-    //     orderBy: value?.split(' ')[0],
-    //     orderDir: parseInt(value?.split(' ')[1])
-    //   }}));
-    //   this.store.dispatch(getItems());
-    // });
-
-    // this.categoryControl.valueChanges.subscribe(category => {
-    //   if(!category) return;
-    //   this.store.dispatch(setQuery({ query: { category }}));
-    //   this.store.dispatch(getItems());
-    // });
-
-
-
-
-    // this.categoryControl.valueChanges.subscribe(category => {
-    //   const query = { category };
-    //   if(category !== this.queryState.category) {
-    //     this.store.dispatch(setQuery({ query }));
-    //   }
-    // })
   }
 
   getCategoryControlOptions(categories: NutritionCategory[]): CoreSelectOption[] {

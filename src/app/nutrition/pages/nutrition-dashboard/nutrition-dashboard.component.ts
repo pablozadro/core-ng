@@ -33,7 +33,6 @@ export class NutritionDashboardComponent implements OnInit {
     private readonly parseItemsQueryService: ParseItemsQueryService,
   ) {
     this.title = this.route.snapshot.data['title'];
-    this.store.dispatch(getCategories())
   }
 
   ngOnInit() {
@@ -42,6 +41,8 @@ export class NutritionDashboardComponent implements OnInit {
       if(query) {
         this.store.dispatch(setQuery({ query }));
       }
+      this.store.dispatch(getCategories())
+      this.store.dispatch(getItems())
     });
   }
 }

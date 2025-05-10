@@ -4,12 +4,14 @@ import { HttpParams } from '@angular/common/http';
 import { Observable, tap, map, mergeMap, withLatestFrom } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { Router } from '@angular/router';
 
 import * as actions from '@/nutrition/state/nutrition.actions';
 
 import { AppState } from '@/app.reducer';
-import { selectNutrition, NutritionItemsQueryState } from '@/nutrition/state/nutrition.reducer';
+import { 
+  NutritionItemsQueryState, 
+  selectNutrition 
+} from '@/nutrition/state/nutrition.reducer';
 
 import { NutritionApiService } from '@/nutrition/services/nutrition-api.service';
 import { ParseItemsQueryService } from '@/nutrition/services/parse-items-query.service';
@@ -21,16 +23,13 @@ export class NutritionEffects {
     private readonly actions$: Actions,
     private readonly store: Store<AppState>,
     private readonly nutritionService: NutritionApiService,
-    private readonly parseItemsQueryService: ParseItemsQueryService,
-    private readonly router: Router,
     private location: Location
   ) {
   }
 
   setQuery$ = createEffect((): Observable<Action> => this.actions$.pipe(
     ofType(actions.setQuery),
-    tap((action: any) => {
-      console.log('-> setQuery$', action.query)
+    tap((action) => {
       const query: NutritionItemsQueryState = action.query;
       let queryParams = new HttpParams();
       for (const key in query) {
@@ -46,7 +45,7 @@ export class NutritionEffects {
   getCategories$ = createEffect((): Observable<Action> => this.actions$.pipe(
     ofType(actions.getCategories),
     mergeMap(() => {
-      console.log('->  getCategories$', actions.getCategories)
+      console.log('->  getCategories$')
       return this.nutritionService.getCategories().pipe(
         map(({ error, categories }) => {
           if(error) {
@@ -63,7 +62,7 @@ export class NutritionEffects {
     withLatestFrom(this.store.select(selectNutrition)),
     mergeMap(([action, state]) => {
       const { query } = state;
-      console.log('->  getItems$', actions.getItems)
+      console.log('->  getItems$')
       return this.nutritionService.getItems(query).pipe(
         map(({ error, items }) => {
           if(error) {
