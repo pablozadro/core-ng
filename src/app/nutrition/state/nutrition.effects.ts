@@ -14,8 +14,6 @@ import {
 } from '@/nutrition/state/nutrition.reducer';
 
 import { NutritionApiService } from '@/nutrition/services/nutrition-api.service';
-import { ParseItemsQueryService } from '@/nutrition/services/parse-items-query.service';
-
 
 @Injectable()
 export class NutritionEffects {

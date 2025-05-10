@@ -99,7 +99,10 @@ export class DashboardFilterComponent implements OnInit {
 
     this.categoryControl.valueChanges.subscribe(category => {
       if(category === this.queryState.category) return;
-      this.store.dispatch(setQuery({ query: { category }}))
+      this.store.dispatch(setQuery({ query: { 
+        ...this.queryState,
+        category 
+      }}))
       this.store.dispatch(getItems());
     });
 
@@ -109,7 +112,10 @@ export class DashboardFilterComponent implements OnInit {
       const orderBy = split[0];
       const orderDir = parseInt(split[1]);
       if(order === `${this.queryState.orderBy} ${this.queryState.orderDir}`) return;
-      this.store.dispatch(setQuery({ query: { orderBy, orderDir }}))
+      this.store.dispatch(setQuery({ query: {
+        ...this.queryState,
+        orderBy, orderDir 
+      }}))
       this.store.dispatch(getItems());
     })
 
