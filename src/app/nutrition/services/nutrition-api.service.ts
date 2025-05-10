@@ -4,6 +4,8 @@ import { map, Observable } from 'rxjs';
 import { CoreApiService, LiteApiResponse, LiteApiError } from '@/core/services/core-api.service';
 import { NutritionCategory, NutritionItem } from '@/nutrition/types';
 
+import { NutritionItemsQueryState } from '@/nutrition/state/nutrition.reducer';
+
 
 export interface GetCategoriesResponse {
   error: LiteApiError | null;
@@ -39,8 +41,14 @@ export class NutritionApiService {
       );
   }
 
-  getItems(): Observable<GetItemsResponse> {
-    const url = 'api/nutrition/items';
+  getItems(query: NutritionItemsQueryState = {}): Observable<GetItemsResponse> {
+    let url = 'api/nutrition/items';
+
+    const params = this.createParamsFromQuery(query);
+
+    if(params) {
+      url = `${url}?${params}`;
+    }
 
     return this.coreApiService
       .get(url)
@@ -51,5 +59,18 @@ export class NutritionApiService {
           return { items, error }
         })
       );
+  }
+
+  private createParamsFromQuery(query: NutritionItemsQueryState): string | null {
+    if(!Object.entries(query).length) return null;
+    let params = '';
+    
+    for (const prop in query) {
+      if (query[prop as keyof NutritionItemsQueryState]) {
+        params = `${params}&${prop}=${query[prop as keyof NutritionItemsQueryState]}`
+      }
+    }
+
+    return params || null;
   }
 }

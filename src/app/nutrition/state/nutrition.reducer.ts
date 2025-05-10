@@ -23,7 +23,7 @@ export interface NutritionItemsState {
 
 export interface NutritionItemsQueryState {
   orderBy?: string;
-  orderDir?: string;
+  orderDir?: number;
   category?: string;
 }
 
@@ -60,8 +60,8 @@ export const initialNutritionState: NutritionState = {
   },
   query: {
     category: '',
-    orderBy: 'fact.protein',
-    orderDir: '1'
+    orderBy: '',
+    orderDir: 0
   },
   filter: {
     title: ''
@@ -168,6 +168,16 @@ export const nutritionReducer = createReducer(
     return {
       ...state,
       filter
+    };
+  }),
+  on(actions.setQuery, (state, { query }) => {
+    const q = Object.assign({},{
+      ...state.query,
+      ...query
+    });
+    return {
+      ...state,
+      query: q
     };
   }),
 );

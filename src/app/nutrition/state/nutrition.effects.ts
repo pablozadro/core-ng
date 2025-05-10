@@ -1,28 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
 import { HttpParams } from '@angular/common/http';
-import { Observable, map, mergeMap, tap } from 'rxjs';
+import { Observable, tap, map, mergeMap, withLatestFrom } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
-import { AppState } from '@root/app/app.reducer';
 import * as actions from '@/nutrition/state/nutrition.actions';
-import { NutritionApiService } from '@/nutrition/services/nutrition-api.service';
 
+import { AppState } from '@/app.reducer';
+import { selectNutrition, NutritionItemsQueryState } from '@/nutrition/state/nutrition.reducer';
+
+import { NutritionApiService } from '@/nutrition/services/nutrition-api.service';
+import { ParseItemsQueryService } from '@/nutrition/services/parse-items-query.service';
 
 
 @Injectable()
 export class NutritionEffects {
   constructor(
     private readonly actions$: Actions,
+    private readonly store: Store<AppState>,
     private readonly nutritionService: NutritionApiService,
+    private readonly parseItemsQueryService: ParseItemsQueryService,
+    private readonly router: Router,
+    private location: Location
   ) {
   }
+
+  setQuery$ = createEffect((): Observable<Action> => this.actions$.pipe(
+    ofType(actions.setQuery),
+    tap((action: any) => {
+      console.log('-> setQuery$', action.query)
+      const query: NutritionItemsQueryState = action.query;
+      let queryParams = new HttpParams();
+      for (const key in query) {
+        if (query[key as keyof NutritionItemsQueryState]) {
+          const x = query[key as keyof NutritionItemsQueryState] || '';
+          queryParams = queryParams.set(key, x);
+        }
+      }
+      this.location.replaceState(window.location.pathname, queryParams.toString());
+    }),
+  ), { dispatch: false });
 
   getCategories$ = createEffect((): Observable<Action> => this.actions$.pipe(
     ofType(actions.getCategories),
     mergeMap(() => {
+      console.log('->  getCategories$', actions.getCategories)
       return this.nutritionService.getCategories().pipe(
         map(({ error, categories }) => {
           if(error) {
@@ -36,8 +60,11 @@ export class NutritionEffects {
 
   getItems$ = createEffect((): Observable<Action> => this.actions$.pipe(
     ofType(actions.getItems),
-    mergeMap(() => {
-      return this.nutritionService.getItems().pipe(
+    withLatestFrom(this.store.select(selectNutrition)),
+    mergeMap(([action, state]) => {
+      const { query } = state;
+      console.log('->  getItems$', actions.getItems)
+      return this.nutritionService.getItems(query).pipe(
         map(({ error, items }) => {
           if(error) {
             return actions.getItemsError({ error: 'Error getting nutrition items' })

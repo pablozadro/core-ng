@@ -1,6 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 import { NutritionCategory, NutritionItem } from '@/nutrition/types';
-import { NutritionItemsFilterState } from '@/nutrition/state/nutrition.reducer';
+import { 
+  NutritionItemsFilterState, 
+  NutritionItemsQueryState 
+} from '@/nutrition/state/nutrition.reducer';
 
 
 
@@ -61,4 +64,14 @@ export const SET_ITEMS_FILTER = '[Nutrition] Set Items Filter';
 export const setFilter = createAction(
   SET_ITEMS_FILTER,
   props<{ filter: NutritionItemsFilterState }>()
+);
+
+/**
+ * Query
+ */
+
+export const SET_ITEMS_QUERY = '[Nutrition] Set Items Query';
+export const setQuery = createAction(
+  SET_ITEMS_QUERY,
+  props<{ query: NutritionItemsQueryState }>()
 );
