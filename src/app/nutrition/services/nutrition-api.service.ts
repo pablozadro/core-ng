@@ -1,8 +1,21 @@
 import { Injectable } from '@angular/core';
-import { forkJoin, map, Observable } from 'rxjs';
-import { CoreApiService, LiteApiResponse } from '@/core/services/core-api.service';
+import { map, Observable } from 'rxjs';
+
+import { CoreApiService, LiteApiResponse, LiteApiError } from '@/core/services/core-api.service';
 import { NutritionCategory, NutritionItem } from '@/nutrition/types';
-import { GetItemsQuery } from '@/nutrition/types';
+
+import { NutritionItemsQueryState } from '@/nutrition/state/nutrition.reducer';
+
+
+export interface GetCategoriesResponse {
+  error: LiteApiError | null;
+  categories: NutritionCategory[];
+}
+
+export interface GetItemsResponse {
+  error: LiteApiError | null;
+  items: NutritionItem[];
+}
 
 
 @Injectable({
@@ -14,51 +27,50 @@ export class NutritionApiService {
     private readonly coreApiService: CoreApiService
   ) { }
 
-  getCategories(): Observable<NutritionCategory[]> {
+  getCategories(): Observable<GetCategoriesResponse> {
     const url = 'api/nutrition/categories';
+
     return this.coreApiService
       .get(url)
       .pipe(
         map((res: LiteApiResponse) => {
-          return res.payload ? res.payload.categories: [];
+          const { error } = res;
+          const categories = res.payload ? res.payload.categories : null;
+          return { categories, error }
         })
       );
   }
 
-  getItems(query: GetItemsQuery): Observable<NutritionItem[]> {
+  getItems(query: NutritionItemsQueryState = {}): Observable<GetItemsResponse> {
     let url = 'api/nutrition/items';
 
-    const parsedQuery = this.parseQuery(query);
+    const params = this.createParamsFromQuery(query);
 
-    if(parsedQuery) {
-      const q = Object.entries(parsedQuery).map(e => `${e[0]}=${e[1]}`).join('&');
-      url = `${url}?${q}`;
+    if(params) {
+      url = `${url}?${params}`;
     }
 
     return this.coreApiService
       .get(url)
       .pipe(
         map((res: LiteApiResponse) => {
-          return res.payload ? res.payload.items: [];
+          const { error } = res;
+          const items = res.payload ? res.payload.items : null;
+          return { items, error }
         })
       );
   }
 
-  getData(query: GetItemsQuery): Observable<{ categories: NutritionCategory[]; items: NutritionItem[]}> {
-    return forkJoin({
-      categories: this.getCategories(),
-      items: this.getItems(query),
-    })
-  }
-
-  private parseQuery(query:  GetItemsQuery):  GetItemsQuery | null {
-    if (!Object.entries(query).length) return null;
-    const q: any = { ...query };
-    for (const key in q) {
-      if (q[key as string] === undefined || q[key] === '') {
-        delete q[key];
+  private createParamsFromQuery(query: NutritionItemsQueryState): string | null {
+    if(!Object.entries(query).length) return null;
+    let params = '';
+    
+    for (const prop in query) {
+      if (query[prop as keyof NutritionItemsQueryState]) {
+        params = `${params}&${prop}=${query[prop as keyof NutritionItemsQueryState]}`
       }
     }
-    return { ...q };
+
+    return params || null;
   }
 }

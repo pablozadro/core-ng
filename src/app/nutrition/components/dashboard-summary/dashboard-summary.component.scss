@@ -1,0 +1,111 @@
+@use 'material';
+
+.summary {
+  display: flex;
+  flex-flow: row wrap;
+
+  border-bottom: var(--border-solid-tick);
+  padding-bottom: material.getSize('rg');
+  margin-bottom: material.getSize('md');
+}
+
+.summary-totals {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  width: 70%;
+  padding-right: material.getSize('lg');
+
+  &__col {
+    width: 50%;
+    &:first-child { padding-right: material.getSize('rg'); }
+  }
+
+  &__bar {
+    position: relative;
+    height: 4px;
+    border-radius: material.$box-border-radius;
+    background-color: material.getMixProp('flat','background-color');
+  }
+  &__bar-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    max-width: 100%;
+    border-radius: material.$box-border-radius;
+  }
+}
+
+.target-bkg-very-low { 
+  background-color: map-get(material.$colors,'warning'); 
+  opacity: 0.35;
+}
+
+.target-bkg-low { 
+  background-color: map-get(material.$colors,'warning'); 
+  opacity: 0.5;
+}
+
+.target-bkg-middle { 
+  background-color: map-get(material.$colors,'warning'); 
+  opacity: 0.75;
+}
+
+.target-bkg-good { 
+  background-color: map-get(material.$colors,'success');
+  opacity: 0.5;
+}
+
+.target-bkg-very-good { 
+  background-color: map-get(material.$colors,'success');
+  opacity: 0.75;
+}
+
+.target-bkg-excelent { 
+  background-color: map-get(material.$colors,'success'); 
+}
+
+.target-bkg-over { 
+  background-color: map-get(material.$colors,'error'); 
+}
+
+.summary-targets {
+  width: 30%;
+}
+
+.summary-list {
+  padding: 0;
+
+  & > li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: material.getSize('xs');
+    margin-bottom: material.getSize('xs');
+  }
+
+  &__main,
+  &__secondary {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  &__main {
+    justify-content: flex-start;
+
+    & > div {
+      margin-right: material.getSize('rg');
+    }
+
+    &-title { width: 6rem; }
+    &-ctrl { width: 6rem;  }
+    &-fact { width: 6rem; }
+  }
+
+  &__secondary {
+    justify-content: flex-end;
+  }
+}

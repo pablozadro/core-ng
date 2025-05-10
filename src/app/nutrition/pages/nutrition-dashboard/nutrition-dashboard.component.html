@@ -3,13 +3,16 @@
     <header>
       <h1 class="title lg">{{title}}</h1>
     </header>
-    <dashboard-filters />
+    <!-- Filters -->
+    <app-dashboard-filter />
     <div class="row">
       <div class="col-4">
-        <dashboard-items />
+        <!-- Items -->
+        <app-dashboard-list />
       </div>
       <div class="col-8">
-        <dashboard-calculator />
+        <!-- Summary -->
+        <app-dashboard-summary />
       </div>
     </div>
   </section>

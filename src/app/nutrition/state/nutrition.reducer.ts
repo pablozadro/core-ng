@@ -1,41 +1,67 @@
 import { createReducer, createSelector, on } from '@ngrx/store';
+
 import { CoreStatusType } from '@/core/types';
 import {
   CORE_PENDING_STATUS,
   CORE_INPROGRESS_STATUS,
   CORE_DONE_STATUS
 } from '@/core/config';
+
+import { NutritionCategory, NutritionItem } from '@/nutrition/types';
+
 import { AppState } from '@/app.reducer';
-import { GetItemsQuery, GetItemsFilter, NutritionCategory, NutritionItem } from '@/nutrition/types';
 import * as actions from '@/nutrition/state/nutrition.actions';
 
 
 export const NUTRITION_FEATURE_KEY = 'nutrition';
 
-export interface ItemsState {
+export interface NutritionItemsState {
     payload: NutritionItem[];
     status: CoreStatusType;
     error: string;
 }
 
-export interface CategoriesState {
+export interface NutritionItemsQueryState {
+  orderBy?: string;
+  orderDir?: number;
+  category?: string;
+}
+
+export interface NutritionItemsFilterState {
+  title?: string;
+}
+
+export interface NutritionCategoriesState {
     payload: NutritionCategory[];
     status: CoreStatusType;
     error: string;
 }
 
-export interface CalculatateState {
-  items: NutritionItem[];
+
+export interface NutritionCalculateItem {
+  item: NutritionItem;
+  calculate: {
+    amount: number;
+    protein: number;
+    calories: number;
+  }
+}
+
+export type NutritionCalculatePayload = Record<string, NutritionCalculateItem>;
+export interface NutritionCalculateState {
+    payload: NutritionCalculatePayload;
 }
 
 export interface NutritionState {
-  items: ItemsState;
-  categories: CategoriesState;
-  query: GetItemsQuery;
-  filter: GetItemsFilter;
-  calculatate: CalculatateState;
+  items: NutritionItemsState;
+  categories: NutritionCategoriesState; 
+  query: NutritionItemsQueryState;
+  filter: NutritionItemsFilterState;
+  calculate: NutritionCalculateState;
 }
 
+
+// Initial State
 
 export const initialNutritionState: NutritionState = {
   categories: {
@@ -50,15 +76,19 @@ export const initialNutritionState: NutritionState = {
   },
   query: {
     category: '',
-    orderBy: 'PROTEIN-ASC',
+    orderBy: '',
+    orderDir: 0
   },
   filter: {
     title: ''
   },
-  calculatate: {
-    items: [],
+  calculate: {
+    payload: {}
   }
 };
+
+
+// Selectors
 
 export const selectNutrition = (state: AppState) => state.nutrition;
 
@@ -72,20 +102,23 @@ export const selectNutritionItems = createSelector(
   (state: NutritionState) => state.items
 );
 
-export const selectNutritionQuery = createSelector(
+export const selectNutritionItemsQuery = createSelector(
   selectNutrition,
   (state: NutritionState) => state.query
 );
 
-export const selectNutritionFilter = createSelector(
+export const selectNutritionItemsFilter = createSelector(
   selectNutrition,
   (state: NutritionState) => state.filter
 );
 
 export const selectNutritionCalculate = createSelector(
   selectNutrition,
-  (state: NutritionState) => state.calculatate
+  (state: NutritionState) => state.calculate
 );
+
+
+// Reducer
 
 export const nutritionReducer = createReducer(
   initialNutritionState,
@@ -94,17 +127,19 @@ export const nutritionReducer = createReducer(
       ...state,
       items: {
         ...state.items,
-        status: CORE_INPROGRESS_STATUS
+        status: CORE_INPROGRESS_STATUS,
+        payload: [],
+        error: '',
       }
     };
   }),
-  on(actions.getItemsSuccess, (state, { payload }) => {
+  on(actions.getItemsSuccess, (state, { items }) => {
     return {
       ...state,
       items: {
         ...state.items,
         status: CORE_DONE_STATUS,
-        payload,
+        payload: items,
         error: ''
       }
     };
@@ -125,17 +160,19 @@ export const nutritionReducer = createReducer(
       ...state,
       categories: {
         ...state.categories,
-        status: CORE_INPROGRESS_STATUS
+        status: CORE_INPROGRESS_STATUS,
+        payload: [],
+        error: ''
       }
     };
   }),
-  on(actions.getCategoriesSuccess, (state, { payload }) => {
+  on(actions.getCategoriesSuccess, (state, { categories }) => {
     return {
       ...state,
       categories: {
         ...state.categories,
         status: CORE_DONE_STATUS,
-        payload,
+        payload: categories,
         error: ''
       }
     };
@@ -151,36 +188,58 @@ export const nutritionReducer = createReducer(
       }
     };
   }),
-  on(actions.setQuery, (state, { query }) => {
-    return {
-      ...state,
-      query
-    };
-  }),
-  on(actions.addToCalculate, (state, { item }) => {
-    return {
-      ...state,
-      calculatate: {
-        items: [
-          ...state.calculatate.items,
-          item
-        ],
-      }
-    };
-  }),
-  on(actions.removeFromCalculate, (state, { item }) => {
-    return {
-      ...state,
-      calculatate: {
-        ...state.calculatate,
-        items: state.calculatate.items.filter(_item => _item._id !== item._id ),
-      }
-    };
-  }),
   on(actions.setFilter, (state, { filter }) => {
     return {
       ...state,
       filter
+    };
+  }),
+  on(actions.setQuery, (state, { query }) => {
+    const q = Object.assign({},{
+      ...state.query,
+      ...query
+    });
+    return {
+      ...state,
+      query: q
+    };
+  }),
+  on(actions.addCalculate, (state, { calculateItem }) => {
+    const payload = { ...state.calculate.payload };
+    const id = calculateItem.item._id;
+    if(!payload[id]) {
+      payload[id] = calculateItem;
+    }
+    return {
+      ...state,
+      calculate: {
+        payload
+      }
+    };
+  }),
+  on(actions.updateCalculate, (state, { calculateItem }) => {
+    const payload = { ...state.calculate.payload };
+    const id = calculateItem.item._id;
+    payload[id] = calculateItem;
+    return {
+      ...state,
+      calculate: {
+        payload
+      }
+    };
+  }),
+  on(actions.removeCalculate, (state, { id }) => {
+    const payload = { ...state.calculate.payload }
+
+    if(payload[id]) {
+      delete payload[id];
+    }
+
+    return {
+      ...state,
+      calculate: {
+        payload
+      }
     };
   }),
 );

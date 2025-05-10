@@ -1,6 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 import { NutritionCategory, NutritionItem } from '@/nutrition/types';
-import { GetItemsQuery, GetItemsFilter } from '@/nutrition/types';
+import { 
+  NutritionItemsFilterState, 
+  NutritionItemsQueryState,
+  NutritionCalculateItem
+} from '@/nutrition/state/nutrition.reducer';
+
 
 
 /**
@@ -10,14 +15,13 @@ import { GetItemsQuery, GetItemsFilter } from '@/nutrition/types';
 export const GET_ITEMS = '[Nutrition] Get Items';
 export const getItems = createAction(
   GET_ITEMS,
-  props<{ query: GetItemsQuery; }>()
 );
 
 
 export const GET_ITEMS_SUCCESS = '[Nutrition] Get Items Success';
 export const getItemsSuccess = createAction(
   GET_ITEMS_SUCCESS,
-  props<{ payload: NutritionItem[]; }>()
+  props<{ items: NutritionItem[]; }>()
 );
 
 
@@ -42,7 +46,7 @@ export const getCategories = createAction(
 export const GET_CATEGORIES_SUCCESS = '[Nutrition] Get Categories Success';
 export const getCategoriesSuccess = createAction(
   GET_CATEGORIES_SUCCESS,
-  props<{ payload: NutritionCategory[]; }>()
+  props<{ categories: NutritionCategory[]; }>()
 );
 
 
@@ -54,47 +58,43 @@ export const getCategoriesError = createAction(
 
 
 /**
- * Query
- */
-
-export const SET_QUERY = '[Nutrition] Set Query';
-export const setQuery = createAction(
-  SET_QUERY,
-  props<{ query: GetItemsQuery; }>()
-);
-
-
-/**
  * Filter
  */
 
-export const SET_FILTER = '[Nutrition] Set Filter';
+export const SET_ITEMS_FILTER = '[Nutrition] Set Items Filter';
 export const setFilter = createAction(
-  SET_FILTER,
-  props<{ filter: GetItemsFilter; }>()
+  SET_ITEMS_FILTER,
+  props<{ filter: NutritionItemsFilterState }>()
 );
 
+/**
+ * Query
+ */
 
+export const SET_ITEMS_QUERY = '[Nutrition] Set Items Query';
+export const setQuery = createAction(
+  SET_ITEMS_QUERY,
+  props<{ query: NutritionItemsQueryState }>()
+);
 
 /**
  * Calculate
  */
 
-export const ADD_TO_CALCULATE = '[Nutrition] Add To Calculate';
-export const addToCalculate = createAction(
-  ADD_TO_CALCULATE,
-  props<{ item: NutritionItem; }>()
+export const ADD_CALCULATE = '[Nutrition] Add Calculate';
+export const addCalculate = createAction(
+  ADD_CALCULATE,
+  props<{ calculateItem: NutritionCalculateItem }>()
 );
 
-export const REMOVE_FROM_CALCULATE = '[Nutrition] Remove From Calculate';
-export const removeFromCalculate = createAction(
-  REMOVE_FROM_CALCULATE,
-  props<{ item: NutritionItem; }>()
+export const REMOVE_CALCULATE = '[Nutrition] Remove Calculate';
+export const removeCalculate = createAction(
+  REMOVE_CALCULATE,
+  props<{ id: string; }>()
 );
 
-
-export const UPDATE_CALCULATE_METRICS = '[Nutrition] Update Calculate Metrics';
-export const updateCalculateMetrics = createAction(
-  UPDATE_CALCULATE_METRICS,
-  props<{ totalCalories: number; totalProteins: number }>()
+export const UPDATE_CALCULATE = '[Nutrition] Update Calculate';
+export const updateCalculate = createAction(
+  UPDATE_CALCULATE,
+  props<{ calculateItem: NutritionCalculateItem }>()
 );

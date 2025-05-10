@@ -1,0 +1,78 @@
+<div class="summary">
+  <div class="summary-totals">
+    <div class="summary-totals__col">
+      <div class="lg">{{totalCalories | number: '1.0-2' }} </div> 
+      <div class="xs">calories</div>
+      <div class="summary-totals__bar mg-y-rg">
+        <div 
+          class="summary-totals__bar-progress {{getTargetBkgClass(getTargetCaloriesPerc())}}" 
+          [ngStyle]="{'width': getTargetCaloriesPerc()+'%'}">
+        </div>
+      </div>
+      <div class="xs">{{ getTargetCaloriesPerc() | number: '1.0-2' }} %</div>
+    </div>
+    <div class="summary-totals__col">
+      <div class="lg">{{totalProteins | number: '1.0-2' }} </div>
+      <div class="xs">proteins</div>
+      <div class="summary-totals__bar mg-y-rg">
+        <div 
+          class="summary-totals__bar-progress {{getTargetBkgClass(getTargetProteinsPerc())}}"
+          [ngStyle]="{'width': getTargetProteinsPerc()+'%'}">
+        </div>
+      </div>
+      <div class="xs">{{getTargetProteinsPerc() | number: '1.0-2' }} %</div>
+    </div>
+  </div>
+  <div class="summary-targets">
+    <div class="mg-b-rg">
+      <core-control 
+        id="target-calories" 
+        label="Target Calories"
+        [block]="true"
+        [control]="targetCalories" 
+      />
+    </div>
+    <div>
+      <core-control 
+        id="target-protein" 
+        label="Target Proteins"
+        [block]="true"
+        [control]="targetProteins" 
+      />
+    </div>
+  </div>
+</div>
+
+@if(calculate$ | async; as calculate) {
+<ul class="summary-list">
+  @for(key of getObjectKeys(calculate.payload); track key) {
+    <li>
+      <div class="summary-list__main">
+        <div class="summary-list__main-title">
+          {{calculate.payload[key].item.title}}
+        </div>
+        <div class="summary-list__main-ctrl">
+          <core-control 
+            id="control-{{calculate.payload[key].item._id}}"
+            [control]="controls[calculate.payload[key].item._id]"
+            [block]="true" 
+          />
+        </div>
+        <div class="summary-list__main-fact">
+          {{calculate.payload[key].calculate.calories}} c
+        </div>
+        <div class="summary-list__main-fact">
+          {{calculate.payload[key].calculate.protein}} p
+        </div>
+      </div>
+      <div class="summary-list__secondary">
+        <core-btn 
+          mix="flat"
+          [squared]="true"
+          icon="close"
+          (click)="onRemove(calculate.payload[key].item._id)" />
+      </div>
+    </li>
+  }
+</ul>
+}
