@@ -1,1 +1,20 @@
-<div>Summary</div>
+@if(calculate$ | async; as calculate) {
+<ul class="summary-list">
+  @for(item of calculate.payload; track item._id) {
+    <li>
+      <div class="summary-list__main">
+        <div>{{item.title}}</div>
+        <div>{{item.fact.protein}} p</div>
+        <div>{{item.fact.calories}} c</div>
+      </div>
+      <div class="summary-list__secondary">
+        <core-btn 
+          mix="flat"
+          [squared]="true"
+          icon="close"
+          (click)="onRemove(item._id)" />
+      </div>
+    </li>
+  }
+</ul>
+}

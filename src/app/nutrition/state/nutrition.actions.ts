@@ -75,3 +75,19 @@ export const setQuery = createAction(
   SET_ITEMS_QUERY,
   props<{ query: NutritionItemsQueryState }>()
 );
+
+/**
+ * Calculate
+ */
+
+export const ADD_CALCULATE = '[Nutrition] Add Calculate';
+export const addCalculate = createAction(
+  ADD_CALCULATE,
+  props<{ item: NutritionItem }>()
+);
+
+export const REMOVE_CALCULATE = '[Nutrition] Remove Calculate';
+export const removeCalculate = createAction(
+  REMOVE_CALCULATE,
+  props<{ id: string; }>()
+);

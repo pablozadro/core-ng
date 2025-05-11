@@ -1,0 +1,29 @@
+@use 'material';
+
+.summary-list {
+  padding: 0;
+
+  & > li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: material.getSize('xs');
+    margin-bottom: material.getSize('xs');
+  }
+
+  &__main,
+  &__secondary {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  &__main {
+    justify-content: flex-start;
+  }
+
+  &__secondary {
+    justify-content: flex-end;
+  }
+}

@@ -37,11 +37,16 @@ export interface NutritionCategoriesState {
     error: string;
 }
 
+export interface NutritionCalculateState {
+    payload: NutritionItem[];
+}
+
 export interface NutritionState {
   items: NutritionItemsState;
   categories: NutritionCategoriesState; 
   query: NutritionItemsQueryState;
   filter: NutritionItemsFilterState;
+  calculate: NutritionCalculateState;
 }
 
 
@@ -66,6 +71,9 @@ export const initialNutritionState: NutritionState = {
   filter: {
     title: ''
   },
+  calculate: {
+    payload: []
+  }
 };
 
 
@@ -91,6 +99,11 @@ export const selectNutritionItemsQuery = createSelector(
 export const selectNutritionItemsFilter = createSelector(
   selectNutrition,
   (state: NutritionState) => state.filter
+);
+
+export const selectNutritionCalculate = createSelector(
+  selectNutrition,
+  (state: NutritionState) => state.calculate
 );
 
 
@@ -178,6 +191,25 @@ export const nutritionReducer = createReducer(
     return {
       ...state,
       query: q
+    };
+  }),
+  on(actions.addCalculate, (state, { item }) => {
+    return {
+      ...state,
+      calculate: {
+        payload: [
+          ...state.calculate.payload,
+          item
+        ]
+      }
+    };
+  }),
+  on(actions.removeCalculate, (state, { id }) => {
+    return {
+      ...state,
+      calculate: {
+        payload: state.calculate.payload.filter(item => item._id != id),
+      }
     };
   }),
 );

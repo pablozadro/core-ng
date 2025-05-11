@@ -21,6 +21,8 @@ import {
   NutritionItemsFilterState
 } from '@/nutrition/state/nutrition.reducer';
 
+import { addCalculate } from '@/nutrition/state/nutrition.actions';
+
 
 @Component({
   selector: 'app-dashboard-list',
@@ -80,6 +82,6 @@ export class DashboardListComponent implements OnInit {
   }
 
   onRowClicked(item: NutritionItem) {
-    console.log(item)
+    this.store.dispatch(addCalculate({ item }));
   }
 }
