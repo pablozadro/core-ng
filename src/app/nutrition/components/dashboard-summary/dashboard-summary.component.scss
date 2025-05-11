@@ -21,6 +21,9 @@
 
   &__main {
     justify-content: flex-start;
+    & > div {
+      margin-right: material.getSize('rg');
+    }
   }
 
   &__secondary {

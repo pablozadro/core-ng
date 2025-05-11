@@ -75,7 +75,6 @@ export class DashboardFilterComponent implements OnInit {
 
     this.query$.subscribe(query => {
       this.queryState = query;
-      console.log(this.queryState)
       if(this.queryState.orderBy && !this.queryState.orderDir) {
         const current = this.orderControl.value;
         if(!current) {

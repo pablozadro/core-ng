@@ -43,7 +43,6 @@ export class NutritionEffects {
   getCategories$ = createEffect((): Observable<Action> => this.actions$.pipe(
     ofType(actions.getCategories),
     mergeMap(() => {
-      console.log('->  getCategories$')
       return this.nutritionService.getCategories().pipe(
         map(({ error, categories }) => {
           if(error) {
@@ -60,7 +59,6 @@ export class NutritionEffects {
     withLatestFrom(this.store.select(selectNutrition)),
     mergeMap(([action, state]) => {
       const { query } = state;
-      console.log('->  getItems$')
       return this.nutritionService.getItems(query).pipe(
         map(({ error, items }) => {
           if(error) {

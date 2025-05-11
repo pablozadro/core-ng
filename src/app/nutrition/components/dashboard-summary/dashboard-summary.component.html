@@ -1,11 +1,16 @@
+<div class="mg-b-md">
+  <div>Calories: {{totalCalories}}</div>
+  <div>Proteins: {{totalProteins}}</div>
+</div>
+
 @if(calculate$ | async; as calculate) {
 <ul class="summary-list">
   @for(item of calculate.payload; track item._id) {
     <li>
       <div class="summary-list__main">
         <div>{{item.title}}</div>
-        <div>{{item.fact.protein}} p</div>
         <div>{{item.fact.calories}} c</div>
+        <div>{{item.fact.protein}} p</div>
       </div>
       <div class="summary-list__secondary">
         <core-btn 
