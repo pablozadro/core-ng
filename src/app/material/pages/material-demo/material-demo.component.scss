@@ -1,0 +1,105 @@
+@use 'material';
+
+.demo-article {
+  margin: material.getSize('xxl') 0;
+
+  & > header {
+    display: inline-block;
+    border-bottom: var(--border-solid-tick);
+    margin-bottom: material.getSize('md');
+
+    & > .title { margin-bottom: 0; }
+  }
+}
+
+.demo-subarticle {
+  margin: material.getSize('md') 0;
+
+  & > header {
+    display: inline-block;
+    border-bottom: var(--border-solid-regular);
+    margin-bottom: material.getSize('md');
+
+    & > .title { margin-bottom: 0; }
+  }
+}
+
+.demo-box {
+  display: inline-flex;
+  width: material.getFontSize('xl');
+  height: material.getFontSize('xl');
+}
+
+.swatch {
+  &__container {
+    margin: material.getSize('rg') 0;
+  }
+
+  &__item { margin-bottom: material.getSize('sm'); }
+
+  &__label {
+    text-transform: uppercase;
+    font-size: material.getFontSize('xs');
+    border-top: var(--border-dotted);
+  }
+}
+
+.swatch-flex {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  justify-content: flex-start;
+
+  &__container {
+    margin: 0 material.getSize('rg') material.getSize('rg') 0;
+  }
+
+  &__item { margin-bottom: material.getSize('sm'); }
+
+  &__label {
+    text-transform: uppercase;
+    font-size: material.getFontSize('xs');
+    border-top: var(--border-dotted);
+  }
+}
+
+// %SwatchLabel {
+//     font-size: material.getFontSize('sm');
+//     text-transform: uppercase;
+//     opacity: 0.5;
+// }
+
+// .swatch {
+//   margin-bottom: material.getSize('md');
+
+//   &__item {
+//     display: inline-block;
+//     border-bottom: var(--border-dotted);
+//     padding-bottom: material.getSize('sm');
+//   }
+
+//   &__label {
+//     @extend %SwatchLabel;
+//   }
+// }
+
+
+// .swatch-flex {
+//   margin-bottom: material.getSize('md');
+//   display: flex;
+//   flex-flow: row wrap;
+//   align-items: flex-end;
+//   justify-content: flex-start;
+
+//   &__item {
+//     margin-right: material.getSize('md');
+//     margin-bottom: material.getSize('sm');
+//   }
+
+//   &__label {
+//     @extend %SwatchLabel;
+//     margin-top: material.getSize('sm');
+//     border-top: var(--border-dotted);
+//     width: 100%;
+//   }
+// }

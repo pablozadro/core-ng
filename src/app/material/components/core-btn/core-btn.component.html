@@ -1,0 +1,12 @@
+<button 
+  [type]="type"
+  class="btn {{mix}} {{size}}"
+  [class.disabled]="disabled"
+  [class.squared]="squared">
+  @if (label) {
+    <span class="btn__label">{{label}}</span>
+  }
+  @if (icon) {
+    <span class="btn__icon material-icons {{size}}-icon">{{icon}}</span>
+  }
+</button>

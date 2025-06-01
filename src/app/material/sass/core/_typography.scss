@@ -1,0 +1,102 @@
+@use 'material';
+
+body {
+  @include material.BodyType();
+  font-size: material.getFontSize('rg');
+  line-height: material.getLineHeight('rg');
+  background-color: var(--body-background-color);
+}
+
+
+// Txt & Title
+
+p,
+h1, h2, h3, h4, h5, h6,
+.title,
+.txt {
+  margin: 0 0 material.getSize('rg') 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @include material.BodyType();
+}
+
+.title {
+  @include material.TitleType();
+
+}
+
+
+// Sizes
+
+@each $size, $value in material.$font-sizes {
+  .#{$size} {
+    font-size: material.getFontSize($size);
+    &.title, 
+    &.txt {
+      line-height: material.getLineHeight($size);
+   }
+  }
+}
+
+
+// Icon Sizes
+
+@each $size, $value in material.$icon-sizes {
+  .#{$size}-icon {
+    font-size: material.getIconSize($size);
+  }
+}
+
+
+// Colors
+
+@each $color, $value in material.$colors {
+  .#{$color}-color { color: material.getColor($color); }
+  .#{$color}-bkg { background-color: material.getColor($color); }
+}
+
+.flat-color { color: var(--flat-mix-color) }
+.flat-bkg { background-color: var(--flat-mix-background-color) }
+
+
+// Colors Mixins
+
+@each $mix, $value in material.$colors-mixins {
+  .#{$mix}-mix { 
+    @include material.ColorMix($mix);
+  }
+  .#{$mix}-mix-i { 
+    @include material.ColorMixInteractive($mix);
+  }
+}
+
+
+// Anchors
+
+a,
+.link {
+  color: var(--anchor-color);
+  text-decoration: none;
+  &:hover, &:focus { outline: none; }
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+
+// Utils
+
+.align-center { text-align: center; }
+.align-left { text-align: left; }
+.align-right { text-align: right; }
+.lowercase { text-transform: lowercase; }
+.uppercase { text-transform: uppercase; }
+.capitalize { text-transform: capitalize; }
+.regular { font-weight: material.getFontWeight('regular'); }
+.bold { font-weight: material.getFontWeight('bold'); }
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

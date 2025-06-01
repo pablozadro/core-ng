@@ -1,0 +1,7 @@
+@use 'material';
+
+.footer {
+  text-align: center;
+  padding: material.getSize('lg') 0 material.getSize('xl') 0;
+  border-top: var(--border-solid-thin);
+}

@@ -1,0 +1,26 @@
+<article #modal class="modal">
+  <div class="modal-wrapper">
+
+    <header class="modal__header pd-y-sm pd-x-rg">
+      <h2 class="title md">{{title}}</h2>
+      <core-btn icon="close" [squared]="true" (click)="onClose()" mix="flat"/>
+    </header>
+
+    <div class="modal-content pd-x-rg">
+      <ng-content /> 
+    </div>
+
+    <div class="flex-align-center flex-justify-end pd-y-sm pd-x-rg">
+      @if(secondaryBtn) {
+        <div>
+          <core-btn [label]="secondaryBtn.label" mix="flat" (click)="secondaryBtn.action()" />
+        </div>
+      }
+      @if(primaryBtn) {
+        <div class="mg-l-rg">
+          <core-btn [label]="primaryBtn.label" mix="primary" (click)="primaryBtn.action()" />
+        </div>
+      }
+    </div>
+  </div>
+</article>

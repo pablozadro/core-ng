@@ -1,0 +1,80 @@
+@use 'sass:math';
+@use 'material';
+
+$grid-containers-min-width: 340px;
+$grid-breakpoint: 980px;
+$grid-gutter: material.getSize('rg');
+$grid-container-width: 1240px;
+$grid-fluid-container-width: 80%;
+$grid-size: 12;
+
+@function getGridColumnWidth($col-size, $grid-size) {
+  @return math.percentage(math.div($col-size, $grid-size));
+}
+
+%GridContainer {
+  margin-left: auto;
+  margin-right: auto;
+  min-width: $grid-containers-min-width;
+}
+
+%GridRow {
+  @media (min-width: $grid-breakpoint) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-right: $grid-gutter * -0.5;
+    margin-left: $grid-gutter * -0.5;
+  }
+}
+
+%GridColumn {
+  margin-bottom: $grid-gutter;
+
+  @media (min-width: $grid-breakpoint) {
+    padding-right: $grid-gutter * 0.5;
+    padding-left: $grid-gutter * 0.5;
+    flex-grow: 1;
+    margin-bottom: 0;
+  }
+}
+
+.container {
+  @extend %GridContainer;
+  max-width: $grid-container-width;
+}
+
+.fluid-container {
+  @extend %GridContainer;
+  width: $grid-fluid-container-width;
+}
+
+.row {
+  @extend %GridRow;
+  @media (min-width: $grid-breakpoint) {
+    flex-flow: row nowrap;
+  }
+}
+
+
+.reverse-row {
+  @extend %GridRow;
+  @media (min-width: $grid-breakpoint) {
+    flex-flow: row-reverse nowrap;
+  }
+}
+
+
+@for $size from 1 through $grid-size {
+  .col-#{$size} {
+    @extend %GridColumn;
+    @media (min-width: $grid-breakpoint) {
+      max-width: getGridColumnWidth($size, $grid-size);
+    }
+  }
+  .col-offset-#{$size} {
+    @media (min-width: $grid-breakpoint) {
+      margin-left: getGridColumnWidth($size, $grid-size);
+    }
+  }
+}

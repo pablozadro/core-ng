@@ -1,0 +1,49 @@
+<div class="container pd-rg">
+  <div class="row">
+    <div class="col-6 col-offset-3">
+
+      <section class="section">
+        <header>
+          <h1 class="title md">Login</h1>
+        </header>
+
+        <form>
+          <div class="mg-y-rg">
+            <core-control 
+              [control]="email" 
+              id="email" 
+              type="email" 
+              label="Email" />
+          </div>
+          <div class="mg-y-rg">
+            <core-control 
+              [control]="password" 
+              [showHide]="true" 
+              id="password" 
+              type="password" 
+              label="Password"/>
+          </div>
+          <div class="mg-t-md">
+            <div class="flex-align-center flex-justify-start mg-b-rg">
+              <core-btn 
+                theme="flat"
+                class="mg-r-md" 
+                label="Login" [disabled]="form.invalid" 
+                (click)="onFormSubmit()"/>
+            </div>
+            @if(authState$ | async; as authState) {
+              @if(authState.status === CORE_INPROGRESS_STATUS) {
+                <core-loading />
+              }
+              @if(authState.status === CORE_DONE_STATUS && authState.error) {
+                <div class="mg-t-rg error-color">
+                  <core-message mix="error" [label]="authState.error" />
+                </div>
+              }
+            }
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+@use 'sass:color';
+@use 'material';
+
+
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: material.$ly-topnav-index;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 material.getSize('rg');
+  height: material.$ly-topnav-height;
+  background-color: var(--topnav-background-color);
+  border-bottom: var(--border-solid-thin);
+}
+
+
+.nav__content {
+  flex-grow: 2;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: material.getSize('rg');
+
+  @media screen and (max-width: material.$topnav-breakpoint) {
+    display: none;
+  }
+}
+
+
+:host ::ng-deep .nav__content ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+:host ::ng-deep .nav__content ul:first-child {
+  justify-content: flex-start;
+
+  & > li {
+    margin-right: material.getSize('rg');
+  }
+}
+
+:host ::ng-deep .nav__content ul:last-child {
+  justify-content: flex-end;
+
+  & > li {
+    margin-left: material.getSize('rg');
+  }
+}
+
+.nav__toggle {
+  display: none;
+  @media screen and (max-width: material.$topnav-breakpoint) {
+    display: block;
+  }
+}
+
+
+.nav__content.active {
+  @media screen and (max-width: material.$topnav-breakpoint) {
+    display: block;
+    position: fixed;
+    top: material.$ly-topnav-height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: material.$ly-topnav-index;
+    padding: 0;
+    background-color: material.getMixProp('flat', 'background-color-alpha');
+  }
+}
+
+:host ::ng-deep .nav__content.active ul {
+  @media screen and (max-width: material.$topnav-breakpoint) {
+    display: block;
+  }
+}
+:host ::ng-deep .nav__content.active ul > li {
+  @media screen and (max-width: material.$topnav-breakpoint) {
+    padding: 0 material.getSize('rg');
+    margin: material.getSize('rg') 0;
+  }
+}

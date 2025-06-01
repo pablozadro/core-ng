@@ -1,0 +1,46 @@
+@use 'material';
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: material.$ly-modal-index;
+  background-color: rgba(0,0,0,0.8);
+  background-color: var(--modal-background-color);
+}
+
+.modal__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  & > .title { margin: 0 material.getSize('rg') 0 0; }
+}
+
+.modal-wrapper {
+  margin: 10vh auto 0 auto;
+  width: 60vw;
+  color: var(--body-color);
+  background-color: var(--body-background-color);
+}
+
+.modal-top-panel {
+  & > .title { margin: 0; }
+}
+
+.modal-content {
+  padding: material.getSize('rg');
+  border-top: var(--border-solid-thin);
+  border-bottom: var(--border-solid-thin);
+  min-height: 30vh;
+}
+
+.modal-bottom-panel {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: material.getSize('rg');
+}

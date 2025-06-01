@@ -1,0 +1,45 @@
+<core-topnav>
+  <ul main>
+    <li>
+      <a class="link" routerLink="/">Inicio</a>
+    </li>
+    <li>
+      <a class="link" routerLink="/material/demo">Material</a>
+    </li>
+  </ul>
+  <ul secondary>
+    @if(authState$ | async; as authState) {
+      @if(authState.user) {
+        <li>
+          <a class="link" routerLink="/auth/profile" data-id="profile-link">
+            {{authState.user.email}}
+          </a>
+        </li>
+        <li>
+          <core-btn mix="flat" (click)="onLogout()" label="Logout" data-id="logout-btn"/>
+        </li>
+      } @else {
+        <li>
+          <a class="link" routerLink="/auth/login" data-id="login-link">Login</a>
+        </li>
+      }   
+    }
+    <li>
+      <core-btn 
+        mix="flat" 
+        (click)="onToggleTheme()" 
+        [squared]="true" 
+        icon="light_mode" 
+        data-id="theme-toggler-btn"/>
+    </li>
+  </ul>
+</core-topnav>
+
+<div class="app">
+  <div class="app__content">
+    <router-outlet />
+  </div>
+  <div class="app__footer">
+    <app-core-footer />
+  </div>
+</div> 

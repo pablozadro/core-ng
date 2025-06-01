@@ -1,0 +1,27 @@
+@use 'material';
+
+.btn {
+  padding: material.getSize('sm') material.getSize('rg');
+  border-radius: material.$box-border-radius;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  @each $mix, $value in material.$colors-mixins {
+    &.#{$mix} { 
+      @include material.ColorMixInteractive($mix);
+    }
+  }
+
+  &.squared {
+    padding: material.getSize('sm');
+  }
+}
+
+.btn__label {
+  font-size: 1em;
+  & + .btn__icon { 
+    margin-left: material.getSize('sm');
+  }
+}

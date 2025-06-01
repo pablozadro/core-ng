@@ -1,0 +1,19 @@
+@use 'material';
+
+[data-theme="dark"] {
+  --body-color: #{material.$color-grey-2};
+  --body-background-color: #{material.$color-grey-8};
+  --title-color: #{material.$color-white};
+  --anchor-color: #{material.$color-primary-200};
+  --flat-mix-color: #{material.$color-grey-2};
+  --flat-mix-background-color: #{material.$color-grey-9};
+  --flat-mix-background-color-hover: #{material.$color-black};
+  --flat-mix-background-color-alpha: rgba(0,0,0,0.8);
+  --flat-brand-color: #{material.$color-white};
+  --border-solid-thin: 1px solid #{material.$color-grey-7};
+  --border-solid-regular: 1px solid #{material.$color-grey-5};
+  --border-solid-tick: 4px solid #{material.$color-white};
+  --border-dotted: 1px dotted #{material.$color-grey-5};
+  --topnav-background-color: rgb(40,40,40,0.9);
+  --modal-background-color: #{material.$color-black-alpha};
+}

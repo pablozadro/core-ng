@@ -1,0 +1,41 @@
+@use 'material';
+
+.table {
+  text-align: left;
+  border-collapse: collapse;
+
+  &.tableBlock {
+    width: 100%;
+  }
+
+  thead {
+    & > tr {
+      background-color: material.getMixProp('flat', 'background-color');
+      border-bottom: var(--border-solid-regular);
+      & > th {
+        font-size: material.getFontSize('sm');
+        text-transform: uppercase;
+        font-weight: material.getFontWeight('bold');
+        color: var(--type-title-color);
+        padding: 0.5em 1em 0.25em 0.75em;
+      }
+    }
+  }
+
+  tbody {
+    & > tr {
+      border-bottom: var(--border-solid-thin);
+      &:hover {
+        cursor: pointer;
+        background-color: material.getMixProp('flat', 'background-color-hover');
+        transition: all material.$box-transitions-time ease;
+      }
+
+      &:last-child { border-bottom: none; }
+
+      & > td {
+        padding: 0.5em 1em 0.25em 0.75em;
+      }
+    }
+  }
+}

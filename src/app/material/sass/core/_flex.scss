@@ -1,0 +1,49 @@
+%Flex {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.flex-align-baseline {
+  @extend %Flex;
+  align-items: baseline;
+}
+
+.flex-align-center {
+  @extend %Flex;
+  align-items: center;
+}
+
+.flex-align-end {
+  @extend %Flex;
+  align-items: end;
+}
+
+.flex-align-start {
+  @extend %Flex;
+  align-items: start;
+}
+
+.flex-justify-start {
+  @extend %Flex;
+  justify-content: flex-start;
+}
+
+.flex-justify-end {
+  @extend %Flex;
+  justify-content: flex-end;
+}
+
+.flex-justify-between {
+  @extend %Flex;
+  justify-content: space-between
+}
+
+.flex-justify-around {
+  @extend %Flex;
+  justify-content: space-around;
+}
+
+.flex-justify-evenly {
+  @extend %Flex;
+  justify-content: space-evenly;
+}

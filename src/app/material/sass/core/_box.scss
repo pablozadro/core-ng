@@ -1,0 +1,42 @@
+@use 'material';
+
+
+@each $size, $value in material.$sizes {
+  .mg-b-#{$size} { margin-bottom: $value; }
+  .mg-t-#{$size} { margin-top: $value; }
+  .mg-l-#{$size} { margin-left: $value; }
+  .mg-r-#{$size} { margin-right: $value; }
+  .mg-y-#{$size} {
+    @extend .mg-t-#{$size};
+    @extend .mg-b-#{$size};
+  }
+  .mg-x-#{$size} {
+    @extend .mg-l-#{$size};
+    @extend .mg-r-#{$size};
+  }
+  .mg-#{$size} {
+    @extend .mg-y-#{$size};
+    @extend .mg-x-#{$size};
+  }
+
+  .pd-b-#{$size} { padding-bottom: $value; }
+  .pd-t-#{$size} { padding-top: $value; }
+  .pd-l-#{$size} { padding-left: $value; }
+  .pd-r-#{$size} { padding-right: $value; }
+  .pd-y-#{$size} {
+    @extend .pd-t-#{$size};
+    @extend .pd-b-#{$size};
+  }
+  .pd-x-#{$size} {
+    @extend .pd-l-#{$size};
+    @extend .pd-r-#{$size};
+  }
+  .pd-#{$size} {
+    @extend .pd-y-#{$size};
+    @extend .pd-x-#{$size};
+  }
+}
+
+.rounded { border-radius: material.$box-border-radius; }
+.block { display: block; }
+.inline { display: inline-block; }

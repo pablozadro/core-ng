@@ -1,0 +1,18 @@
+@use 'material';
+
+.message {
+  display: inline-flex;
+  align-items: center;
+  padding: material.getSize('sm');
+  border-radius: material.$box-border-radius;
+
+  &__icon {
+    margin-right: material.getSize('sm');
+  }
+
+  &__label {
+    margin-bottom: 0;
+    min-width: 8em;
+    max-width: 18em;
+  }
+}

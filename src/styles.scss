@@ -1,0 +1,7 @@
+@use 'material';
+@use 'themes';
+@use 'core';
+
+.section {
+  margin-top: material.getSize('xxl');
+}

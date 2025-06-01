@@ -1,0 +1,16 @@
+@use 'material';
+
+.brand {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  margin: 0;
+
+  @each $mix, $value in material.$brand-mixins {
+    &.#{$mix} {
+      & > svg > path {
+        fill: material.getBrandMix($mix);
+      }
+    }
+  }
+}

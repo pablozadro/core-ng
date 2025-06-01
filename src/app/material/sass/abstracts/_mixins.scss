@@ -1,0 +1,81 @@
+@use './vars';
+@use './functions';
+
+@mixin BodyType {
+  font-family: 'Roboto', sans-serif;
+  color: var(--body-color);
+  font-weight: functions.getFontWeight('regular');
+}
+
+@mixin TitleType() {
+  color: var(--title-color);
+  font-weight: functions.getFontWeight('bold');
+}
+
+@mixin ColorMix($mix) {
+  border: none;
+  color: functions.getMixProp($mix, 'color');
+  background-color: functions.getMixProp($mix, 'background-color');
+}
+
+@mixin ColorMixInteractive($mix) {
+  @include ColorMix($mix);
+  &:hover,
+  &:focus {
+    border: none;
+    background-color: functions.getMixProp($mix, 'background-color-hover');
+    transition: all vars.$box-transitions-time ease;
+    outline: none;
+  }
+  &[disabled],
+  &.disabled {
+    border: none;
+    opacity: 0.5;
+    background-color: functions.getMixProp($mix, 'background-color');
+  }
+}
+
+@mixin ColorMixInvisible() {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: var(--border-solid-thin);
+  color: functions.getMixProp('flat', 'color');
+  background-color: var(--body-background-color);
+}
+
+
+@mixin ColorMixInvisibleInteractive() {
+  @include ColorMixInvisible();
+  &:hover,
+  &:focus {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: var(--border-solid-thin);
+    background-color: functions.getMixProp('flat', 'background-color-hover');
+    transition: all vars.$box-transitions-time ease;
+    outline: none;
+  }
+  &[disabled],
+  &.disabled {
+    opacity: 0.5;
+    background-color: functions.getMixProp('flat', 'background-color');
+  }
+}
+
+@mixin ColorMixOnlyInteractive($mix) {
+  &:hover,
+  &:focus {
+    border: none;
+    background-color: functions.getMix($mix, 'background-color-hover');
+    transition: all vars.$box-transitions-time ease;
+    outline: none;
+  }
+  &[disabled],
+  &.disabled {
+    border: none;
+    opacity: 0.5;
+    background-color: functions.getMixProp($mix, 'background-color');
+  }
+}

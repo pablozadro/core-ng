@@ -1,0 +1,12 @@
+<div class="container pd-rg">
+  <section class="section">
+    <header>
+      <h1 class="title md">Profile</h1>
+    </header>
+    @if(authState$ | async; as authState) {
+      @if(authState.user; as user) {
+        <div>{{user.email}}</div>
+      }
+    }
+  </section>
+</div>
